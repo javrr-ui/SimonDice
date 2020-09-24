@@ -10,5 +10,11 @@ public class game {
         colores.add("amarillo");
         colores.add("verde");
     }
+    public void start(){
+
+
+    }
+
+
 
 }

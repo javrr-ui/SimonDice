@@ -1,6 +1,8 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -23,10 +25,20 @@ public class Game {
 
     }
     public void start(){
-
-
+        Random randomColor = new Random();
+        int i=0;
+       do{
+            coloresJuego.add(colores.get(randomColor.nextInt(4)));
+//            try{
+//                Thread.sleep(1000);
+//            }catch (InterruptedException ex){
+//                Thread.currentThread().interrupt();
+//            }
+            i=i+1;
+       }while(i<10);
+        Iterator<String> it = coloresJuego.iterator();
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
     }
-
-
-
 }

@@ -7,13 +7,15 @@ import java.awt.event.ActionListener;
 public class GameWindow {
     private JButton comenzarJuegoButton;
     private JPanel mainPanel;
+    private JPanel buttonPanel;
+    private JButton verde;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
 
     public GameWindow() {
-        comenzarJuegoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        comenzarJuegoButton.addActionListener(e -> {
 
-            }
         });
     }
 }

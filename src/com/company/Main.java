@@ -17,7 +17,5 @@ public class Main {
             e.printStackTrace();
         }
         GameWindow window = new GameWindow();
-
-        Game game = new Game();
     }
 }

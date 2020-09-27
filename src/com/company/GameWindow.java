@@ -31,7 +31,11 @@ public class GameWindow extends JFrame implements MouseListener{
         yellow.addMouseListener(this);
         blue.addMouseListener(this);
         comenzarJuegoButton.addActionListener(e -> {
-
+            if(game.isJuegoEnCurso()==true){
+                JOptionPane.showMessageDialog(null,"Juego en curso!");
+            }else{
+                game.start();
+            }
 
         });
 

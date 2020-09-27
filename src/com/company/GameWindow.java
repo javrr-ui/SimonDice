@@ -15,10 +15,10 @@ public class GameWindow extends JFrame implements MouseListener{
     private JLabel yellow;
     private JLabel blue;
     private JLabel nextColor;
-    //private Game game;
+    private Game game;
 
     public GameWindow() {
-
+        game = new Game();
         inicializarComponentes();
         this.add(mainPanel);
 
@@ -43,8 +43,7 @@ public class GameWindow extends JFrame implements MouseListener{
 
 
         if(green.getIcon().hashCode()==ic.hashCode()){
-            System.out.print("green");
-
+            game.botonVerdePresionado();
             nextColor.setBackground(new Color(0,192,0));
             nextColor.setOpaque(true);
         }
@@ -111,7 +110,6 @@ public class GameWindow extends JFrame implements MouseListener{
         blue.setIcon(blueIcon);
 
         //BOTONES
-
 
 
 

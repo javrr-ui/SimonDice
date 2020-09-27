@@ -7,8 +7,19 @@ import java.util.Scanner;
 
 
 public class Game {
-    ArrayList<String> colores = new ArrayList<>();
-    ArrayList<String> coloresJuego = new ArrayList<>();
+    ArrayList<String> colores = new ArrayList<>(); //array de colores existentes
+    ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
+    boolean juegoEnCurso=false;
+
+    public boolean isJuegoEnCurso() {
+        return juegoEnCurso;
+    }
+
+    public void setJuegoEnCurso(boolean juegoEnCurso) {
+        this.juegoEnCurso = juegoEnCurso;
+    }
+
+
 
     Scanner scan = new Scanner(System.in);
 
@@ -18,11 +29,21 @@ public class Game {
         colores.add("amarillo");
         colores.add("verde");
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "juegoEnCurso=" + juegoEnCurso +
+                '}';
+    }
+
     public void start(){
+        juegoEnCurso=true;
+        System.out.print(toString());
 
     }
     public void perdiste(){
-
+        juegoEnCurso=false;
     }
 
     public void ganaste(){

@@ -47,29 +47,52 @@ public class GameWindow extends JFrame implements MouseListener{
 
                         switch (n){
                             case "rojo":
+
                                 nextColor.setBackground(new Color(255,0,0));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
-                                System.out.print(n);
+                                dormir(500);
+                                nextColor.setBackground(this.getBackground());
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                dormir(500);
+                                System.out.print(n+" ");
                                 break;
                             case "azul":
+
                                 nextColor.setBackground(new Color(0,0,203));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
-                                System.out.print(n);
+                                dormir(500);
+                                nextColor.setBackground(this.getBackground());
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                dormir(500);
+
+                                System.out.print(n+" ");
                                 break;
                             case "verde":
+
                                 nextColor.setBackground(new Color(0,192,0));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
-                                System.out.print(n);
+                                dormir(500);
+                                nextColor.setBackground(this.getBackground());
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                dormir(500);
+
+                                System.out.print(n+" ");
                                 break;
                             case "amarillo":
+
                                 nextColor.setBackground(new Color(253,231,47));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
-                                System.out.print(n);
+                                dormir(500);
+                                nextColor.setBackground(this.getBackground());
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                dormir(500);
+
+                                System.out.print(n+" ");
                                 break;
                             default:
                                 break;
                         }
-                dormir(500);
+                //dormir(500);
                     }
 
             );
@@ -182,5 +205,4 @@ public class GameWindow extends JFrame implements MouseListener{
             e.printStackTrace();
         }
     }
-
 }

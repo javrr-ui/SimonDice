@@ -1,14 +1,22 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
-import java.util.Scanner;
-
 
 public class Game {
     ArrayList<String> colores = new ArrayList<>(); //array de colores existentes
+
+    public ArrayList<String> getColoresJuego() {
+        return coloresJuego;
+    }
+
+    public void setColoresJuego(ArrayList<String> coloresJuego) {
+        this.coloresJuego = coloresJuego;
+    }
+
     ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
+    Random randomColor = new Random();
+
     boolean juegoEnCurso=false;
 
     public boolean isJuegoEnCurso() {
@@ -19,15 +27,17 @@ public class Game {
         this.juegoEnCurso = juegoEnCurso;
     }
 
-
-
-    Scanner scan = new Scanner(System.in);
-
     Game(){
         colores.add("rojo");
         colores.add("azul");
         colores.add("amarillo");
         colores.add("verde");
+
+        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+        coloresJuego.add(colores.get(randomColor.nextInt(4)));
     }
 
     @Override
@@ -40,8 +50,14 @@ public class Game {
     public void start(){
         juegoEnCurso=true;
         System.out.print(toString());
-
+        juego();
     }
+
+    public void juego(){
+       // coloresJuego.add(colores.get(randomColor.nextInt(4)));
+    }
+
+
     public void perdiste(){
         juegoEnCurso=false;
     }
@@ -49,6 +65,6 @@ public class Game {
     public void ganaste(){
     }
     public void botonVerdePresionado(){
-        System.out.print("Presionaste el boton verde");
+        System.out.println("Presionaste el boton verde");
     }
 }

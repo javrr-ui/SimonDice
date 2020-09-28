@@ -31,23 +31,35 @@ public class GameWindow extends JFrame implements MouseListener{
         blue.addMouseListener(this);
         comenzarJuegoButton.addActionListener(e -> {
             if(game.isJuegoEnCurso()==true){
-                JOptionPane.showMessageDialog(null,"Juego en curso!");
+                int opc = JOptionPane.showConfirmDialog(null,"El juego está en curso, quieres comenzar de nuevo?","Warning",JOptionPane.YES_NO_OPTION);
+                if(opc==JOptionPane.YES_OPTION){
+                    game.restart();
+                    juegoXd();
+                }else{
+
+                }
             }else{
                 game.start();
                 juegoXd();
-
             }
         });
+    }
+    public void perdiste(){
+        int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste .|.",JOptionPane.YES_NO_OPTION);
+        if(opc==JOptionPane.YES_OPTION){
+            game.restart();
+            juegoXd();
+        }else{
+            System.exit(0);
+        }
     }
 
     public void juegoXd(){
 
         try{
             game.getColoresJuego().forEach((n) -> {
-
                         switch (n){
                             case "rojo":
-
                                 nextColor.setBackground(new Color(255,0,0));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
@@ -57,50 +69,41 @@ public class GameWindow extends JFrame implements MouseListener{
                                 System.out.print(n+" ");
                                 break;
                             case "azul":
-
                                 nextColor.setBackground(new Color(0,0,203));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-
                                 System.out.print(n+" ");
                                 break;
                             case "verde":
-
                                 nextColor.setBackground(new Color(0,192,0));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-
                                 System.out.print(n+" ");
                                 break;
                             case "amarillo":
-
                                 nextColor.setBackground(new Color(253,231,47));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-
                                 System.out.print(n+" ");
                                 break;
                             default:
                                 break;
                         }
-                //dormir(500);
                     }
-
             );
         }catch(Exception e){
             System.out.print("Error "+e);
         }
     }
-
 
     public void mouseClicked(MouseEvent e){
         JLabel label = (JLabel) e.getSource();
@@ -108,20 +111,40 @@ public class GameWindow extends JFrame implements MouseListener{
 
 
         if(green.getIcon().hashCode()==ic.hashCode()){
-            game.botonVerdePresionado();
-
+            if(game.colorPresionado("verde")){
+                juegoXd();
+            }else{
+                if(!game.isJuegoEnCurso()){
+                    perdiste();
+                }
+            }
         }
         if(red.getIcon().hashCode()==ic.hashCode()){
-            System.out.print("red");
-
+            if(game.colorPresionado("rojo")){
+                juegoXd();
+            }else{
+                if(!game.isJuegoEnCurso()){
+                    perdiste();
+                }
+            }
         }
         if(yellow.getIcon().hashCode()==ic.hashCode()){
-            System.out.print("yellow");
-
+            if(game.colorPresionado("amarillo")){
+                juegoXd();
+            }else{
+                if(!game.isJuegoEnCurso()){
+                    perdiste();
+                }
+            }
         }
         if(blue.getIcon().hashCode()==ic.hashCode()){
-            System.out.print("blue");
-
+            if(game.colorPresionado("azul")){
+                juegoXd();
+            }else{
+                if(!game.isJuegoEnCurso()){
+                    perdiste();
+                }
+            }
         }
 
     }
@@ -169,9 +192,6 @@ public class GameWindow extends JFrame implements MouseListener{
         red.setIcon(redIcon);
         yellow.setIcon(yellowIcon);
         blue.setIcon(blueIcon);
-
-        //BOTONES
-
 
 
         //main panel settings

@@ -10,61 +10,66 @@ public class Game {
         return coloresJuego;
     }
 
-    public void setColoresJuego(ArrayList<String> coloresJuego) {
-        this.coloresJuego = coloresJuego;
-    }
 
     ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
+    ArrayList<String> coloresPresionados = new ArrayList<>(); // array de colores presionados por el usuario
     Random randomColor = new Random();
-
-    boolean juegoEnCurso=false;
 
     public boolean isJuegoEnCurso() {
         return juegoEnCurso;
     }
 
-    public void setJuegoEnCurso(boolean juegoEnCurso) {
-        this.juegoEnCurso = juegoEnCurso;
-    }
+    boolean juegoEnCurso=false;
+    boolean haEmpezadoJuego=false;
+
 
     Game(){
         colores.add("rojo");
         colores.add("azul");
         colores.add("amarillo");
         colores.add("verde");
-
-        coloresJuego.add(colores.get(randomColor.nextInt(4)));
-        coloresJuego.add(colores.get(randomColor.nextInt(4)));
-        coloresJuego.add(colores.get(randomColor.nextInt(4)));
-        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+    }
+    public void agregarColor(){
         coloresJuego.add(colores.get(randomColor.nextInt(4)));
     }
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "juegoEnCurso=" + juegoEnCurso +
-                '}';
+    public boolean colorPresionado(String color){
+        coloresPresionados.add(color); //agrega los colores presionados por el jugador
+        if((coloresJuego.size()==coloresPresionados.size())&&(coloresJuego.equals(coloresPresionados))){
+            agregarColor();
+            coloresPresionados.clear();
+            return true;
+        }else{
+            if((coloresJuego.size()==coloresPresionados.size())&&(!coloresJuego.equals(coloresPresionados))){
+                perdiste();
+            }
+            return false;
+        }
+    }
+
+    public boolean haEmpezadoJuego() {
+        return haEmpezadoJuego;
     }
 
     public void start(){
         juegoEnCurso=true;
-        System.out.print(toString());
-        juego();
+        haEmpezadoJuego=true;
+        agregarColor();
     }
+    public void restart(){
 
-    public void juego(){
-       // coloresJuego.add(colores.get(randomColor.nextInt(4)));
+        haEmpezadoJuego=true;
+        coloresJuego.clear();
+        coloresPresionados.clear();
+        start();
     }
-
 
     public void perdiste(){
         juegoEnCurso=false;
+        haEmpezadoJuego = false;
     }
 
     public void ganaste(){
     }
-    public void botonVerdePresionado(){
-        System.out.println("Presionaste el boton verde");
-    }
+
 }

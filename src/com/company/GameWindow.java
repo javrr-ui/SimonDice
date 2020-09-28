@@ -2,8 +2,6 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -20,10 +18,11 @@ public class GameWindow extends JFrame implements MouseListener{
     public GameWindow() {
         game = new Game();
         inicializarComponentes();
-        this.add(mainPanel);
 
+        this.add(mainPanel); //se agrega panel al frame
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900,480);
+        this.setResizable(false);
         this.setVisible(true);
 
         green.addMouseListener(this);
@@ -35,12 +34,51 @@ public class GameWindow extends JFrame implements MouseListener{
                 JOptionPane.showMessageDialog(null,"Juego en curso!");
             }else{
                 game.start();
+                juegoXd();
+
             }
-
         });
-
-
     }
+
+    public void juegoXd(){
+
+        try{
+            game.getColoresJuego().forEach((n) -> {
+
+                        switch (n){
+                            case "rojo":
+                                nextColor.setBackground(new Color(255,0,0));
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                System.out.print(n);
+                                break;
+                            case "azul":
+                                nextColor.setBackground(new Color(0,0,203));
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                System.out.print(n);
+                                break;
+                            case "verde":
+                                nextColor.setBackground(new Color(0,192,0));
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                System.out.print(n);
+                                break;
+                            case "amarillo":
+                                nextColor.setBackground(new Color(253,231,47));
+                                nextColor.paintImmediately(nextColor.getVisibleRect());
+                                System.out.print(n);
+                                break;
+                            default:
+                                break;
+                        }
+                dormir(500);
+                    }
+
+            );
+        }catch(Exception e){
+            System.out.print("Error "+e);
+        }
+    }
+
+
     public void mouseClicked(MouseEvent e){
         JLabel label = (JLabel) e.getSource();
         ImageIcon ic = (ImageIcon) label.getIcon();
@@ -48,23 +86,19 @@ public class GameWindow extends JFrame implements MouseListener{
 
         if(green.getIcon().hashCode()==ic.hashCode()){
             game.botonVerdePresionado();
-            nextColor.setBackground(new Color(0,192,0));
-            nextColor.setOpaque(true);
+
         }
         if(red.getIcon().hashCode()==ic.hashCode()){
             System.out.print("red");
-            nextColor.setBackground(new Color(255,0,0));
-            nextColor.setOpaque(true);
+
         }
         if(yellow.getIcon().hashCode()==ic.hashCode()){
             System.out.print("yellow");
-            nextColor.setBackground(new Color(253,231,47));
-            nextColor.setOpaque(true);
+
         }
         if(blue.getIcon().hashCode()==ic.hashCode()){
             System.out.print("blue");
-            nextColor.setBackground(new Color(0,0,203));
-            nextColor.setOpaque(true);
+
         }
 
     }
@@ -98,7 +132,7 @@ public class GameWindow extends JFrame implements MouseListener{
         comenzarJuegoButton = new JButton("Comenzar juego");
         nextColor = new JLabel();
         nextColor.setPreferredSize(new Dimension(120,120));
-        nextColor.setOpaque(false);
+        nextColor.setOpaque(true);
 
 
 

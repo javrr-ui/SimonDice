@@ -22,6 +22,7 @@ public class GameWindow extends JFrame implements MouseListener{
         this.add(mainPanel); //se agrega panel al frame
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900,480);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
 

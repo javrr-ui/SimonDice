@@ -25,6 +25,10 @@ public class GameWindow extends JFrame implements MouseListener{
         this.setResizable(false);
         this.setVisible(true);
 
+        escuchadores();
+    }
+
+    private void escuchadores() {
         green.addMouseListener(this);
         red.addMouseListener(this);
         yellow.addMouseListener(this);
@@ -42,6 +46,7 @@ public class GameWindow extends JFrame implements MouseListener{
             }
         });
     }
+
     public void perdiste(){
         int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste .|.",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){

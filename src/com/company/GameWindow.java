@@ -126,7 +126,7 @@ public class GameWindow extends JFrame implements MouseListener{
     }
 
     public void perdiste(){
-        int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste .|.",JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){
             game.restart();
             secuenciaColores();
@@ -188,10 +188,8 @@ public class GameWindow extends JFrame implements MouseListener{
 
     public void mouseClicked(MouseEvent e){
         JLabel label = (JLabel) e.getSource();
-        ImageIcon ic = (ImageIcon) label.getIcon();
 
-
-        if(greenLbl.getIcon().hashCode()==ic.hashCode()){
+        if( ((JLabel) e.getSource()).getName().equals("green")){
             if(game.colorPresionado("verde")){
                 secuenciaColores();
             }else{
@@ -200,7 +198,7 @@ public class GameWindow extends JFrame implements MouseListener{
                 }
             }
         }
-        if(redLbl.getIcon().hashCode()==ic.hashCode()){
+        if(label.getName().equals("red")){
             if(game.colorPresionado("rojo")){
                 secuenciaColores();
             }else{
@@ -209,7 +207,7 @@ public class GameWindow extends JFrame implements MouseListener{
                 }
             }
         }
-        if(yellowLbl.getIcon().hashCode()==ic.hashCode()){
+        if(label.getName().equals("yellow")){
             if(game.colorPresionado("amarillo")){
                 secuenciaColores();
             }else{
@@ -218,7 +216,7 @@ public class GameWindow extends JFrame implements MouseListener{
                 }
             }
         }
-        if(blueLbl.getIcon().hashCode()==ic.hashCode()){
+        if(label.getName().equals("blue")){
             if(game.colorPresionado("azul")){
                 secuenciaColores();
             }else{
@@ -260,6 +258,11 @@ public class GameWindow extends JFrame implements MouseListener{
         redLbl = new JLabel();
         yellowLbl = new JLabel();
         blueLbl = new JLabel();
+        //setName para labels
+        greenLbl.setName("green");
+        redLbl.setName("red");
+        yellowLbl.setName("yellow");
+        blueLbl.setName("blue");
 
         //labels de about message dialog
         ImageIcon gitIcon = new ImageIcon(new ImageIcon("./img/github.png").getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));

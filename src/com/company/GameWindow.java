@@ -278,9 +278,7 @@ public class GameWindow extends JFrame implements MouseListener{
         helpMenu.add(aboutMenuItem);
         helpMenu.setMnemonic(KeyEvent.VK_A);
         menuBar.add(helpMenu);
-
-
-
+        
         //crea imageIcon a partir de una imagen y la reescala XD
         ImageIcon blueIcon = new ImageIcon(new ImageIcon("./img/blue.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
         ImageIcon redIcon = new ImageIcon(new ImageIcon("./img/red.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));

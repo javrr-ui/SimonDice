@@ -7,8 +7,8 @@ import java.net.URI;
 
 public class GameWindow extends JFrame implements MouseListener{
     private JMenuBar menuBar;
-    private JMenu helpMenu;
     private JMenuItem aboutMenuItem;
+    private JMenuItem consoleModeMenuItem;
     private JButton comenzarJuegoButton;
     private JPanel mainPanel;
     private JLabel greenLbl;
@@ -18,10 +18,10 @@ public class GameWindow extends JFrame implements MouseListener{
     private JLabel nextColor;
     private JLabel javierGithub;
     private JLabel ruslanGithub;
-    private final Game game;
+    private Game game;
 
     public GameWindow() {
-        game = new Game();
+
         inicializarComponentes();
         setJMenuBar(menuBar);
         this.add(mainPanel); //se agrega panel al frame
@@ -32,6 +32,9 @@ public class GameWindow extends JFrame implements MouseListener{
         this.setVisible(true);
 
         escuchadores();
+    }
+     void startGame(){
+        game = new Game();
     }
 
     private void escuchadores() {
@@ -52,8 +55,6 @@ public class GameWindow extends JFrame implements MouseListener{
             }
         });
 
-
-
         aboutMenuItem.addActionListener(e -> {
             JPanel jp = new JPanel();
             jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
@@ -64,6 +65,12 @@ public class GameWindow extends JFrame implements MouseListener{
             JOptionPane.showMessageDialog(null,jp,"About",JOptionPane.PLAIN_MESSAGE);
 
         });
+
+        consoleModeMenuItem.addActionListener(e -> {
+            dispose();
+            game.consoleMode();
+        });
+
         javierGithub.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -248,9 +255,13 @@ public class GameWindow extends JFrame implements MouseListener{
     }
 
     public void inicializarComponentes(){
+        JMenu helpMenu = new JMenu("Help");
+        JMenu optionsMenu = new JMenu("Options");
+
         menuBar = new JMenuBar();
-        helpMenu = new JMenu("Help");
         aboutMenuItem = new JMenuItem("About");
+        consoleModeMenuItem = new JMenuItem("Activar Modo Consola");
+
         comenzarJuegoButton = new JButton("Comenzar juego");
         mainPanel = new JPanel();
         greenLbl = new JLabel();
@@ -273,10 +284,12 @@ public class GameWindow extends JFrame implements MouseListener{
         nextColor.setPreferredSize(new Dimension(120,120));
         nextColor.setOpaque(true);
 
-        //menu
+        //menuBar Setup
         helpMenu.add(aboutMenuItem);
         helpMenu.setMnemonic(KeyEvent.VK_A);
+        optionsMenu.add(consoleModeMenuItem);
         menuBar.add(helpMenu);
+        menuBar.add(optionsMenu);
         
         //crea imageIcon a partir de una imagen y la reescala XD
         ImageIcon blueIcon = new ImageIcon(new ImageIcon("./img/blue.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));

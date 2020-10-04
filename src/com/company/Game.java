@@ -18,6 +18,7 @@ public class Game {
         colores.add("amarillo");
         colores.add("verde");
     }
+
     public void agregarColor(){
         coloresJuego.add(colores.get(randomColor.nextInt(4)));
     }
@@ -66,6 +67,10 @@ public class Game {
 
     public boolean isJuegoEnCurso() {
         return juegoEnCurso;
+    }
+
+    public void consoleMode(){
+        System.out.println("Modo consola iniciado.");
     }
 
 

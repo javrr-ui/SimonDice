@@ -60,6 +60,7 @@ public class Game {
     }
 
     public void ganaste(){
+        //do something when you win
     }
     public ArrayList<String> getColoresJuego() {
         return coloresJuego;

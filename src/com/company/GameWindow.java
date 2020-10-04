@@ -33,7 +33,7 @@ public class GameWindow extends JFrame implements MouseListener{
 
         escuchadores();
     }
-     void startGame(){
+     public void startGame(){
         game = new Game();
     }
 
@@ -236,22 +236,22 @@ public class GameWindow extends JFrame implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        //do something when mouse pressed
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        //do something when mouse released
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        //do something when mouse entered
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        //do something when mouse exited
     }
 
     public void inicializarComponentes(){

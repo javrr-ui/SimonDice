@@ -145,4 +145,5 @@
   <target name="build.modules" depends="init, clean, compile.module.simondice" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
 </project>

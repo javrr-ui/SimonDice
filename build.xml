@@ -103,11 +103,13 @@
   </path>
   
   
-  <target name="compile.module.simondice" depends="compile.module.simondice.production,compile.module.simondice.tests" description="Compile module SimonDice"/>
+  <target name="compile.module.simondice" depends="compile.module.simondice.production,compile.module.simondice.tests" description="Compile module SimonDice">
+
+  </target>
   
   <target name="compile.module.simondice.production" description="Compile module SimonDice; production classes">
     <mkdir dir="${simondice.output.dir}"/>
-    <javac destdir="${simondice.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+    <javac destdir="${simondice.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" includeantruntime="false">
       <compilerarg line="${compiler.args.simondice}"/>
       <bootclasspath refid="simondice.module.bootclasspath"/>
       <classpath refid="simondice.module.production.classpath"/>

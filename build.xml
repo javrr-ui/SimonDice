@@ -146,4 +146,6 @@
   
   <target name="all" depends="build.modules" description="build all"/>
 
+  <target name="test" depends="build.modules" description="build all"/>
+
 </project>

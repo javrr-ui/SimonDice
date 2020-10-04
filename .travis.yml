@@ -1,6 +1,6 @@
 dist: xenial
 language: java
-install: ant
+install: ant all
 addons:
   apt:
     packages:

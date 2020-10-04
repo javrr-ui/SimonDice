@@ -55,7 +55,6 @@ public class GameWindow extends JFrame implements MouseListener{
 
 
         aboutMenuItem.addActionListener(e -> {
-            ImageIcon gitIcon = new ImageIcon(new ImageIcon("./img/github.png").getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
             JPanel jp = new JPanel();
             jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
 

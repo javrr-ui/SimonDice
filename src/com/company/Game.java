@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    ArrayList<String> colores = new ArrayList<>(); //array de colores existentes
-    ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
-    ArrayList<String> coloresPresionados = new ArrayList<>(); // array de colores presionados por el usuario
-    Random randomColor = new Random();
-    boolean juegoEnCurso;
-    boolean haEmpezadoJuego;
+    private ArrayList<String> colores = new ArrayList<>(); //array de colores existentes
+    private ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
+    private ArrayList<String> coloresPresionados = new ArrayList<>(); // array de colores presionados por el usuario
+    private Random randomColor = new Random();
+    private boolean juegoEnCurso;
+    private boolean haEmpezadoJuego;
 
 
     Game(){

@@ -62,7 +62,7 @@
   
   
   
-  <property name="compiler.args.simondice" value="-encoding UTF-8 -source 14 -target 14 ${compiler.args}"/>
+  <property name="compiler.args.simondice" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
   
   <property name="simondice.output.dir" value="${module.simondice.basedir}/out/production/SimonDice"/>
   <property name="simondice.testoutput.dir" value="${module.simondice.basedir}/out/test/SimonDice"/>

@@ -5,19 +5,28 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-
-        if(args[0].equals("no-gui")){
-            Game game = new Game();
-            game.consoleMode();
-        }else{
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
-                e.printStackTrace();
+        if(args!=null && args.length>0){
+            for(String argumentos: args){
+                if(argumentos.equals("no-gui")){
+                    Game game = new Game();
+                    game.consoleMode();
+                }else{
+                    System.out.println("Argumento no reconocido, se ejecutara modo consola por defecto");
+                    Game game = new Game();
+                    game.consoleMode();
+                }
             }
-            GameWindow window = new GameWindow();
-            window.startGame();
+        }else{
+            modoNormal();
         }
-
+    }
+    public static void modoNormal(){
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        GameWindow window = new GameWindow();
+        window.startGame();
     }
 }

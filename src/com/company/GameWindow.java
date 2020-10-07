@@ -231,7 +231,6 @@ public class GameWindow extends JFrame implements MouseListener{
                 }
             }
         }
-
     }
 
     @Override

@@ -47,7 +47,6 @@ public class Game {
         agregarColor();
     }
     public void restart(){
-
         haEmpezadoJuego=true;
         coloresJuego.clear();
         coloresPresionados.clear();

@@ -1,8 +1,26 @@
 package com.company;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JMenu;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Cursor;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Image;
+import java.awt.Dimension;
 import java.net.URI;
 
 public class GameWindow extends JFrame implements MouseListener{

@@ -294,6 +294,7 @@ public class GameWindow extends JFrame implements MouseListener{
 
         //labels de about message dialog
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
+        System.out.print(githubImgUrl);
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);

@@ -11,4 +11,8 @@ public class ColorsTest {
         String randomColor = Colors.getRandomColor();
         assertNotNull(randomColor);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

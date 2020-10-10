@@ -292,7 +292,7 @@ public class GameWindow extends JFrame implements MouseListener{
         blueLbl.setName("blue");
 
         //labels de about message dialog
-        ImageIcon gitIcon = new ImageIcon(new ImageIcon("./img/github.png").getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
+        ImageIcon gitIcon = new ImageIcon(new ImageIcon("src/main/resources/img/github.png").getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
 
@@ -309,10 +309,10 @@ public class GameWindow extends JFrame implements MouseListener{
         menuBar.add(optionsMenu);
         
         //crea imageIcon a partir de una imagen y la reescala XD
-        ImageIcon blueIcon = new ImageIcon(new ImageIcon("./img/blue.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon redIcon = new ImageIcon(new ImageIcon("./img/red.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon yellowIcon = new ImageIcon(new ImageIcon("./img/yellow.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon greenIcon = new ImageIcon(new ImageIcon("./img/green.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon blueIcon = new ImageIcon(new ImageIcon("src/main/resources/img/blue.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon redIcon = new ImageIcon(new ImageIcon("src/main/resources/img/red.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon yellowIcon = new ImageIcon(new ImageIcon("src/main/resources/img/yellow.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon greenIcon = new ImageIcon(new ImageIcon("src/main/resources/img/green.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
 
         greenLbl.setIcon(greenIcon);
         redLbl.setIcon(redIcon);

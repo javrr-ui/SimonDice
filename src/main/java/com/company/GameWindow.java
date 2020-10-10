@@ -22,6 +22,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Dimension;
 import java.net.URI;
+import java.net.URL;
 
 public class GameWindow extends JFrame implements MouseListener{
     private JMenuBar menuBar;
@@ -292,7 +293,8 @@ public class GameWindow extends JFrame implements MouseListener{
         blueLbl.setName("blue");
 
         //labels de about message dialog
-        ImageIcon gitIcon = new ImageIcon(new ImageIcon("src/main/resources/img/github.png").getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
+        URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
+        ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
 
@@ -307,12 +309,16 @@ public class GameWindow extends JFrame implements MouseListener{
         optionsMenu.add(consoleModeMenuItem);
         menuBar.add(helpMenu);
         menuBar.add(optionsMenu);
-        
+
+        URL blueUrl = ClassLoader.getSystemResource("img/blue.png");
+        URL redUrl = ClassLoader.getSystemResource("img/red.png");
+        URL yellowUrl = ClassLoader.getSystemResource("img/yellow.png");
+        URL greenUrl = ClassLoader.getSystemResource("img/green.png");
         //crea imageIcon a partir de una imagen y la reescala XD
-        ImageIcon blueIcon = new ImageIcon(new ImageIcon("src/main/resources/img/blue.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon redIcon = new ImageIcon(new ImageIcon("src/main/resources/img/red.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon yellowIcon = new ImageIcon(new ImageIcon("src/main/resources/img/yellow.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon greenIcon = new ImageIcon(new ImageIcon("src/main/resources/img/green.png").getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon blueIcon = new ImageIcon(new ImageIcon(blueUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon redIcon = new ImageIcon(new ImageIcon(redUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon yellowIcon = new ImageIcon(new ImageIcon(yellowUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon greenIcon = new ImageIcon(new ImageIcon(greenUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
 
         greenLbl.setIcon(greenIcon);
         redLbl.setIcon(redIcon);

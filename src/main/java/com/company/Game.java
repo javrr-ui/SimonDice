@@ -31,7 +31,8 @@ public class Game {
         secuenciaJugador.clear();
     }
     public void startJuego(){
-
+        juegoEnCurso=true;
+        haEmpezadoJuego=true;
     }
 
 

@@ -28,3 +28,4 @@ public class GameTest {
         assertTrue(game.getSecuencia().empty());
     }
 }
+

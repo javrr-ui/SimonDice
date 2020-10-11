@@ -62,16 +62,12 @@ public class GameWindow extends JFrame implements MouseListener{
         yellowLbl.addMouseListener(this);
         blueLbl.addMouseListener(this);
         comenzarJuegoButton.addActionListener(e -> {
-            if(game.isJuegoEnCurso()){
-                int opc = JOptionPane.showConfirmDialog(null,"El juego está en curso, quieres comenzar de nuevo?","Warning",JOptionPane.YES_NO_OPTION);
-                if(opc==JOptionPane.YES_OPTION){
-                    game.restart();
-                    secuenciaColores();
-                }
+            if(game.haEmpezadoJuego()){
+                //do nothing
             }else{
-                game.start();
-                secuenciaColores();
+                game.startWindowMode();
             }
+
         });
 
         aboutMenuItem.addActionListener(e -> {
@@ -153,7 +149,7 @@ public class GameWindow extends JFrame implements MouseListener{
     public void perdiste(){
         int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){
-            game.restart();
+            //game.restart();
             secuenciaColores();
         }else{
             System.exit(0);
@@ -163,8 +159,8 @@ public class GameWindow extends JFrame implements MouseListener{
     public void secuenciaColores(){
 
         try{
-            game.getColoresJuego().forEach((n) -> {
-                        switch (n){
+            game.getSecuencia().forEach((color) -> {
+                        switch (color){
                             case "rojo":
                                 nextColor.setBackground(new Color(255,0,0));
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
@@ -172,7 +168,7 @@ public class GameWindow extends JFrame implements MouseListener{
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-                                System.out.print(n+" ");
+                                System.out.print(color+" ");
                                 break;
                             case "azul":
                                 nextColor.setBackground(new Color(0,0,203));
@@ -181,7 +177,7 @@ public class GameWindow extends JFrame implements MouseListener{
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-                                System.out.print(n+" ");
+                                System.out.print(color+" ");
                                 break;
                             case "verde":
                                 nextColor.setBackground(new Color(0,192,0));
@@ -190,7 +186,7 @@ public class GameWindow extends JFrame implements MouseListener{
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-                                System.out.print(n+" ");
+                                System.out.print(color+" ");
                                 break;
                             case "amarillo":
                                 nextColor.setBackground(new Color(253,231,47));
@@ -199,7 +195,7 @@ public class GameWindow extends JFrame implements MouseListener{
                                 nextColor.setBackground(this.getBackground());
                                 nextColor.paintImmediately(nextColor.getVisibleRect());
                                 dormir(500);
-                                System.out.print(n+" ");
+                                System.out.print(color+" ");
                                 break;
                             default:
                                 break;

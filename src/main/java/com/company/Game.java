@@ -1,76 +1,142 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.stream.Stream;
 
 public class Game {
-    private ArrayList<String> colores = new ArrayList<>(); //array de colores existentes
-    private ArrayList<String> coloresJuego = new ArrayList<>(); // array de colores aleatorios que se van añadiendo conforme avanza la partida
-    private ArrayList<String> coloresPresionados = new ArrayList<>(); // array de colores presionados por el usuario
+    private Stack<String> secuencia;
+    private Stack<String> secuenciaJugador;
+    private int puntuacion;
+    private Scanner scanner;
     private Random randomColor = new Random();
     private boolean juegoEnCurso;
     private boolean haEmpezadoJuego;
-
-
     Game(){
-        colores.add("rojo");
-        colores.add("azul");
-        colores.add("amarillo");
-        colores.add("verde");
+        secuencia = new Stack<>();
+        secuenciaJugador = new Stack<>();
+        scanner = new Scanner(System.in);
+
+        //System.out.println("Comenzar juego");
     }
 
-    public void agregarColor(){
-        coloresJuego.add(colores.get(randomColor.nextInt(4)));
+    public Stack<String> getSecuencia() {
+        return secuencia;
     }
+
+
+    public void clearStackJugador(){
+        secuenciaJugador.clear();
+    }
+    public void startJuego(){
+
+    }
+
 
     public boolean colorPresionado(String color){
-        coloresPresionados.add(color); //agrega los colores presionados por el jugador
-        if((coloresJuego.size()==coloresPresionados.size())&&(coloresJuego.equals(coloresPresionados))){
-            agregarColor();
-            coloresPresionados.clear();
-            return true;
-        }else{
-            if((coloresJuego.size()==coloresPresionados.size())&&(!coloresJuego.equals(coloresPresionados))){
-                perdiste();
-            }
-            return false;
-        }
+        secuenciaJugador.push(color); //agrega los colores presionados por el jugador
+        return false;
     }
 
     public boolean haEmpezadoJuego() {
         return haEmpezadoJuego;
     }
 
-    public void start(){
-        juegoEnCurso=true;
-        haEmpezadoJuego=true;
-        agregarColor();
-    }
-    public void restart(){
-        haEmpezadoJuego=true;
-        coloresJuego.clear();
-        coloresPresionados.clear();
-        start();
-    }
+
+
 
     public void perdiste(){
         juegoEnCurso=false;
         haEmpezadoJuego = false;
     }
 
-    public void ganaste(){
-        //do something when you win
-    }
-    public ArrayList<String> getColoresJuego() {
-        return coloresJuego;
-    }
-
     public boolean isJuegoEnCurso() {
         return juegoEnCurso;
     }
+    public void startWindowMode(){
+        juegoEnCurso=true;
+        haEmpezadoJuego=true;
+
+    }
+
 
     public void consoleMode(){
-        System.out.println("Modo consola iniciado.");
+        while(true){
+            clearStackJugador();
+            agregarColor();
+            imprimirStack(secuencia,"Secuencia juego: ");
+            for(String color: secuencia){
+                leerColor();
+                if(compararStacks()){
+                    if(tamanoStackIguales()){
+                        System.out.println("Stacks iguales");
+                    }
+                }else{
+                    System.out.println("Te equivocaste!");
+                    System.out.println("Tu puntuacion es: "+puntuacion);
+                    comenzarDeNuevo();
+                    break;
+                }
+            }
+        }
+    }
+    void  comenzarDeNuevo(){
+        System.out.print("Comenzar de nuevo? (si/no): ");
+        String res = scanner.nextLine();
+        res.toLowerCase();
+        if(res.equals("si")){
+            secuencia.clear();
+
+        }else{
+            System.exit(0);
+        }
+    }
+
+    public void imprimirStack(Stack<String> stack,String text){
+        Stream stream = stack.stream();
+        System.out.print(text);
+        stream.forEach((color) -> {
+            System.out.print(color+" ");
+        });
+        System.out.println("");
+
+    }
+
+
+    public void agregarColor(){
+        secuencia.push(Colors.getRandomColor());
+    }
+
+    public void leerColor(){
+        secuenciaJugador.push(scanner.nextLine());
+    }
+
+    public boolean tamanoStackIguales(){
+        if(secuencia.size()==secuenciaJugador.size()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean compararStacks(){
+        boolean resultado=false;
+        Iterator it = secuenciaJugador.iterator();
+        Iterator it2 = secuencia.iterator();
+
+        while(it.hasNext()){
+            if(it.next().equals(it2.next())){
+                resultado = true;
+                puntuacion += 5;
+            }else{
+                resultado = false;
+                break;
+            }
+        }
+        return resultado;
     }
 
 

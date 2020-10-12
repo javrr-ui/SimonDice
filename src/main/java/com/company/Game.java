@@ -10,27 +10,24 @@ public class Game {
 
     private Stack<String> secuencia;
     private Stack<String> secuenciaJugador;
-
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-
     private int puntuacion;
     private Scanner scanner;
-    private Random randomColor = new Random();
     private boolean juegoEnCurso;
     private boolean gameStarted;
-
-
-    public boolean isGameStarted() {
-        return gameStarted;
-    }
 
     Game(){
         secuencia = new Stack<>();
         secuenciaJugador = new Stack<>();
         scanner = new Scanner(System.in);
+    }
+
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public boolean isGameStarted() {
+        return gameStarted;
     }
 
     public Stack<String> getSecuencia() {

@@ -39,6 +39,8 @@ public class GameWindow extends JFrame implements MouseListener{
     private JLabel ruslanGithub;
     private Game game;
 
+
+
     public GameWindow() {
 
         inicializarComponentes();
@@ -54,6 +56,7 @@ public class GameWindow extends JFrame implements MouseListener{
     }
      public void startGame(){
         game = new Game();
+
     }
 
     private void escuchadores() {
@@ -61,13 +64,15 @@ public class GameWindow extends JFrame implements MouseListener{
         redLbl.addMouseListener(this);
         yellowLbl.addMouseListener(this);
         blueLbl.addMouseListener(this);
+
+
         comenzarJuegoButton.addActionListener(e -> {
             if(game.haEmpezadoJuego()){
-                //do nothing
+                juegoEnCurso();
             }else{
                 game.startWindowMode();
+                secuenciaColores();
             }
-
         });
 
         aboutMenuItem.addActionListener(e -> {
@@ -83,6 +88,7 @@ public class GameWindow extends JFrame implements MouseListener{
 
         consoleModeMenuItem.addActionListener(e -> {
             dispose();
+            game.comenzarDeNuevo();
             game.consoleMode();
         });
 
@@ -107,7 +113,6 @@ public class GameWindow extends JFrame implements MouseListener{
 
             @Override
             public void mouseExited(MouseEvent e) {
-
                 super.mouseExited(e);
                 JLabel lbl = (JLabel) e.getSource();
                 lbl.setForeground(Color.black);
@@ -147,17 +152,26 @@ public class GameWindow extends JFrame implements MouseListener{
     }
 
     public void perdiste(){
-        int opc = JOptionPane.showConfirmDialog(null,"Perdiste, quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null,"Tu puntuación fue: "+game.getPuntuacion()+", quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){
-
+            game.comenzarDeNuevoVentana();
             secuenciaColores();
         }else{
             System.exit(0);
         }
     }
 
-    public void secuenciaColores(){
+    public void juegoEnCurso(){
+        int opc = JOptionPane.showConfirmDialog(null,"Juego en curso, quieres comenzar de nuevo?","Cuidado!",JOptionPane.YES_NO_OPTION);
+        if(opc==JOptionPane.YES_OPTION){
+            game.comenzarDeNuevoVentana();
+            secuenciaColores();
+        }
+    }
 
+
+
+    public void secuenciaColores(){
         try{
             game.getSecuencia().forEach((color) -> {
                         switch (color){
@@ -179,7 +193,7 @@ public class GameWindow extends JFrame implements MouseListener{
                     }
             );
         }catch(Exception e){
-            System.out.print("Error "+e);
+            System.out.print("Error: "+e);
         }
     }
 
@@ -196,63 +210,23 @@ public class GameWindow extends JFrame implements MouseListener{
     public void mouseClicked(MouseEvent e){
         JLabel label = (JLabel) e.getSource();
 
-        if( ((JLabel) e.getSource()).getName().equals("green")){
-            if(game.colorPresionado("verde")){
-                secuenciaColores();
-            }else{
-                if(!game.isJuegoEnCurso()){
-                    perdiste();
+        if(label.getName().matches("verde|rojo|amarillo|azul")&&(game.isGameStarted())){
+            game.leerColor(label.getName());
+            if(game.compararStacks()){
+                if(game.tamanoStackIguales()){
+                    System.out.println("Stacks iguales");
+                    game.clearStackJugador();
+                    game.agregarColor();
+                    secuenciaColores();
                 }
-            }
-        }
-        if(label.getName().equals("red")){
-            if(game.colorPresionado("rojo")){
-                secuenciaColores();
             }else{
-                if(!game.isJuegoEnCurso()){
-                    perdiste();
-                }
-            }
-        }
-        if(label.getName().equals("yellow")){
-            if(game.colorPresionado("amarillo")){
-                secuenciaColores();
-            }else{
-                if(!game.isJuegoEnCurso()){
-                    perdiste();
-                }
-            }
-        }
-        if(label.getName().equals("blue")){
-            if(game.colorPresionado("azul")){
-                secuenciaColores();
-            }else{
-                if(!game.isJuegoEnCurso()){
-                    perdiste();
-                }
+                System.out.println("Te equivocaste!");
+                System.out.println("Tu puntuacion es: "+game.getPuntuacion());
+                perdiste();
             }
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //do something when mouse pressed
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        //do something when mouse released
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //do something when mouse entered
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //do something when mouse exited
-    }
 
     public void inicializarComponentes(){
         JMenu helpMenu = new JMenu("Help");
@@ -269,14 +243,14 @@ public class GameWindow extends JFrame implements MouseListener{
         yellowLbl = new JLabel();
         blueLbl = new JLabel();
         //setName para labels
-        greenLbl.setName("green");
-        redLbl.setName("red");
-        yellowLbl.setName("yellow");
-        blueLbl.setName("blue");
+        greenLbl.setName("verde");
+        redLbl.setName("rojo");
+        yellowLbl.setName("amarillo");
+        blueLbl.setName("azul");
 
         //labels de about message dialog
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
-        System.out.print(githubImgUrl);
+        //System.out.print(githubImgUrl);
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
@@ -339,5 +313,25 @@ public class GameWindow extends JFrame implements MouseListener{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //do something when mouse pressed
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //do something when mouse released
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //do something when mouse entered
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //do something when mouse exited
     }
 }

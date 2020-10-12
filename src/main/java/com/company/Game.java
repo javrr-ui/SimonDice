@@ -97,7 +97,7 @@ public class Game {
     public void  comenzarDeNuevo(){
         System.out.print("Comenzar de nuevo? (si/no): ");
         String res = scanner.nextLine();
-        res.toLowerCase();
+        res = res.toLowerCase();
         if(res.equals("si")){
             secuencia.clear();
             clearPuntuacion();
@@ -116,7 +116,7 @@ public class Game {
         stream.forEach((color) -> {
             System.out.print(color+" ");
         });
-        System.out.println("");
+        System.out.println(" ");
 
     }
 
@@ -130,11 +130,7 @@ public class Game {
     }
 
     public boolean tamanoStackIguales(){
-        if(secuencia.size()==secuenciaJugador.size()){
-            return true;
-        }else{
-            return false;
-        }
+        return secuencia.size() == secuenciaJugador.size();
     }
 
     public boolean compararStacks(){

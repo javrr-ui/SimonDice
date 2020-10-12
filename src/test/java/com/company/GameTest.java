@@ -27,4 +27,16 @@ public class GameTest {
         assertNotNull(game.getSecuencia());
         assertTrue(game.getSecuencia().empty());
     }
+
+    @Test
+    public void consoleMode() {
+        Game game = new Game();
+        assertFalse("El juego no debería estar como iniciado si no lo hemos iniciado explícitamente", game.haEmpezadoJuego());
+        game.consoleMode();
+        assertTrue("El juego debería estar iniciado tras tratar de iniciarlo", game.haEmpezadoJuego());
+        assertTrue(game.isJuegoEnCurso());
+        assertTrue(game.tamanoStackIguales());
+        assertNotNull(game.getSecuencia());
+        assertTrue(game.getSecuencia().empty());
+    }
 }

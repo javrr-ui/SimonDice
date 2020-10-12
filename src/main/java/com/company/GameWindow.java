@@ -162,40 +162,16 @@ public class GameWindow extends JFrame implements MouseListener{
             game.getSecuencia().forEach((color) -> {
                         switch (color){
                             case "rojo":
-                                nextColor.setBackground(new Color(255,0,0));
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                nextColor.setBackground(this.getBackground());
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                System.out.print(color+" ");
+                                pintarColorSecuencia(color,Colors.ROJO);
                                 break;
                             case "azul":
-                                nextColor.setBackground(new Color(0,0,203));
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                nextColor.setBackground(this.getBackground());
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                System.out.print(color+" ");
+                                pintarColorSecuencia(color,Colors.AZUL);
                                 break;
                             case "verde":
-                                nextColor.setBackground(new Color(0,192,0));
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                nextColor.setBackground(this.getBackground());
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                System.out.print(color+" ");
+                                pintarColorSecuencia(color,Colors.VERDE);
                                 break;
                             case "amarillo":
-                                nextColor.setBackground(new Color(253,231,47));
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                nextColor.setBackground(this.getBackground());
-                                nextColor.paintImmediately(nextColor.getVisibleRect());
-                                dormir(500);
-                                System.out.print(color+" ");
+                                pintarColorSecuencia(color,Colors.AMARILLO);
                                 break;
                             default:
                                 break;
@@ -205,6 +181,16 @@ public class GameWindow extends JFrame implements MouseListener{
         }catch(Exception e){
             System.out.print("Error "+e);
         }
+    }
+
+    private void pintarColorSecuencia(String color,Color c) {
+        nextColor.setBackground(c);
+        nextColor.paintImmediately(nextColor.getVisibleRect());
+        dormir(500);
+        nextColor.setBackground(this.getBackground());
+        nextColor.paintImmediately(nextColor.getVisibleRect());
+        dormir(500);
+        System.out.print(color+" ");
     }
 
     public void mouseClicked(MouseEvent e){

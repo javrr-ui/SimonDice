@@ -18,8 +18,6 @@ public class Game {
         secuencia = new Stack<>();
         secuenciaJugador = new Stack<>();
         scanner = new Scanner(System.in);
-
-        //System.out.println("Comenzar juego");
     }
 
     public Stack<String> getSecuencia() {

@@ -1,17 +1,16 @@
 package com.company;
 
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.stream.Stream;
 
 public class Game {
 
-    private Stack<String> secuencia;
-    private Stack<String> secuenciaJugador;
-    private int puntuacion;
-    private Scanner scanner;
+    private final Stack<String> secuencia;
+    private final Stack<String> secuenciaJugador;
+    private int puntaje;
+    private final Scanner scanner;
     private boolean juegoEnCurso;
     private boolean gameStarted;
 
@@ -22,8 +21,8 @@ public class Game {
     }
 
 
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
     }
 
     public boolean isGameStarted() {
@@ -61,61 +60,69 @@ public class Game {
         agregarColor();
     }
 
-    public int getPuntuacion() {
-        return puntuacion;
+    public int getPuntaje() {
+        return puntaje;
     }
 
     public void consoleMode(){
-
+        menu();
         while(true){
             clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
             agregarColor(); //agrega un color nuev ala secuencia de colores vigente
             imprimirStack(secuencia,"Secuencia juego: ");
-            for(String color: secuencia){
+            for(String ignored : secuencia){
                 leerColor(scanner.nextLine());
                 if(compararStacks()){
                     if(tamanoStackIguales()){
-                        System.out.println("Stacks iguales");
+                        //si los stacks son iguales y del mismo tamaño muestra un mensaje
+                        //System.out.println("Stacks iguales");
+
+                       //puntuacio
+                        puntaje = secuenciaJugador.size()+ puntaje;
                     }
                 }else{
+                    clearScreen();
                     System.out.println("Te equivocaste!");
-                    System.out.println("Tu puntuacion es: "+puntuacion);
-
-                    comenzarDeNuevo();
+                    System.out.println("Tu puntaje es: "+ puntaje);
+                    setPuntaje(0);
+                    clearStackJuego();
+                    clearStackJugador();
+                    consoleMode();
+                    //comenzarDeNuevo();
                     break;
                 }
             }
         }
     }
-    public void comenzarDeNuevoVentana(){
-        setPuntuacion(0);
+    public void restart(){
+        setPuntaje(0);
         clearStackJuego();
         clearStackJugador();
         agregarColor();
     }
 
     public void  comenzarDeNuevo(){
+
         System.out.print("Comenzar de nuevo? (si/no): ");
         String res = scanner.nextLine();
         res = res.toLowerCase();
         if(res.equals("si")){
-            secuencia.clear();
+            clearStackJuego();
             clearPuntuacion();
+            consoleMode();
 
         }else{
             System.exit(0);
         }
     }
     public void clearPuntuacion(){
-        puntuacion = 0;
+        puntaje = 0;
     }
 
-    public void imprimirStack(Stack<String> stack,String text){
+    public void imprimirStack(Stack<String> stack, String text){
         Stream stream = stack.stream();
         System.out.print(text);
-        stream.forEach((color) -> {
-            System.out.print(color+" ");
-        });
+        stream.forEach((color) -> System.out.print(color+" "));
         System.out.println(" ");
 
     }
@@ -142,12 +149,71 @@ public class Game {
         while(it.hasNext()){
             if(it.next().equals(it2.next())){
                 resultado = true;
-                puntuacion += 5;
             }else{
                 resultado = false;
                 break;
             }
         }
         return resultado;
+    }
+
+    public void menu(){
+        String input;
+        int opc=0;
+        clearScreen();
+        System.out.println("MENU");
+        System.out.println("[1] COMENZAR PARTIDA");
+        System.out.println("[2] INSTRUCCIONES");
+        System.out.println("[3] OPCIONES");
+        System.out.println("[4] SALIR");
+        do{
+            input  = scanner.nextLine();
+            if(esOpcionValida(input)){
+                opc = Integer.parseInt(input);
+            }else{
+                System.out.println("No existe esa opción, por favor ingrese un numero valido");
+            }
+
+        }while(!esOpcionValida(input));
+        switch(opc){
+            case 1:
+                //no ase nada XD
+                break;
+            case 2:
+                mostrarInstrucciones();
+                break;
+            case 3:
+                opciones();
+                break;
+            case 4:
+                System.exit(0);
+                break;
+            default:
+                break;
+        }
+    }
+    public void mostrarInstrucciones(){
+        //aqui deben mostrarse las instrucciones del juego
+    }
+
+    public void opciones(){
+        //aqui deben mostrarse las opciones para configurar el juego
+    }
+
+    public boolean esOpcionValida(String input){
+        //codigo de validacion aprueba de pendejos (solo acepta valores del 1 al 4)
+        if(input ==null||input.length()<0){
+            return false;
+        }
+        input = input.trim();
+        if("".equals(input)){
+            return false;
+        }
+        return input.matches("[1-4]");
+    }
+
+    public void clearScreen(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

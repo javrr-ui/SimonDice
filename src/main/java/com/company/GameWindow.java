@@ -25,6 +25,11 @@ import java.net.URI;
 import java.net.URL;
 
 public class GameWindow extends JFrame implements MouseListener{
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 480;
+    public static final int MILISEGUNDOS = 500;
+    public static final int IMGSCALEDWIDTH = 180;
+    public static final int IMGSCALEDHEIGHT = 180;
     private JMenuBar menuBar;
     private JMenuItem aboutMenuItem;
     private JMenuItem consoleModeMenuItem;
@@ -45,12 +50,12 @@ public class GameWindow extends JFrame implements MouseListener{
 
         inicializarComponentes();
         setJMenuBar(menuBar);
-        this.add(mainPanel); //se agrega panel al frame
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(900,480);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setVisible(true);
+        add(mainPanel); //se agrega panel al frame
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setVisible(true);
 
         escuchadores();
     }
@@ -152,9 +157,9 @@ public class GameWindow extends JFrame implements MouseListener{
     }
 
     public void perdiste(){
-        int opc = JOptionPane.showConfirmDialog(null,"Tu puntuación fue: "+game.getPuntuacion()+", quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
+        int opc = JOptionPane.showConfirmDialog(null,"Tu puntuación fue: "+game.getPuntaje()+", quieres comenzar de nuevo?","Perdiste!",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){
-            game.comenzarDeNuevoVentana();
+            game.restart();
             secuenciaColores();
         }else{
             System.exit(0);
@@ -164,7 +169,7 @@ public class GameWindow extends JFrame implements MouseListener{
     public void juegoEnCurso(){
         int opc = JOptionPane.showConfirmDialog(null,"Juego en curso, quieres comenzar de nuevo?","Cuidado!",JOptionPane.YES_NO_OPTION);
         if(opc==JOptionPane.YES_OPTION){
-            game.comenzarDeNuevoVentana();
+            game.restart();
             secuenciaColores();
         }
     }
@@ -200,10 +205,10 @@ public class GameWindow extends JFrame implements MouseListener{
     private void pintarColorSecuencia(String color,Color c) {
         nextColor.setBackground(c);
         nextColor.paintImmediately(nextColor.getVisibleRect());
-        dormir(500);
-        nextColor.setBackground(this.getBackground());
+        dormir(MILISEGUNDOS);
+        nextColor.setBackground(getBackground());
         nextColor.paintImmediately(nextColor.getVisibleRect());
-        dormir(500);
+        dormir(MILISEGUNDOS);
         System.out.print(color+" ");
     }
 
@@ -221,7 +226,7 @@ public class GameWindow extends JFrame implements MouseListener{
                 }
             }else{
                 System.out.println("Te equivocaste!");
-                System.out.println("Tu puntuacion es: "+game.getPuntuacion());
+                System.out.println("Tu puntuacion es: "+game.getPuntaje());
                 perdiste();
             }
         }
@@ -272,10 +277,10 @@ public class GameWindow extends JFrame implements MouseListener{
         URL yellowUrl = ClassLoader.getSystemResource("img/yellow.png");
         URL greenUrl = ClassLoader.getSystemResource("img/green.png");
         //crea imageIcon a partir de una imagen y la reescala XD
-        ImageIcon blueIcon = new ImageIcon(new ImageIcon(blueUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon redIcon = new ImageIcon(new ImageIcon(redUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon yellowIcon = new ImageIcon(new ImageIcon(yellowUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
-        ImageIcon greenIcon = new ImageIcon(new ImageIcon(greenUrl).getImage().getScaledInstance(180,180,Image.SCALE_SMOOTH));
+        ImageIcon blueIcon = new ImageIcon(new ImageIcon(blueUrl).getImage().getScaledInstance(IMGSCALEDWIDTH, IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
+        ImageIcon redIcon = new ImageIcon(new ImageIcon(redUrl).getImage().getScaledInstance(IMGSCALEDWIDTH,IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
+        ImageIcon yellowIcon = new ImageIcon(new ImageIcon(yellowUrl).getImage().getScaledInstance(IMGSCALEDWIDTH,IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
+        ImageIcon greenIcon = new ImageIcon(new ImageIcon(greenUrl).getImage().getScaledInstance(IMGSCALEDWIDTH,IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
 
         greenLbl.setIcon(greenIcon);
         redLbl.setIcon(redIcon);

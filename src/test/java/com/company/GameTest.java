@@ -30,6 +30,8 @@ public class GameTest {
 
     @Test
     public void consoleMode() {
+
+        //viendo que funcione ._.XD
         Game game = new Game();
         assertFalse("El juego no debería estar como iniciado si no lo hemos iniciado explícitamente", game.haEmpezadoJuego());
         game.consoleMode();

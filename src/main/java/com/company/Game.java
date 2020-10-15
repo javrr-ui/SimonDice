@@ -194,6 +194,7 @@ public class Game {
     }
     public void mostrarInstrucciones(){
         //aqui deben mostrarse las instrucciones del juego
+        System.out.println("INSTRUCCIONES:");
     }
 
     public void opciones(){

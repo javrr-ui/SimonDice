@@ -2,6 +2,7 @@ package com.company;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.Assertion;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import java.io.ByteArrayOutputStream;
@@ -9,6 +10,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.StringBufferInputStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -53,10 +55,19 @@ public class GameTest {
         Game game = new Game();
         exit.expectSystemExitWithStatus(0);
         game.consoleMode();
+        exit.checkAssertionAfterwards(
+                new Assertion() {
+                    @Override
+                    public void checkAssertion() throws Exception {
 
-        // Put things back
-        System.out.flush();
-        System.setOut(viejaSalida);
-        System.setIn(viejaentrada);
+                        assertFalse("El juego no debería estar como iniciado si no lo hemos iniciado explícitamente", game.haEmpezadoJuego());
+                        assertEquals(salidaBinaria.toString(),"");
+                        // Put things back
+                        System.out.flush();
+                        System.setOut(viejaSalida);
+                        System.setIn(viejaentrada);
+                    }
+                }
+        );
     }
 }

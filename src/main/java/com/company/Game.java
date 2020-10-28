@@ -193,8 +193,10 @@ public class Game {
         }
     }
     public void mostrarInstrucciones(){
-        //aqui deben mostrarse las instrucciones del juego
+        //aqui deben mostrarse las instrucciones del juego.
         System.out.println("INSTRUCCIONES:");
+        System.out.println("Al comenzar el juego, iniciara una secuencia de colores aleatorios");
+        System.out.println("Debes escribir un color y presionar ENTER, y continuar de esta manera hasta escribir cada color");
     }
 
     public void opciones(){

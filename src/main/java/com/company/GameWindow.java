@@ -93,7 +93,7 @@ public class GameWindow extends JFrame implements MouseListener{
 
         consoleModeMenuItem.addActionListener(e -> {
             dispose();
-            game.comenzarDeNuevo();
+            //game.comenzarDeNuevo();
             game.consoleMode();
         });
 

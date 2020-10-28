@@ -77,7 +77,7 @@ public class Game {
                         //si los stacks son iguales y del mismo tamaño muestra un mensaje
                         //System.out.println("Stacks iguales");
 
-                       //puntuacio
+                       //puntuacion
                         puntaje = secuenciaJugador.size()+ puntaje;
                     }
                 }else{
@@ -88,7 +88,7 @@ public class Game {
                     clearStackJuego();
                     clearStackJugador();
                     consoleMode();
-                    //comenzarDeNuevo();
+
                     break;
                 }
             }
@@ -99,24 +99,6 @@ public class Game {
         clearStackJuego();
         clearStackJugador();
         agregarColor();
-    }
-
-    public void  comenzarDeNuevo(){
-
-        System.out.print("Comenzar de nuevo? (si/no): ");
-        String res = scanner.nextLine();
-        res = res.toLowerCase();
-        if(res.equals("si")){
-            clearStackJuego();
-            clearPuntuacion();
-            consoleMode();
-
-        }else{
-            System.exit(0);
-        }
-    }
-    public void clearPuntuacion(){
-        puntaje = 0;
     }
 
     public void imprimirStack(Stack<String> stack, String text){
@@ -156,22 +138,27 @@ public class Game {
         }
         return resultado;
     }
-
-    public void menu(){
-        String input;
-        int opc=0;
-        clearScreen();
+    public void printMenusito(){
         System.out.println("MENU");
         System.out.println("[1] COMENZAR PARTIDA");
         System.out.println("[2] INSTRUCCIONES");
         System.out.println("[3] OPCIONES");
         System.out.println("[4] SALIR");
+    }
+
+    public void menu(){
+        String input;
+        int opc=0;
+        printMenusito(); //muestra un menu con opciones
+
         do{
             input  = scanner.nextLine();
             if(esOpcionValida(input)){
                 opc = Integer.parseInt(input);
             }else{
+                clearScreen();
                 System.out.println("No existe esa opción, por favor ingrese un numero valido");
+                printMenusito();
             }
 
         }while(!esOpcionValida(input));
@@ -180,10 +167,12 @@ public class Game {
                 //no ase nada XD
                 break;
             case 2:
-                mostrarInstrucciones();
+                instrucciones();
+                consoleMode();
                 break;
             case 3:
                 opciones();
+                consoleMode();
                 break;
             case 4:
                 System.exit(0);
@@ -192,20 +181,16 @@ public class Game {
                 break;
         }
     }
-    public void mostrarInstrucciones(){
-        //aqui deben mostrarse las instrucciones del juego.
-        System.out.println("INSTRUCCIONES:");
-        System.out.println("Al comenzar el juego, iniciara una secuencia de colores aleatorios");
-        System.out.println("Debes escribir un color y presionar ENTER, y continuar de esta manera hasta escribir cada color");
-    }
+
 
     public void opciones(){
         //aqui deben mostrarse las opciones para configurar el juego
+        System.out.println("Aun no hay opciones disponibles");
     }
 
     public boolean esOpcionValida(String input){
         //codigo de validacion aprueba de pendejos (solo acepta valores del 1 al 4)
-        if(input ==null||input.length()<0){
+        if(input == null){
             return false;
         }
         input = input.trim();
@@ -218,5 +203,56 @@ public class Game {
     public void clearScreen(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+    public void instrucciones(){
+        System.out.println("INSTRUCCIONES");
+        System.out.println("1. Al comenzar el juego, se mostrará una secuencia de colores, comenzando con un color aleatorio.");
+        System.out.println("2. Debes escribir la escuencia de colores un color a la vez y dar enter.");
+        System.out.println("3. Cuando escribas todos los colores de manera correcta, se añadirá un nuevo color a la secuencia.");
+        System.out.println("4. Debes escribir todos los colores desde el inicio.");
+        System.out.print("Quieres ver un ejemplo? (si/no): ");
+        if(scanner.nextLine().toLowerCase().equals("si")){
+            ejemplo();
+        }
+    }
+    public void ejemplo(){
+        clearScreen();
+        printMenusito();
+        dormir(1000);
+        printPalabraXPalabra("1",1000,1);
+        clearScreen();
+        System.out.println("Secuencia juego: amarillo");
+        dormir(200);
+        printLetraXLetra("amarillo",200);
+        System.out.println("Secuencia juego: amarillo azul");
+        dormir(200);
+        printLetraXLetra("amarillo",200);
+        printLetraXLetra("azul",200);
+        System.out.println("Secuencia juego: amarillo azul rojo");
+        dormir(200);
+        printLetraXLetra("amarillo",200);
+        printLetraXLetra("azul",200);
+        printLetraXLetra("rojo",200);
+    }
+    public static void printLetraXLetra(String palabra, int milis){
+        for(char letra:palabra.toCharArray()){
+            System.out.print(letra);
+            dormir(milis);
+        }
+        System.out.println(" ");
+    }
+    public static void printPalabraXPalabra(String cadena, int milis, int cantidadPalabras){
+        String[] cadena_ =  cadena.split(" ",cantidadPalabras);
+        for(String palabra: cadena_){
+            System.out.print(palabra+" ");
+            dormir(milis);
+        }
+    }
+    public static void dormir(int milis){
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

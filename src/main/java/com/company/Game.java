@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.stream.Stream;
@@ -211,7 +212,7 @@ public class Game {
         System.out.println("3. Cuando escribas todos los colores de manera correcta, se añadirá un nuevo color a la secuencia.");
         System.out.println("4. Debes escribir todos los colores desde el inicio.");
         System.out.print("Quieres ver un ejemplo? (si/no): ");
-        if(scanner.nextLine().toLowerCase().equals("si")){
+        if(scanner.nextLine().toLowerCase(Locale.getDefault()).equals("si")){
             ejemplo();
         }
     }

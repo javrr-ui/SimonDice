@@ -157,12 +157,14 @@ public class Game {
             case MENU_OPCIONES:
                 System.out.println("OPCIONES");
                 System.out.println("[1] ACTIVAR MODO VENTANA");
+                System.out.println("[2] REGRESAR");
                 break;
             default:
                 break;
         }
 
     }
+
 
     public void menu(){
         String input;
@@ -181,9 +183,6 @@ public class Game {
 
         }while(!esOpcionValida(input,4));
         switch(opc){
-            case 1:
-                //no ase nada XD
-                break;
             case 2:
                 instrucciones();
                 //menu();
@@ -203,7 +202,31 @@ public class Game {
 
 
     public void opciones(){
+        String input;
+        int opc=0;
         printMenu(MENU_OPCIONES);
+
+        do{
+            input  = scanner.nextLine();
+            if(esOpcionValida(input,2)){
+                opc = Integer.parseInt(input);
+            }else{
+                clearScreen();
+                System.out.println("No existe esa opción, por favor ingrese un numero valido");
+                printMenu(MENU_OPCIONES);
+            }
+
+        }while(!esOpcionValida(input,2));
+        switch(opc){
+            case 1:
+                Main.modoNormal();
+                break;
+            case 2:
+                break;
+
+            default:
+                break;
+        }
     }
 
     public boolean esOpcionValida(String entrada, int cantidadOpciones){

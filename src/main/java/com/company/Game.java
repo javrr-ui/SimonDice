@@ -7,6 +7,10 @@ import java.util.Stack;
 import java.util.stream.Stream;
 
 public class Game {
+    public static final int MENU_PRINCIPAL = 1;
+    //public static final int MENU_INSTRUCCIONES = 2;
+    public static final int  MENU_OPCIONES = 3;
+
 
     private final Stack<String> secuencia;
     private final Stack<String> secuenciaJugador;
@@ -141,30 +145,41 @@ public class Game {
         }
         return resultado;
     }
-    public void printMenusito(){
-        System.out.println("MENU");
-        System.out.println("[1] COMENZAR PARTIDA");
-        System.out.println("[2] INSTRUCCIONES");
-        System.out.println("[3] OPCIONES");
-        System.out.println("[4] SALIR");
+    public void printMenu(int menu){
+        switch (menu){
+            case MENU_PRINCIPAL:
+                System.out.println("MENU");
+                System.out.println("[1] COMENZAR PARTIDA");
+                System.out.println("[2] INSTRUCCIONES");
+                System.out.println("[3] OPCIONES");
+                System.out.println("[4] SALIR");
+                break;
+            case MENU_OPCIONES:
+                System.out.println("OPCIONES");
+                System.out.println("[1] ACTIVAR MODO VENTANA");
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void menu(){
         String input;
         int opc=0;
-        printMenusito(); //muestra un menu con opciones
+        printMenu(MENU_PRINCIPAL); //muestra un menu con opciones
 
         do{
             input  = scanner.nextLine();
-            if(esOpcionValida(input)){
+            if(esOpcionValida(input,4)){
                 opc = Integer.parseInt(input);
             }else{
                 clearScreen();
                 System.out.println("No existe esa opción, por favor ingrese un numero valido");
-                printMenusito();
+                printMenu(MENU_PRINCIPAL);
             }
 
-        }while(!esOpcionValida(input));
+        }while(!esOpcionValida(input,4));
         switch(opc){
             case 1:
                 //no ase nada XD
@@ -188,20 +203,20 @@ public class Game {
 
 
     public void opciones(){
-        //aqui deben mostrarse las opciones para configurar el juego
-        System.out.println("Aun no hay opciones disponibles");
+        printMenu(MENU_OPCIONES);
     }
 
-    public boolean esOpcionValida(String input){
-        //codigo de validacion aprueba de pendejos (solo acepta valores del 1 al 4)
-        if(input == null){
+    public boolean esOpcionValida(String entrada, int cantidadOpciones){
+        String regularExpresion = "[1-"+cantidadOpciones+"]";
+        //codigo de validacion aprueba de pendejos (solo acepta valores del 1 ala cantidad de opciones que se designa)
+        if(entrada == null){
             return false;
         }
-        input = input.trim();
-        if("".equals(input)){
+        entrada = entrada.trim();
+        if("".equals(entrada)){
             return false;
         }
-        return input.matches("[1-4]");
+        return entrada.matches(regularExpresion);
     }
 
     public void clearScreen(){
@@ -222,7 +237,7 @@ public class Game {
     }
     public void ejemplo(){
         clearScreen();
-        printMenusito();
+        printMenu(MENU_PRINCIPAL);
         dormir(1000);
         printPalabraXPalabra("1",1000,1);
         clearScreen();

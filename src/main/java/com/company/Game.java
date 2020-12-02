@@ -75,7 +75,7 @@ public class Game {
         while(true){
             clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
             agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
-            imprimirStack(secuencia,"Secuencia juego: ");
+            imprimirStack(secuencia,"Siguiente color: ");
             for(String ignored : secuencia){
                 leerColor(scanner.nextLine());
                 if(compararStacks()){
@@ -257,7 +257,6 @@ public class Game {
         System.out.print("Quieres ver un ejemplo? (si/no): ");
         if(scanner.nextLine().toLowerCase(Locale.getDefault()).equals("si")){
             ejemplo();
-
         }
     }
     public void ejemplo(){

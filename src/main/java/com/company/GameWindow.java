@@ -28,27 +28,32 @@ public class GameWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuOpciones = new javax.swing.JMenu();
+        jMenuItemModoConsola = new javax.swing.JMenuItem();
+        jMenuAyuda = new javax.swing.JMenu();
+        jMenuItemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 500));
 
-        jMenu1.setText("Opciones");
+        jMenuOpciones.setText("Opciones");
 
-        jMenuItem2.setText("Activar Modo Consola");
-        jMenu1.add(jMenuItem2);
+        jMenuItemModoConsola.setText("Activar Modo Consola");
+        jMenuItemModoConsola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModoConsolaActionPerformed(evt);
+            }
+        });
+        jMenuOpciones.add(jMenuItemModoConsola);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuOpciones);
 
-        jMenu2.setText("Ayuda");
+        jMenuAyuda.setText("Ayuda");
 
-        jMenuItem1.setText("Acerca de");
-        jMenu2.add(jMenuItem1);
+        jMenuItemAcercaDe.setText("Acerca de");
+        jMenuAyuda.add(jMenuItemAcercaDe);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -65,6 +70,10 @@ public class GameWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemModoConsolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModoConsolaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemModoConsolaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,10 +111,10 @@ public class GameWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemAcercaDe;
+    private javax.swing.JMenuItem jMenuItemModoConsola;
+    private javax.swing.JMenu jMenuOpciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -214,6 +214,7 @@ public class Game {
         System.out.print("Quieres ver un ejemplo? (si/no): ");
         if(scanner.nextLine().toLowerCase(Locale.getDefault()).equals("si")){
             ejemplo();
+
         }
     }
     public void ejemplo(){

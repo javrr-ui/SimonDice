@@ -73,8 +73,8 @@ public class Game {
         menu();
         while(true){
             clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
-            agregarColor(); //agrega un color nuev ala secuencia de colores vigente
-            imprimirStack(secuencia,"Secuencia juego: ");
+            agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
+            imprimirStack(secuencia,"Siguiente color: ");
             for(String ignored : secuencia){
                 leerColor(scanner.nextLine());
                 if(compararStacks()){
@@ -107,10 +107,12 @@ public class Game {
     }
 
     public void imprimirStack(Stack<String> stack, String text){
-        Stream stream = stack.stream();
-        System.out.print(text);
-        stream.forEach((color) -> System.out.print(color+" "));
-        System.out.println(" ");
+//        Stream stream = stack.stream();
+//        System.out.print(text);
+//        stream.forEach((color) -> System.out.print(color+" "));
+//        System.out.println(" ");
+        System.out.println("Puntuación: "+puntaje);
+        System.out.println(text + stack.peek());
 
     }
 

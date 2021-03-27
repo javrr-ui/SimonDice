@@ -61,7 +61,6 @@ public class GameWindow extends JFrame implements MouseListener{
     }
      public void startGame(){
         game = new Game();
-
     }
 
     private void escuchadores() {

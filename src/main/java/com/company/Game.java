@@ -16,6 +16,7 @@ public class Game {
     private boolean gameStarted;
 
     Game(){
+        puntaje=0;
         secuencia = new Stack<>();
         secuenciaJugador = new Stack<>();
         scanner = new Scanner(System.in);
@@ -69,7 +70,7 @@ public class Game {
         menu();
         while(true){
             clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
-            agregarColor(); //agrega un color nuev ala secuencia de colores vigente
+            agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
             imprimirStack(secuencia,"Secuencia juego: ");
             for(String ignored : secuencia){
                 leerColor(scanner.nextLine());
@@ -79,13 +80,14 @@ public class Game {
                         //System.out.println("Stacks iguales");
 
                        //puntuacion
-                        puntaje = secuenciaJugador.size()+ puntaje;
+                       // puntaje = secuenciaJugador.size()+ puntaje;
+                       puntaje = puntaje +1;
                     }
                 }else{
                     clearScreen();
                     System.out.println("Te equivocaste!");
                     System.out.println("Tu puntaje es: "+ puntaje);
-                    setPuntaje(0);
+                    //setPuntaje(0);
                     clearStackJuego();
                     clearStackJugador();
                     consoleMode();
@@ -169,6 +171,7 @@ public class Game {
                 break;
             case 2:
                 instrucciones();
+                //menu();
                 consoleMode();
                 break;
             case 3:

@@ -28,7 +28,7 @@ public class Main {
         } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
             e.printStackTrace();
         }
-        GameWindowOld window = new GameWindowOld();
+        GameWindow window = new GameWindow();
         window.startGame();
     }
 }

@@ -13,6 +13,7 @@ public class Main {
                     game.consoleMode();
                 }else{
                     System.out.println("Argumento no reconocido, se ejecutara modo consola por defecto");
+                    System.out.println("Para ejecutar el modo consola, usar no-gui");
                     Game game = new Game();
                     game.consoleMode();
                 }
@@ -27,7 +28,7 @@ public class Main {
         } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
             e.printStackTrace();
         }
-        GameWindowOld window = new GameWindowOld();
+        GameWindow window = new GameWindow();
         window.startGame();
     }
 }

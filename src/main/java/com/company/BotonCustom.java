@@ -21,7 +21,7 @@ public class BotonCustom extends JButton{
     private Color backgroundColor;
     private String text;
     
-    BotonCustom(){
+    public BotonCustom(){
         super();
     }
     

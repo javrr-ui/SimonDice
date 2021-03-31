@@ -167,7 +167,6 @@ public class GameWindow extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        GridBagConstraints gridBagConstraints;
 
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
@@ -395,7 +394,15 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_greenLblMouseClicked
 
     private void blueLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_blueLblMouseClicked
-    private void lblClicked(MouseEvent e) {
+        lblClicked(evt);
+    }//GEN-LAST:event_blueLblMouseClicked
+
+    private void yellowLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_yellowLblMouseClicked
+        lblClicked(evt);
+    }//GEN-LAST:event_yellowLblMouseClicked
+
+
+private void lblClicked(MouseEvent e) {
         JLabel label = (JLabel) e.getSource();
 
         if (label != null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {

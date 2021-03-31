@@ -13,4 +13,22 @@ public class Colors {
     public static String getRandomColor(){
         return colores[rand.nextInt(colores.length)];
     }
+
+    public static Color getROJO() {
+        return ROJO;
+    }
+
+    public static Color getAZUL() {
+        return AZUL;
+    }
+
+    public static Color getVERDE() {
+        return VERDE;
+    }
+
+    public static Color getAMARILLO() {
+        return AMARILLO;
+    }
+    
+    
 }

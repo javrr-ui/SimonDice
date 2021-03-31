@@ -222,13 +222,9 @@ public class Game {
         }while(!esOpcionValida(input,2));
         switch(opc){
             case 1:
-                
                 GameWindow gw = new GameWindow(this);
                 
                 break;
-            case 2:
-                break;
-
             default:
                 break;
         }

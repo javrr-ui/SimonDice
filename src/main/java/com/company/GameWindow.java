@@ -390,19 +390,11 @@ public class GameWindow extends JFrame {
     private void redLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_redLblMouseClicked
         lblClicked(evt);
     }//GEN-LAST:event_redLblMouseClicked
-
     private void greenLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_greenLblMouseClicked
         lblClicked(evt);
     }//GEN-LAST:event_greenLblMouseClicked
 
     private void blueLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_blueLblMouseClicked
-        lblClicked(evt);
-    }//GEN-LAST:event_blueLblMouseClicked
-
-    private void yellowLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_yellowLblMouseClicked
-        lblClicked(evt);
-    }//GEN-LAST:event_yellowLblMouseClicked
-
     private void lblClicked(MouseEvent e) {
         JLabel label = (JLabel) e.getSource();
 

@@ -6,20 +6,28 @@
 package com.company;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -32,6 +40,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 /**
@@ -43,8 +55,8 @@ public class GameWindow extends JFrame {
     public static final int IMGSCALEDWIDTH = 180;
     public static final int IMGSCALEDHEIGHT = 180;
     public static final int WIDTH = 900;
-    public static final int HEIGHT = 480;
-    public static final int MILISEGUNDOS = 500;
+    public static final int HEIGHT = 500;
+    public static final int MILISEGUNDOS = 1000;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenuItem aboutMenuItem;
@@ -53,10 +65,16 @@ public class GameWindow extends JFrame {
     private JMenuItem consoleModeMenuItem;
     private JLabel greenLbl;
     private JMenu helpMenu;
+    private JButton jButton1;
+    private JButton jButton2;
+    private JButton jButton3;
+    private JLabel jLabel1;
     private JPanel mainPanel;
     private JMenuBar menuBar;
     private JLabel nextColor;
     private JMenu optionsMenu;
+    private JPanel panelInicio;
+    private JPanel panelJuego;
     private JLabel redLbl;
     private JLabel yellowLbl;
     // End of variables declaration//GEN-END:variables
@@ -73,7 +91,7 @@ public class GameWindow extends JFrame {
         escuchadores();
         setVisible(true);
     }
-    
+
     private void escuchadores() {
         javierGithub.addMouseListener(new MouseAdapter() {
             @Override
@@ -276,18 +294,18 @@ public class GameWindow extends JFrame {
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
         mainPanel = new JPanel();
+        panelInicio = new JPanel();
+        jLabel1 = new JLabel();
         comenzarJuegoButton = new JButton();
-        nextColor = new JLabel();
-        URL greenUrl = ClassLoader.getSystemResource("img/green.png");
-        ImageIcon greenIcon = new ImageIcon(new ImageIcon(greenUrl).getImage().getScaledInstance(IMGSCALEDWIDTH,IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
-        greenLbl = new JLabel();
-        URL redUrl = ClassLoader.getSystemResource("img/red.png");
-        ImageIcon redIcon = new ImageIcon(new ImageIcon(redUrl).getImage().getScaledInstance(IMGSCALEDWIDTH, IMGSCALEDHEIGHT, Image.SCALE_SMOOTH));
-        redLbl = new JLabel();
-        URL yellowUrl = ClassLoader.getSystemResource("img/yellow.png"); ImageIcon yellowIcon = new ImageIcon(new ImageIcon(yellowUrl).getImage().getScaledInstance(IMGSCALEDWIDTH, IMGSCALEDHEIGHT, Image.SCALE_SMOOTH));
+        jButton1 = new JButton();
+        jButton2 = new JButton();
+        jButton3 = new JButton();
+        panelJuego = new JPanel();
         yellowLbl = new JLabel();
-        URL blueUrl = ClassLoader.getSystemResource("img/blue.png"); ImageIcon blueIcon = new ImageIcon(new ImageIcon(blueUrl).getImage().getScaledInstance(IMGSCALEDWIDTH, IMGSCALEDHEIGHT,Image.SCALE_SMOOTH));
         blueLbl = new JLabel();
+        nextColor = new JLabel();
+        greenLbl = new JLabel();
+        redLbl = new JLabel();
         menuBar = new JMenuBar();
         helpMenu = new JMenu();
         aboutMenuItem = new JMenuItem();
@@ -297,7 +315,11 @@ public class GameWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
 
-        mainPanel.setLayout(new GridBagLayout());
+        mainPanel.setPreferredSize(new Dimension(900, 500));
+        mainPanel.setLayout(new CardLayout());
+
+        jLabel1.setFont(new Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setText("Simon dice");
 
         comenzarJuegoButton.setText("Comenzar juego");
         comenzarJuegoButton.addActionListener(new ActionListener() {
@@ -305,66 +327,126 @@ public class GameWindow extends JFrame {
                 comenzarJuegoButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        mainPanel.add(comenzarJuegoButton, gridBagConstraints);
 
-        nextColor.setOpaque(true);
-        nextColor.setPreferredSize(new Dimension(120, 120));
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        mainPanel.add(nextColor, gridBagConstraints);
+        jButton1.setText("Instrucciones");
 
-        greenLbl.setIcon(greenIcon);
-        greenLbl.setName("verde"); // NOI18N
-        greenLbl.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                greenLblMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        mainPanel.add(greenLbl, gridBagConstraints);
+        jButton2.setText("Configuracion");
 
-        redLbl.setIcon(redIcon);
-        redLbl.setName("rojo"); // NOI18N
-        redLbl.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                redLblMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        mainPanel.add(redLbl, gridBagConstraints);
+        jButton3.setText("Ayuda");
 
-        yellowLbl.setIcon(yellowIcon);
+        GroupLayout panelInicioLayout = new GroupLayout(panelInicio);
+        panelInicio.setLayout(panelInicioLayout);
+        panelInicioLayout.setHorizontalGroup(panelInicioLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addGroup(panelInicioLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInicioLayout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addGroup(panelInicioLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(comenzarJuegoButton)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)))
+                    .addGroup(panelInicioLayout.createSequentialGroup()
+                        .addGap(323, 323, 323)
+                        .addComponent(jLabel1)))
+                .addGap(346, 346, 346))
+        );
+
+        panelInicioLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {comenzarJuegoButton, jButton1, jButton2, jButton3});
+
+        panelInicioLayout.setVerticalGroup(panelInicioLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
+                .addComponent(comenzarJuegoButton)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(32, 32, 32)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+
+        mainPanel.add(panelInicio, "panelInicio");
+
+        yellowLbl.setBackground(new Color(253, 231, 47));
         yellowLbl.setName("amarillo"); // NOI18N
+        yellowLbl.setOpaque(true);
         yellowLbl.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 yellowLblMouseClicked(evt);
             }
         });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        mainPanel.add(yellowLbl, gridBagConstraints);
 
-        blueLbl.setIcon(blueIcon
-        );
+        blueLbl.setBackground(new Color(0, 0, 203));
         blueLbl.setName("azul"); // NOI18N
+        blueLbl.setOpaque(true);
         blueLbl.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 blueLblMouseClicked(evt);
             }
         });
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        mainPanel.add(blueLbl, gridBagConstraints);
+
+        nextColor.setOpaque(true);
+        nextColor.setPreferredSize(new Dimension(120, 120));
+
+        greenLbl.setBackground(new Color(0, 192, 0));
+        greenLbl.setName("verde");
+        greenLbl.setOpaque(true);
+        greenLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                greenLblMouseClicked(evt);
+            }
+        });
+
+        redLbl.setBackground(new Color(255, 0, 0));
+        redLbl.setName("rojo"); // NOI18N
+        redLbl.setOpaque(true);
+        redLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                redLblMouseClicked(evt);
+            }
+        });
+
+        GroupLayout panelJuegoLayout = new GroupLayout(panelJuego);
+        panelJuego.setLayout(panelJuegoLayout);
+        panelJuegoLayout.setHorizontalGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panelJuegoLayout.createSequentialGroup()
+                .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panelJuegoLayout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(blueLbl, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelJuegoLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(nextColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(greenLbl, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(yellowLbl, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redLbl, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(468, Short.MAX_VALUE))
+        );
+
+        panelJuegoLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {blueLbl, greenLbl, redLbl, yellowLbl});
+
+        panelJuegoLayout.setVerticalGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(panelJuegoLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(greenLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(redLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(blueLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yellowLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+
+        mainPanel.add(panelJuego, "panelJuego");
 
         getContentPane().add(mainPanel, BorderLayout.CENTER);
 
@@ -399,6 +481,8 @@ public class GameWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comenzarJuegoButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_comenzarJuegoButtonActionPerformed
+        CardLayout cl = (CardLayout) mainPanel.getLayout();
+        cl.show(mainPanel, "panelJuego");
         if (game.haEmpezadoJuego()) {
             juegoEnCurso();
         } else {
@@ -423,26 +507,26 @@ public class GameWindow extends JFrame {
         game.consoleMode();
     }//GEN-LAST:event_consoleModeMenuItemActionPerformed
 
-    private void greenLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_greenLblMouseClicked
-        lblClicked(evt);
-    }//GEN-LAST:event_greenLblMouseClicked
-
-    private void yellowLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_yellowLblMouseClicked
-        lblClicked(evt);
-    }//GEN-LAST:event_yellowLblMouseClicked
-
     private void redLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_redLblMouseClicked
         lblClicked(evt);
     }//GEN-LAST:event_redLblMouseClicked
+
+    private void greenLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_greenLblMouseClicked
+        lblClicked(evt);
+    }//GEN-LAST:event_greenLblMouseClicked
 
     private void blueLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_blueLblMouseClicked
         lblClicked(evt);
     }//GEN-LAST:event_blueLblMouseClicked
 
+    private void yellowLblMouseClicked(MouseEvent evt) {//GEN-FIRST:event_yellowLblMouseClicked
+        lblClicked(evt);
+    }//GEN-LAST:event_yellowLblMouseClicked
+
     private void lblClicked(MouseEvent e) {
         JLabel label = (JLabel) e.getSource();
 
-        if (label!= null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {
+        if (label != null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {
             game.leerColor(label.getName());
             if (game.compararStacks()) {
                 if (game.tamanoStackIguales()) {
@@ -506,14 +590,57 @@ public class GameWindow extends JFrame {
     }
 
     private void pintarColorSecuencia(String color, Color c) {
-        nextColor.setBackground(c);
+        
+
+        SwingUtilities.invokeLater(() -> {
+//            System.out.println(color + " "+c);
+//            nextColor.setBackground(c);
+//            panelJuego.revalidate();
+//            dormir(1000);
+//            
+//            nextColor.setBackground(panelJuego.getBackground());
+//            
+            
+             nextColor.setBackground(c);
         nextColor.paintImmediately(nextColor.getVisibleRect());
         dormir(MILISEGUNDOS);
         nextColor.setBackground(getBackground());
         nextColor.paintImmediately(nextColor.getVisibleRect());
         dormir(MILISEGUNDOS);
         System.out.print(color + " ");
+            
+
+        });
+        
+       
+
+////        Runnable r2 = () -> {
+////            nextColor.setBackground(panelJuego.getBackground());
+////            nextColor.repaint();
+////        };
+////        SwingUtilities.invokeLater(r);
+//        int num = game.getSecuencia().size() * 2;
+//        for (int i = 0; i < num; i++) {
+//            if (i % 2 == 0) {
+//                Runnable r2 = () -> {
+//                    nextColor.setBackground(panelJuego.getBackground());
+//                    nextColor.repaint();
+//                    System.out.println("pinta color panel");
+//                };
+//                SwingUtilities.invokeLater(r2);
+//            } else {
+//                Runnable r2 = () -> {
+//                    nextColor.setBackground(c);
+//                    nextColor.repaint();
+//                    System.out.println("pinta color ");
+//                    
+//                };
+//                SwingUtilities.invokeLater(r2);
+//            }
+//
+//        }
     }
+    
 
     public void dormir(int seg) {
         try {
@@ -521,41 +648,6 @@ public class GameWindow extends JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameWindow().setVisible(true);
-            }
-        });
     }
 
 }

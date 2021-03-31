@@ -86,7 +86,8 @@ public class GameWindow extends JFrame {
     /**
      * Creates new form GameWindow
      */
-    public GameWindow() {
+    public GameWindow(Game g) {
+        this.game = g;
         initComponents();
         escuchadores();
         setVisible(true);
@@ -155,129 +156,8 @@ public class GameWindow extends JFrame {
     }
 
     public void startGame() {
-        game = new Game();
-
-
-        });
-
-        consoleModeMenuItem.addActionListener(e -> {
-            dispose();
-            //game.comenzarDeNuevo();
-            game.consoleMode();
-        });
-
-        comenzarJuegoButton.addActionListener(e -> {
-            if(game.haEmpezadoJuego()){
-                juegoEnCurso();
-            }else{
-                game.startWindowMode();
-                secuenciaColores();
-            }
-        });
-
-        aboutMenuItem.addActionListener(e -> {
-            JPanel jp = new JPanel();
-            jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
-
-            jp.add(new JLabel("Juego desarrollado por javrr-ui, con ayuda de javatlacati."));
-            jp.add(javierGithub);
-            jp.add(ruslanGithub);
-            JOptionPane.showMessageDialog(null,jp,"About",JOptionPane.PLAIN_MESSAGE);
-
-        });
-
-        consoleModeMenuItem.addActionListener(e -> {
-            dispose();
-            //game.comenzarDeNuevo();
-            game.consoleMode();
-        });
-
-        javierGithub.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                try{
-                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui"));
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }
-            });
-
-            aboutMenuItem.addActionListener(e -> {
-                JPanel jp = new JPanel();
-                jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
-
-                jp.add(new JLabel("Juego desarrollado por javrr-ui, con ayuda de javatlacati."));
-                jp.add(javierGithub);
-                jp.add(ruslanGithub);
-                JOptionPane.showMessageDialog(null,jp,"About",JOptionPane.PLAIN_MESSAGE);
-
-            });
-
-            consoleModeMenuItem.addActionListener(e -> {
-                dispose();
-                //game.comenzarDeNuevo();
-                game.consoleMode();
-            });
-
-            javierGithub.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    try{
-                        Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui"));
-                    }catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    super.mouseEntered(e);
-                    JLabel lbl = (JLabel) e.getSource();
-                    lbl.setForeground(Color.BLUE);
-                    lbl.paintImmediately(lbl.getVisibleRect());
-                    lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    super.mouseExited(e);
-                    JLabel lbl = (JLabel) e.getSource();
-                    lbl.setForeground(Color.black);
-                    lbl.paintImmediately(lbl.getVisibleRect());
-                    lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-            ruslanGithub.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    try{
-                        Desktop.getDesktop().browse(new URI("https://github.com/javatlacati"));
-                    }catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    super.mouseEntered(e);
-                    JLabel lbl = (JLabel) e.getSource();
-                    lbl.setForeground(Color.BLUE);
-                    lbl.paintImmediately(lbl.getVisibleRect());
-                    lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                    super.mouseExited(e);
-                    JLabel lbl = (JLabel) e.getSource();
-                    lbl.setForeground(Color.black);
-                    lbl.paintImmediately(lbl.getVisibleRect());
-                    lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                }
-            });
-        }
+        game.startWindowMode();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

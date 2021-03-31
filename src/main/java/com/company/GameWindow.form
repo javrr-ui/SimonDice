@@ -4,6 +4,21 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
+        <Menu class="javax.swing.JMenu" name="optionsMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Options"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="consoleModeMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Activar Modo Consola"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consoleModeMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
@@ -18,21 +33,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="optionsMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Options"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="consoleModeMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Activar Modo Consola"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consoleModeMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -73,7 +73,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);&#xa;creditosSonido = new JLabel(&quot;https://www.zapsplat.com&quot;);&#xa;try{&#xa;sonido = new Sound();&#xa;        }catch(Exception e){&#xa;e.printStackTrace();&#xa;}"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">

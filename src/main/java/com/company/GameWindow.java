@@ -19,8 +19,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -72,8 +78,10 @@ public class GameWindow extends JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Game game;
+    private Sound sonido;
     private JLabel javierGithub;
     private JLabel ruslanGithub;
+    private JLabel creditosSonido;
 
     /**
      * Creates new form GameWindow
@@ -92,8 +100,7 @@ public class GameWindow extends JFrame {
                 super.mouseClicked(e);
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui"));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (IOException | URISyntaxException ex) {
                 }
             }
 
@@ -121,6 +128,36 @@ public class GameWindow extends JFrame {
                 super.mouseClicked(e);
                 try {
                     Desktop.getDesktop().browse(new URI("https://github.com/javatlacati"));
+                } catch (IOException | URISyntaxException ex) {
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+                super.mouseExited(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        creditosSonido.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.zapsplat.com/"));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -137,7 +174,6 @@ public class GameWindow extends JFrame {
 
             @Override
             public void mouseExited(MouseEvent e) {
-
                 super.mouseExited(e);
                 JLabel lbl = (JLabel) e.getSource();
                 lbl.setForeground(Color.black);
@@ -164,6 +200,12 @@ public class GameWindow extends JFrame {
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
+        creditosSonido = new JLabel("https://www.zapsplat.com");
+        try{
+            sonido = new Sound();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         mainPanel = new JPanel();
         panelInicio = new JPanel();
         jLabel1 = new JLabel();
@@ -178,10 +220,10 @@ public class GameWindow extends JFrame {
         greenLbl = new JLabel();
         redLbl = new JLabel();
         menuBar = new JMenuBar();
-        helpMenu = new JMenu();
-        aboutMenuItem = new JMenuItem();
         optionsMenu = new JMenu();
         consoleModeMenuItem = new JMenuItem();
+        helpMenu = new JMenu();
+        aboutMenuItem = new JMenuItem();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
@@ -321,6 +363,18 @@ public class GameWindow extends JFrame {
 
         getContentPane().add(mainPanel, BorderLayout.CENTER);
 
+        optionsMenu.setText("Options");
+
+        consoleModeMenuItem.setText("Activar Modo Consola");
+        consoleModeMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                consoleModeMenuItemActionPerformed(evt);
+            }
+        });
+        optionsMenu.add(consoleModeMenuItem);
+
+        menuBar.add(optionsMenu);
+
         helpMenu.setText("Help");
 
         aboutMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
@@ -333,18 +387,6 @@ public class GameWindow extends JFrame {
         helpMenu.add(aboutMenuItem);
 
         menuBar.add(helpMenu);
-
-        optionsMenu.setText("Options");
-
-        consoleModeMenuItem.setText("Activar Modo Consola");
-        consoleModeMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                consoleModeMenuItemActionPerformed(evt);
-            }
-        });
-        optionsMenu.add(consoleModeMenuItem);
-
-        menuBar.add(optionsMenu);
 
         setJMenuBar(menuBar);
 
@@ -363,18 +405,22 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_comenzarJuegoButtonActionPerformed
 
     private void aboutMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
         jp.add(new JLabel("Juego desarrollado por javrr-ui, con ayuda de javatlacati."));
         jp.add(javierGithub);
         jp.add(ruslanGithub);
+        jp.add(new JLabel("Sound effects obtained from "));
+        jp.add(creditosSonido);
         JOptionPane.showMessageDialog(null, jp, "About", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void consoleModeMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_consoleModeMenuItemActionPerformed
         dispose();
         //game.comenzarDeNuevo();
+
         game.consoleMode();
     }//GEN-LAST:event_consoleModeMenuItemActionPerformed
 
@@ -394,6 +440,12 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_yellowLblMouseClicked
 
     private void lblClicked(MouseEvent e) {
+
+        try {
+            sonido.play();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+        }
+
         JLabel label = (JLabel) e.getSource();
 
         if (label != null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {

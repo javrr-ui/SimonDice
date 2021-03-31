@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
-        
+        System.out.println("");
         if(args!=null && args.length>0){
             for(String argumentos: args){
                 if(argumentos.equals("no-gui")){
@@ -31,6 +31,6 @@ public class Main {
             e.printStackTrace();
         }
         GameWindow window = new GameWindow(g);
-        window.startGame();
+        
     }
 }

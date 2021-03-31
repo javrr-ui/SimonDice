@@ -6,29 +6,31 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Main {
 
     public static void main(String[] args) {
+        Game game = new Game();
+        
         if(args!=null && args.length>0){
             for(String argumentos: args){
                 if(argumentos.equals("no-gui")){
-                    Game game = new Game();
+                    
                     game.consoleMode();
                 }else{
                     System.out.println("Argumento no reconocido, se ejecutara modo consola por defecto");
                     System.out.println("Para ejecutar el modo consola, usar no-gui");
-                    Game game = new Game();
+                    
                     game.consoleMode();
                 }
             }
         }else{
-            modoNormal();
+            modoNormal(game);
         }
     }
-    public static void modoNormal(){
+    public static void modoNormal(Game g){
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
             e.printStackTrace();
         }
-        GameWindow window = new GameWindow();
+        GameWindow window = new GameWindow(g);
         window.startGame();
     }
 }

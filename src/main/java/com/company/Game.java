@@ -25,6 +25,7 @@ public class Game {
         secuenciaJugador = new Stack<>();
         scanner = new Scanner(System.in);
         gameStarted=false;
+        juegoEnCurso=false;
     }
 
 

@@ -24,6 +24,7 @@ public class Game {
         secuencia = new Stack<>();
         secuenciaJugador = new Stack<>();
         scanner = new Scanner(System.in);
+        gameStarted=false;
     }
 
 
@@ -221,7 +222,9 @@ public class Game {
         }while(!esOpcionValida(input,2));
         switch(opc){
             case 1:
-                Main.modoNormal();
+                
+                GameWindow gw = new GameWindow(this);
+                
                 break;
             case 2:
                 break;

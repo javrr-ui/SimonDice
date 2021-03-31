@@ -13,21 +13,14 @@ import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -43,7 +36,6 @@ import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 /**
@@ -401,8 +393,7 @@ public class GameWindow extends JFrame {
         lblClicked(evt);
     }//GEN-LAST:event_yellowLblMouseClicked
 
-
-private void lblClicked(MouseEvent e) {
+    private void lblClicked(MouseEvent e) {
         JLabel label = (JLabel) e.getSource();
 
         if (label != null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {
@@ -469,57 +460,17 @@ private void lblClicked(MouseEvent e) {
     }
 
     private void pintarColorSecuencia(String color, Color c) {
-        
 
         SwingUtilities.invokeLater(() -> {
-//            System.out.println(color + " "+c);
-//            nextColor.setBackground(c);
-//            panelJuego.revalidate();
-//            dormir(1000);
-//            
-//            nextColor.setBackground(panelJuego.getBackground());
-//            
-            
-             nextColor.setBackground(c);
-        nextColor.paintImmediately(nextColor.getVisibleRect());
-        dormir(MILISEGUNDOS);
-        nextColor.setBackground(getBackground());
-        nextColor.paintImmediately(nextColor.getVisibleRect());
-        dormir(MILISEGUNDOS);
-        System.out.print(color + " ");
-            
-
+            nextColor.setBackground(c);
+            nextColor.paintImmediately(nextColor.getVisibleRect());
+            dormir(MILISEGUNDOS);
+            nextColor.setBackground(getBackground());
+            nextColor.paintImmediately(nextColor.getVisibleRect());
+            dormir(MILISEGUNDOS);
+            System.out.print(color + " ");
         });
-        
-       
-
-////        Runnable r2 = () -> {
-////            nextColor.setBackground(panelJuego.getBackground());
-////            nextColor.repaint();
-////        };
-////        SwingUtilities.invokeLater(r);
-//        int num = game.getSecuencia().size() * 2;
-//        for (int i = 0; i < num; i++) {
-//            if (i % 2 == 0) {
-//                Runnable r2 = () -> {
-//                    nextColor.setBackground(panelJuego.getBackground());
-//                    nextColor.repaint();
-//                    System.out.println("pinta color panel");
-//                };
-//                SwingUtilities.invokeLater(r2);
-//            } else {
-//                Runnable r2 = () -> {
-//                    nextColor.setBackground(c);
-//                    nextColor.repaint();
-//                    System.out.println("pinta color ");
-//                    
-//                };
-//                SwingUtilities.invokeLater(r2);
-//            }
-//
-//        }
     }
-    
 
     public void dormir(int seg) {
         try {

@@ -15,6 +15,7 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -75,6 +76,7 @@ public class GameWindow extends JFrame {
     private JButton helpButton;
     private JMenu helpMenu;
     private JButton instructionsButton;
+    private JDialog instructionsDialog;
     private JButton jButton1;
     private JButton jButton2;
     private JButton jButton8;
@@ -92,11 +94,17 @@ public class GameWindow extends JFrame {
     private JLabel jLabel18;
     private JLabel jLabel2;
     private JLabel jLabel20;
-    private JMenuItem jMenuItem1;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
     private JTabbedPane jTabbedPane1;
+    private JTabbedPane jTabbedPane2;
     private JToggleButton jToggleButton2;
     private JPanel mainPanel;
     private JMenuBar menuBar;
@@ -123,7 +131,7 @@ public class GameWindow extends JFrame {
     public GameWindow(Game g) {
         this.game = g;
         initComponents();
-        
+
         escuchadores();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -217,7 +225,7 @@ public class GameWindow extends JFrame {
                 lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
-        
+
         reportarError.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -285,7 +293,14 @@ public class GameWindow extends JFrame {
         jButton2 = new JButton();
         colorPicker = new JDialog();
         jColorChooser1 = new JColorChooser();
-        jMenuItem1 = new JMenuItem();
+        instructionsDialog = new JDialog();
+        jTabbedPane2 = new JTabbedPane();
+        jPanel4 = new JPanel();
+        jLabel3 = new JLabel();
+        jLabel4 = new JLabel();
+        jPanel5 = new JPanel();
+        jLabel5 = new JLabel();
+        jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
@@ -503,7 +518,7 @@ public class GameWindow extends JFrame {
                 .addGroup(optionDialogLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         GroupLayout colorPickerLayout = new GroupLayout(colorPicker.getContentPane());
@@ -521,7 +536,68 @@ public class GameWindow extends JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jMenuItem1.setText("jMenuItem1");
+        instructionsDialog.setModal(true);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+
+        jLabel3.setText("Presionar el botón \"Comenzar juego\" para iniciar el juego.");
+
+        jLabel4.setIcon(new ImageIcon(getClass().getResource("/img/instructions/ins1.PNG"))); // NOI18N
+
+        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("1", jPanel4);
+
+        jLabel5.setText("Esperar a que termine de mostrarse la secuencia de colores, y luego presionar los colores siguiendo la secuencia mostrada");
+
+        jLabel6.setIcon(new ImageIcon(getClass().getResource("/img/instructions/ins2.PNG"))); // NOI18N
+
+        GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("2", jPanel5);
+
+        GroupLayout instructionsDialogLayout = new GroupLayout(instructionsDialog.getContentPane());
+        instructionsDialog.getContentPane().setLayout(instructionsDialogLayout);
+        instructionsDialogLayout.setHorizontalGroup(instructionsDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
+        instructionsDialogLayout.setVerticalGroup(instructionsDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(WIDTH,HEIGHT);
@@ -592,7 +668,7 @@ public class GameWindow extends JFrame {
                 .addComponent(configButton)
                 .addGap(18, 18, 18)
                 .addComponent(helpButton)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         mainPanel.add(panelInicio, "panelInicio");
@@ -669,7 +745,7 @@ public class GameWindow extends JFrame {
                 .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(blueLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
                     .addComponent(yellowLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         mainPanel.add(panelJuego, "panelJuego");
@@ -767,7 +843,7 @@ public class GameWindow extends JFrame {
     private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         backgroundColor = JColorChooser.showDialog(GameWindow.this, "Selecciona color de fondo", backgroundColor);
         jLabel2.setBackground(backgroundColor);
-        
+
         repaint();
         revalidate();
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -778,36 +854,36 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_optionsMenuActionPerformed
 
     private void optionsMenuMenuSelected(MenuEvent evt) {//GEN-FIRST:event_optionsMenuMenuSelected
-        
+
     }//GEN-LAST:event_optionsMenuMenuSelected
 
     private void optionsMenuMouseClicked(MouseEvent evt) {//GEN-FIRST:event_optionsMenuMouseClicked
         optionDialog.setVisible(true);
-            optionDialog.pack();
-            optionsMenu.setSelected(false);
+        optionDialog.pack();
+        optionsMenu.setSelected(false);
     }//GEN-LAST:event_optionsMenuMouseClicked
 
     private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         panelJuego.setBackground(backgroundColor);
         nextColor.setBackground(backgroundColor);
         optionDialog.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         jLabel2.setBackground(panelJuego.getBackground());
+        jLabel2.setBackground(panelJuego.getBackground());
         optionDialog.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
-
-     
-        //https://github.com/javrr-ui/SimonDice/issues
+            instructionsDialog.pack();
+        instructionsDialog.setVisible(true);
+            
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 
     private void helpButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
-       JPanel jp = new JPanel();
+        JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
         jp.add(new JLabel("Para reportar un error ingrese al siguiente enlace"));

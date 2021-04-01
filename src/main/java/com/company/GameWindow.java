@@ -18,17 +18,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -44,9 +40,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
-import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -77,8 +73,6 @@ public class GameWindow extends JFrame {
     private JMenu helpMenu;
     private JButton instructionsButton;
     private JDialog instructionsDialog;
-    private JButton jButton1;
-    private JButton jButton2;
     private JButton jButton8;
     private JColorChooser jColorChooser1;
     private JComboBox<String> jComboBox3;
@@ -98,11 +92,15 @@ public class GameWindow extends JFrame {
     private JLabel jLabel4;
     private JLabel jLabel5;
     private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
     private JPanel jPanel4;
     private JPanel jPanel5;
+    private JSlider jSlider1;
     private JTabbedPane jTabbedPane1;
     private JTabbedPane jTabbedPane2;
     private JToggleButton jToggleButton2;
@@ -110,6 +108,8 @@ public class GameWindow extends JFrame {
     private JMenuBar menuBar;
     private JLabel nextColor;
     private JDialog optionDialog;
+    private JButton optionDialogAceptar;
+    private JButton optionDialogCancelar;
     private JMenu optionsMenu;
     private JPanel panelInicio;
     private JPanel panelJuego;
@@ -124,6 +124,9 @@ public class GameWindow extends JFrame {
     private JLabel reportarError;
     private JLabel creditosSonido;
     private Color backgroundColor;
+    //mientras menos sea el valor, es mas dificil
+    private int dificultad;
+    private int dificultad_aux;
 
     /**
      * Creates new form GameWindow
@@ -277,6 +280,10 @@ public class GameWindow extends JFrame {
         jComboBox3 = new JComboBox<>();
         jLabel18 = new JLabel();
         jComboBox4 = new JComboBox<>();
+        jLabel7 = new JLabel();
+        jSlider1 = new JSlider();
+        jLabel8 = new JLabel();
+        jLabel9 = new JLabel();
         jPanel1 = new JPanel();
         jLabel20 = new JLabel();
         jLabel2 = new JLabel();
@@ -289,8 +296,8 @@ public class GameWindow extends JFrame {
         jLabel13 = new JLabel();
         jLabel14 = new JLabel();
         jLabel15 = new JLabel();
-        jButton1 = new JButton();
-        jButton2 = new JButton();
+        optionDialogAceptar = new JButton();
+        optionDialogCancelar = new JButton();
         colorPicker = new JDialog();
         jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
@@ -308,6 +315,8 @@ public class GameWindow extends JFrame {
         creditosSonido = new JLabel("https://www.zapsplat.com");
         reportarError = new JLabel("https://github.com/javrr-ui/SimonDice/issues");
         backgroundColor = new Color(240,240,240);
+        dificultad = 1000;
+        dificultad_aux = jSlider1.getMaximum();
         try{
             sonido = new Sound();
         }catch(Exception e){
@@ -349,19 +358,54 @@ public class GameWindow extends JFrame {
         jComboBox4.setModel(new DefaultComboBoxModel<>(new String[] { "Español", "English" }));
         jComboBox4.setEnabled(false);
 
+        jLabel7.setText("Dificultad");
+
+        jSlider1.setMajorTickSpacing(3);
+        jSlider1.setMaximum(10);
+        jSlider1.setMinimum(1);
+        jSlider1.setMinorTickSpacing(1);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setSnapToTicks(true);
+        jSlider1.setInverted(true);
+        jSlider1.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent evt) {
+                jSlider1MouseDragged(evt);
+            }
+        });
+        jSlider1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jSlider1MouseClicked(evt);
+            }
+        });
+
+        jLabel8.setText("Facil");
+
+        jLabel9.setText("Dificil");
+
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel16))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox3, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, 0, 89, Short.MAX_VALUE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(jSlider1, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel16))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox3, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox4, 0, 89, Short.MAX_VALUE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel9)))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -373,7 +417,15 @@ public class GameWindow extends JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jComboBox4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSlider1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("General", jPanel2);
@@ -411,7 +463,7 @@ public class GameWindow extends JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel20)
                         .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Graficos", jPanel1);
@@ -481,22 +533,22 @@ public class GameWindow extends JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Accesibilidad", jPanel3);
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new ActionListener() {
+        optionDialogAceptar.setText("Aceptar");
+        optionDialogAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                optionDialogAceptarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new ActionListener() {
+        optionDialogCancelar.setText("Cancelar");
+        optionDialogCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                optionDialogCancelarActionPerformed(evt);
             }
         });
 
@@ -506,9 +558,9 @@ public class GameWindow extends JFrame {
             .addComponent(jTabbedPane1)
             .addGroup(optionDialogLayout.createSequentialGroup()
                 .addGap(117, 117, 117)
-                .addComponent(jButton1)
+                .addComponent(optionDialogAceptar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(optionDialogCancelar)
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionDialogLayout.setVerticalGroup(optionDialogLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -516,9 +568,9 @@ public class GameWindow extends JFrame {
                 .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(optionDialogLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(optionDialogCancelar)
+                    .addComponent(optionDialogAceptar))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         GroupLayout colorPickerLayout = new GroupLayout(colorPicker.getContentPane());
@@ -863,22 +915,36 @@ public class GameWindow extends JFrame {
         optionsMenu.setSelected(false);
     }//GEN-LAST:event_optionsMenuMouseClicked
 
-    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void optionDialogAceptarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogAceptarActionPerformed
 
         panelJuego.setBackground(backgroundColor);
         nextColor.setBackground(backgroundColor);
-        optionDialog.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //cambia el valor de dificultad
+        if(dificultad_aux<jSlider1.getMaximum()){
+            dificultad = dificultad_aux * 100;
+        }
+        if(dificultad_aux==jSlider1.getMaximum()){
+            dificultad = 1000;
+        }
+        
+        
+        
+        System.out.println("dificultad_aux:" + dificultad_aux);
+        System.out.println("dificultad:" + dificultad);
+
+        optionDialog.dispose();
+    }//GEN-LAST:event_optionDialogAceptarActionPerformed
+
+    private void optionDialogCancelarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogCancelarActionPerformed
         jLabel2.setBackground(panelJuego.getBackground());
         optionDialog.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_optionDialogCancelarActionPerformed
 
     private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
-            instructionsDialog.pack();
+        instructionsDialog.pack();
         instructionsDialog.setVisible(true);
-            
+
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 
@@ -893,6 +959,16 @@ public class GameWindow extends JFrame {
         jp.add(javierGithub);
         JOptionPane.showMessageDialog(null, jp, "Ayuda", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_helpButtonActionPerformed
+
+    private void jSlider1MouseClicked(MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseClicked
+        JSlider js = (JSlider) evt.getSource();
+        dificultad_aux = js.getValue();
+    }//GEN-LAST:event_jSlider1MouseClicked
+
+    private void jSlider1MouseDragged(MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseDragged
+        JSlider js = (JSlider) evt.getSource();
+        dificultad_aux = js.getValue();
+    }//GEN-LAST:event_jSlider1MouseDragged
 
     private void lblClicked(MouseEvent e) {
 //
@@ -971,10 +1047,10 @@ public class GameWindow extends JFrame {
         SwingUtilities.invokeLater(() -> {
             nextColor.setBackground(c);
             nextColor.paintImmediately(nextColor.getVisibleRect());
-            dormir(MILISEGUNDOS);
+            dormir(dificultad);
             nextColor.setBackground(backgroundColor);
             nextColor.paintImmediately(nextColor.getVisibleRect());
-            dormir(MILISEGUNDOS);
+            dormir(dificultad);
             System.out.print(color + " ");
         });
     }

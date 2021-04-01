@@ -440,11 +440,11 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_yellowLblMouseClicked
 
     private void lblClicked(MouseEvent e) {
-
-        try {
-            sonido.play();
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
-        }
+//
+//        try {
+//            sonido.play();
+//        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+//        }
 
         JLabel label = (JLabel) e.getSource();
 

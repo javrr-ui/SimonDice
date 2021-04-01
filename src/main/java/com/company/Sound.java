@@ -49,9 +49,10 @@ public class Sound {
     }
     
     public void play() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-        
+        clip.open(audioInputStream);
         clip.start();
         resetAudioStream();
+        clip.close();
     }
     
     public void resetAudioStream()throws UnsupportedAudioFileException,IOException, LineUnavailableException{

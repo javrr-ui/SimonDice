@@ -930,8 +930,8 @@ public class GameWindow extends JFrame {
         
         
         
-        System.out.println("dificultad_aux:" + dificultad_aux);
-        System.out.println("dificultad:" + dificultad);
+        //System.out.println("dificultad_aux:" + dificultad_aux);
+        //System.out.println("dificultad:" + dificultad);
 
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogAceptarActionPerformed

@@ -113,6 +113,7 @@ public class GameWindow extends JFrame {
     private Sound sonido;
     private JLabel javierGithub;
     private JLabel ruslanGithub;
+    private JLabel reportarError;
     private JLabel creditosSonido;
     private Color backgroundColor;
 
@@ -216,6 +217,36 @@ public class GameWindow extends JFrame {
                 lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
+        
+        reportarError.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui/SimonDice/issues"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
     }
 
     public void startGame() {
@@ -260,6 +291,7 @@ public class GameWindow extends JFrame {
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
         creditosSonido = new JLabel("https://www.zapsplat.com");
+        reportarError = new JLabel("https://github.com/javrr-ui/SimonDice/issues");
         backgroundColor = new Color(240,240,240);
         try{
             sonido = new Sound();
@@ -508,6 +540,11 @@ public class GameWindow extends JFrame {
         });
 
         instructionsButton.setText("Instrucciones");
+        instructionsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                instructionsButtonActionPerformed(evt);
+            }
+        });
 
         configButton.setText("Configuracion");
         configButton.addActionListener(new ActionListener() {
@@ -517,6 +554,11 @@ public class GameWindow extends JFrame {
         });
 
         helpButton.setText("Ayuda");
+        helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                helpButtonActionPerformed(evt);
+            }
+        });
 
         GroupLayout panelInicioLayout = new GroupLayout(panelInicio);
         panelInicio.setLayout(panelInicioLayout);
@@ -550,7 +592,7 @@ public class GameWindow extends JFrame {
                 .addComponent(configButton)
                 .addGap(18, 18, 18)
                 .addComponent(helpButton)
-                .addContainerGap())
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         mainPanel.add(panelInicio, "panelInicio");
@@ -627,7 +669,7 @@ public class GameWindow extends JFrame {
                 .addGroup(panelJuegoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(blueLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
                     .addComponent(yellowLbl, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         mainPanel.add(panelJuego, "panelJuego");
@@ -756,6 +798,25 @@ public class GameWindow extends JFrame {
          jLabel2.setBackground(panelJuego.getBackground());
         optionDialog.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
+
+     
+        //https://github.com/javrr-ui/SimonDice/issues
+
+    }//GEN-LAST:event_instructionsButtonActionPerformed
+
+    private void helpButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+       JPanel jp = new JPanel();
+        jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
+
+        jp.add(new JLabel("Para reportar un error ingrese al siguiente enlace"));
+        jp.add(reportarError);
+        jp.add(new JLabel("\n"));
+        jp.add(new JLabel("Para resolver una duda comunicarse con: "));
+        jp.add(javierGithub);
+        JOptionPane.showMessageDialog(null, jp, "Ayuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_helpButtonActionPerformed
 
     private void lblClicked(MouseEvent e) {
 //

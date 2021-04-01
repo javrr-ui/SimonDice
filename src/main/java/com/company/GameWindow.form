@@ -445,7 +445,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);&#xa;creditosSonido = new JLabel(&quot;https://www.zapsplat.com&quot;);&#xa;backgroundColor = new Color(240,240,240);&#xa;try{&#xa;sonido = new Sound();&#xa;        }catch(Exception e){&#xa;e.printStackTrace();&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);&#xa;creditosSonido = new JLabel(&quot;https://www.zapsplat.com&quot;);&#xa;reportarError = new JLabel(&quot;https://github.com/javrr-ui/SimonDice/issues&quot;);&#xa;backgroundColor = new Color(240,240,240);&#xa;try{&#xa;sonido = new Sound();&#xa;        }catch(Exception e){&#xa;e.printStackTrace();&#xa;}"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -498,7 +498,7 @@
                       <Component id="configButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="helpButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="236" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -524,6 +524,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Instrucciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="instructionsButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="configButton">
               <Properties>
@@ -537,6 +540,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ayuda"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="helpButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -586,7 +592,7 @@
                           <Component id="blueLbl" min="-2" pref="182" max="-2" attributes="0"/>
                           <Component id="yellowLbl" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="47" max="32767" attributes="0"/>
+                      <EmptySpace pref="69" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

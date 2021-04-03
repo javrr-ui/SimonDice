@@ -107,6 +107,16 @@ public class Config {
 
         return true;
     }
+    
+    public boolean saveUserSettings(){
+        try{
+           userProperties.store(new FileWriter(configFilePath), null); 
+        }catch(IOException e){
+            System.out.println("Couln't save settins: "+e);
+            return false;
+        }
+        return true;
+    }
 
     public boolean configFolderExists() {
 

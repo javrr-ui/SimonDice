@@ -25,6 +25,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -127,15 +130,22 @@ public class GameWindow extends JFrame {
     //mientras menos sea el valor, es mas dificil
     private int dificultad;
     private int dificultad_aux;
+    private Config configuracion;
+    private Properties userProperties;
 
     /**
      * Creates new form GameWindow
      */
     public GameWindow(Game g) {
+        configuracion();
+        
         this.game = g;
+        
+        
         initComponents();
-
+        
         escuchadores();
+
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -260,6 +270,50 @@ public class GameWindow extends JFrame {
         });
     }
 
+    private void configuracion() {
+        configuracion = new Config();
+        configuracion.loadDefaultSettings();
+        configuracion.loadUserSettings();
+        userProperties = configuracion.getUserProperties();
+
+        
+        Properties defaultProperties = configuracion.getDefaultProperties();
+        System.out.println("==Default properties==");
+        defaultProperties.forEach((key, value) -> {
+            System.out.println(key + "=" + value);
+        });
+
+        System.out.println("==User properties==");
+        userProperties.forEach((key, value) -> {
+            //userProperties.setProperty((String)key, (String)value);
+            System.out.println(key + "=" + value);
+        });
+
+    }
+
+    public Color getColorXD() {
+        //por si acaso XD
+        Color color = new Color(240, 240, 240);
+        
+            //regex para obtener 3 grupos de valores numericos
+            Pattern c = Pattern.compile("^([0-9]+).([0-9]+).([0-9]+)$");
+            Matcher m = c.matcher(userProperties.getProperty("backgroundColor"));
+            
+            if(m.matches()){
+                
+                try{
+                    color = new Color(Integer.valueOf(m.group(1)), Integer.valueOf(m.group(2)), Integer.valueOf(m.group(3)));
+                }catch(Exception e){
+                    System.out.println("color not valid: "+e);
+                }
+                
+            }else{
+                System.out.println("color not valid");
+            }
+          
+        return color;
+    }
+
     public void startGame() {
         game.startWindowMode();
     }
@@ -314,9 +368,9 @@ public class GameWindow extends JFrame {
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
         creditosSonido = new JLabel("https://www.zapsplat.com");
         reportarError = new JLabel("https://github.com/javrr-ui/SimonDice/issues");
-        backgroundColor = new Color(240,240,240);
         dificultad = 1000;
         dificultad_aux = jSlider1.getMaximum();
+        backgroundColor = getColorXD();
         try{
             sonido = new Sound();
         }catch(Exception e){
@@ -342,9 +396,7 @@ public class GameWindow extends JFrame {
 
         optionDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         optionDialog.setTitle("Opciones");
-        optionDialog.setMaximumSize(new Dimension(2147483647, 300));
         optionDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        optionDialog.setPreferredSize(new Dimension(400, 280));
         optionDialog.setSize(new Dimension(400, 280));
         optionDialog.setLocationRelativeTo(null);
 
@@ -460,9 +512,9 @@ public class GameWindow extends JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8)
-                    .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel20)
-                        .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel20)))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
 
@@ -725,6 +777,8 @@ public class GameWindow extends JFrame {
 
         mainPanel.add(panelInicio, "panelInicio");
 
+        panelJuego.setBackground(getColorXD());
+
         yellowLbl.setBackground(new Color(253, 231, 47));
         yellowLbl.setName("amarillo"); // NOI18N
         yellowLbl.setOpaque(true);
@@ -921,18 +975,15 @@ public class GameWindow extends JFrame {
         nextColor.setBackground(backgroundColor);
 
         //cambia el valor de dificultad
-        if(dificultad_aux<jSlider1.getMaximum()){
+        if (dificultad_aux < jSlider1.getMaximum()) {
             dificultad = dificultad_aux * 100;
         }
-        if(dificultad_aux==jSlider1.getMaximum()){
+        if (dificultad_aux == jSlider1.getMaximum()) {
             dificultad = 1000;
         }
-        
-        
-        
+
         //System.out.println("dificultad_aux:" + dificultad_aux);
         //System.out.println("dificultad:" + dificultad);
-
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogAceptarActionPerformed
 

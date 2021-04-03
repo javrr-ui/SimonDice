@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -291,13 +292,13 @@ public class GameWindow extends JFrame {
 
     }
 
-    public Color getColorXD() {
+    public Color getColorXD(String propertyValue) {
         //por si acaso XD
         Color color = new Color(240, 240, 240);
         
             //regex para obtener 3 grupos de valores numericos
             Pattern c = Pattern.compile("^([0-9]+).([0-9]+).([0-9]+)$");
-            Matcher m = c.matcher(userProperties.getProperty("backgroundColor"));
+            Matcher m = c.matcher(propertyValue);
             
             if(m.matches()){
                 
@@ -370,7 +371,7 @@ public class GameWindow extends JFrame {
         reportarError = new JLabel("https://github.com/javrr-ui/SimonDice/issues");
         dificultad = 1000;
         dificultad_aux = jSlider1.getMaximum();
-        backgroundColor = getColorXD();
+        backgroundColor = getColorXD(userProperties.getProperty("backgroundColor"));
         try{
             sonido = new Sound();
         }catch(Exception e){
@@ -777,7 +778,7 @@ public class GameWindow extends JFrame {
 
         mainPanel.add(panelInicio, "panelInicio");
 
-        panelJuego.setBackground(getColorXD());
+        panelJuego.setBackground(getColorXD(userProperties.getProperty("backgroundColor")));
 
         yellowLbl.setBackground(new Color(253, 231, 47));
         yellowLbl.setName("amarillo"); // NOI18N
@@ -971,8 +972,18 @@ public class GameWindow extends JFrame {
 
     private void optionDialogAceptarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogAceptarActionPerformed
 
+        //setea el color de fondo
         panelJuego.setBackground(backgroundColor);
         nextColor.setBackground(backgroundColor);
+        
+        //pasa un color a un string de la forma "250,250,250"
+        String colorsito = backgroundColor.getRed()+","+backgroundColor.getGreen()+","+backgroundColor.getBlue();
+        
+        //modifica la propiedad
+        userProperties.setProperty("backgroundColor",colorsito );
+        //guarda la configuracion en el archivo
+        configuracion.saveUserSettings();
+        
 
         //cambia el valor de dificultad
         if (dificultad_aux < jSlider1.getMaximum()) {

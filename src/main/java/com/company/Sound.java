@@ -25,7 +25,7 @@ public class Sound {
     private final AudioInputStream audioInputStream;
     private final InputStream inputStream;
 
-    public Sound() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+    public Sound() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
         //codigo de prueba para comprobar que si encuentra los archivos en el jar
 //        URL url = Main.class.getClassLoader().getResource("soundEffects/click.au");
@@ -39,7 +39,9 @@ public class Sound {
         audioInputStream = AudioSystem.getAudioInputStream(bufferedIn);
 
         // Fuente: https://www.iteramos.com/pregunta/44907/javaioioexception-marcareset-no-se-admite
-        //create clip reference
+        
+        
+         //create clip reference
         clip = AudioSystem.getClip();
         clip.open(audioInputStream);
     }

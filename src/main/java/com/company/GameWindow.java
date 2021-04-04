@@ -1089,16 +1089,16 @@ public class GameWindow extends JFrame {
             game.getSecuencia().forEach((color) -> {
                 switch (color) {
                     case "rojo":
-                        pintarColorSecuencia(color, Colors.ROJO);
+                        pintarColorSecuencia(color, ColorConstants.ROJO);
                         break;
                     case "azul":
-                        pintarColorSecuencia(color, Colors.AZUL);
+                        pintarColorSecuencia(color, ColorConstants.AZUL);
                         break;
                     case "verde":
-                        pintarColorSecuencia(color, Colors.VERDE);
+                        pintarColorSecuencia(color, ColorConstants.VERDE);
                         break;
                     case "amarillo":
-                        pintarColorSecuencia(color, Colors.AMARILLO);
+                        pintarColorSecuencia(color, ColorConstants.AMARILLO);
                         break;
                     default:
                         break;

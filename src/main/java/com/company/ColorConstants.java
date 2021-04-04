@@ -2,7 +2,7 @@ package com.company;
 import java.awt.Color;
 import java.util.Random;
 
-public class Colors {
+public class ColorConstants {
     private static String[] colores ={"verde","rojo","azul","amarillo"};
     public static Color ROJO = new Color(255,0,0);
     public static Color AZUL = new Color(0,0,203);

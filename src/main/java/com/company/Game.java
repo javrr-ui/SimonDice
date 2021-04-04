@@ -20,7 +20,7 @@ public class Game {
     private final Scanner scanner;
     private boolean juegoEnCurso;
     private boolean gameStarted;
-    private GameWindow gw=null;
+    private GameWindow gw = null;
 
     Game() {
         puntaje = 0;
@@ -76,35 +76,45 @@ public class Game {
     }
 
     public void consoleMode() {
-        menu();
-        while (true) {
-            clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
-            agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
-            imprimirStack(secuencia, "Siguiente color: ");
-            for (String ignored : secuencia) {
-                leerColor(scanner.nextLine());
-                if (compararStacks()) {
-                    if (tamanoStackIguales()) {
-                        //si los stacks son iguales y del mismo tamaño muestra un mensaje
-                        //System.out.println("Stacks iguales");
 
-                        //puntuacion
-                        // puntaje = secuenciaJugador.size()+ puntaje;
-                        puntaje = puntaje + 1;
+        //si la ventana no existe, se correra el juego normalmente
+        if (gw == null) {
+            menu();
+            while (true) {
+
+                if (gw == null) {
+                    clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
+                    agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
+                    imprimirStack(secuencia, "Siguiente color: ");
+                    for (String ignored : secuencia) {
+                        leerColor(scanner.nextLine());
+                        if (compararStacks()) {
+                            if (tamanoStackIguales()) {
+                                //si los stacks son iguales y del mismo tamaño muestra un mensaje
+                                //System.out.println("Stacks iguales");
+
+                                //puntuacion
+                                // puntaje = secuenciaJugador.size()+ puntaje;
+                                puntaje = puntaje + 1;
+                            }
+                        } else {
+                            clearScreen();
+                            System.out.println("Te equivocaste!");
+                            System.out.println("Tu puntaje es: " + puntaje);
+                            setPuntaje(0);
+                            clearStackJuego();
+                            clearStackJugador();
+                            consoleMode();
+                            break;
+                        }
                     }
-                } else {
-                    clearScreen();
-                    System.out.println("Te equivocaste!");
-                    System.out.println("Tu puntaje es: " + puntaje);
-                    setPuntaje(0);
-                    clearStackJuego();
-                    clearStackJugador();
-                    consoleMode();
 
-                    break;
                 }
+
             }
         }
+        System.out.println("modo ventana activado");
+
     }
 
     public void restart() {
@@ -196,8 +206,10 @@ public class Game {
                 consoleMode();
                 break;
             case 3:
-                opciones();
-                consoleMode();
+                //si en opciones no se selecciona el modo ventana, el modo consola corre normalmente
+                if (opciones() != 1) {
+                    consoleMode();
+                }
                 break;
             case 4:
                 System.exit(0);
@@ -207,7 +219,7 @@ public class Game {
         }
     }
 
-    public void opciones() {
+    public int opciones() {
         String input;
         int opc = 0;
         printMenu(MENU_OPCIONES);
@@ -225,7 +237,7 @@ public class Game {
         } while (!esOpcionValida(input, 2));
         switch (opc) {
             case 1:
-                if (gw==null) {
+                if (gw == null) {
                     try {
                         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
@@ -233,12 +245,13 @@ public class Game {
                     }
 
                     gw = new GameWindow(this);
+                    scanner.close();
                 }
-
                 break;
             default:
                 break;
         }
+        return opc;
     }
 
     public boolean esOpcionValida(String entrada, int cantidadOpciones) {

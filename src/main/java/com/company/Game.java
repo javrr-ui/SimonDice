@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.stream.Stream;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

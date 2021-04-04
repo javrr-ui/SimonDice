@@ -135,7 +135,7 @@ public class Game {
     }
 
     public void agregarColor() {
-        secuencia.push(Colors.getRandomColor());
+        secuencia.push(ColorConstants.getRandomColor());
     }
 
     public void leerColor(String color) {

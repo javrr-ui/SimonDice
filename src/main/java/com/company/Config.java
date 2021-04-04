@@ -24,10 +24,10 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-    private InputStream userFile;
+   // private InputStream userFile;
     private String jarPath;
     private String decodedPath;
-    private File dir;
+    private final File dir;
     private String configFilePath;
 
     Config() {

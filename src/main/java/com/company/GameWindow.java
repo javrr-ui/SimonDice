@@ -640,6 +640,7 @@ public class GameWindow extends JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
+        instructionsDialog.setTitle("Instrucciones");
         instructionsDialog.setModal(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -704,6 +705,7 @@ public class GameWindow extends JFrame {
         );
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simon Dice");
         setSize(WIDTH,HEIGHT);
 
         mainPanel.setPreferredSize(new Dimension(900, 500));

@@ -27,8 +27,6 @@ public class Config {
     private InputStream userFile;
     private String jarPath;
     private String decodedPath;
-    private File configFolder;
-    private String actualPath;
     private File dir;
     private String configFilePath;
 
@@ -44,9 +42,9 @@ public class Config {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
         //crea objeto file con el path
-        configFolder = new File(decodedPath);
+        File configFolder = new File(decodedPath);
         //se guarda el path del jar sin el nombre del jar
-        actualPath = configFolder.getParent();
+        String actualPath = configFolder.getParent();
         //cambia los \ por diagonal doble para que sea un path valido en java
         actualPath = actualPath.replace("\"", "\\");
         //crea un objeto file con el path

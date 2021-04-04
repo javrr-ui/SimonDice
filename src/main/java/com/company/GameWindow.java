@@ -1062,7 +1062,12 @@ public class GameWindow extends JFrame {
                 perdiste();
             }
         }
-        sonido.play();
+        try{
+            sonido.play();
+        }catch(Exception ex){
+            System.out.println("Could't play sound: "+ex);
+        }
+        
         
     }
 

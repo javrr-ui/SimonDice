@@ -15,7 +15,7 @@ public class ColorsTest {
     @Test
     public void getRandomColor() {
         for (int i = 0; i < NUM_PRUEBAS; i++) {
-            final String randomColor = Colors.getRandomColor();
+            final String randomColor = ColorConstants.getRandomColor();
             assertNotNull(randomColor);
 
             assertThat(randomColor, anyOf(

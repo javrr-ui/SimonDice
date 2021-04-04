@@ -16,26 +16,21 @@ import javax.swing.JButton;
  *
  * @author Javi
  */
-public class BotonCustom extends JButton{
-    
+public class BotonCustom extends JButton {
+
     private Color backgroundColor;
     private String text;
-    
-    public BotonCustom(){
-        super();
-    }
-    
+
     @Override
-    protected void paintComponent(Graphics g){
-        
+    protected void paintComponent(Graphics g) {
+
         Graphics2D g2d = (Graphics2D) g;
-        
-      g2d.setPaint(new GradientPaint(new Point(0, 0), Color.WHITE, new Point(0,getHeight()), Color.PINK.darker()));
-      g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
-      g2d.setPaint(Color.BLACK);
-      g2d.drawString(getText(), 30, 12);
-      g2d.dispose();
+
+        g2d.setPaint(new GradientPaint(new Point(0, 0), Color.WHITE, new Point(0, getHeight()), Color.PINK.darker()));
+        g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+        g2d.setPaint(Color.BLACK);
+        g2d.drawString(getText(), 30, 12);
+        g2d.dispose();
     }
-    
-    
+
 }

@@ -24,14 +24,12 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-    private InputStream defaultFile;
     private InputStream userFile;
     private String jarPath;
     private String decodedPath;
     private File configFolder;
     private String actualPath;
     private File dir;
-    private FileWriter configFile;
     private String configFilePath;
 
     Config() {
@@ -64,7 +62,7 @@ public class Config {
 
     public boolean loadDefaultSettings() {
         //obtiene el archivo default.properties
-        defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
+        InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
         //carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
@@ -93,7 +91,7 @@ public class Config {
     public boolean loadUserSettings() {
         try {
             //cambiar a \\
-            configFilePath = configFilePath.replace("\"", "\\");
+             configFilePath = configFilePath.replace("\"", "\\");
             //carga el archivo
             userProperties.load(new FileInputStream(new File(configFilePath)));
 
@@ -123,7 +121,7 @@ public class Config {
     public void createConfigFile() {
 
         try {
-            configFile = new FileWriter(configFilePath);
+            FileWriter fileWriter = new FileWriter(configFilePath);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }

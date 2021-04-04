@@ -107,7 +107,7 @@ public class GameWindow extends JFrame {
     private JTabbedPane jTabbedPane1;
     private JTabbedPane jTabbedPane2;
     private JToggleButton jToggleButton2;
-    private JPanel mainPanel;
+    private volatile JPanel mainPanel;
     private JMenuBar menuBar;
     private JLabel nextColor;
     private JDialog optionDialog;
@@ -127,6 +127,7 @@ public class GameWindow extends JFrame {
     private JLabel reportarError;
     private JLabel creditosSonido;
     private Color backgroundColor;
+    
     //mientras menos sea el valor, es mas dificil
     private int dificultad;
     private int dificultad_aux;
@@ -137,6 +138,8 @@ public class GameWindow extends JFrame {
      * Creates new form GameWindow
      */
     public GameWindow(Game g) {
+       
+        
         configuracion();
         
         this.game = g;
@@ -364,6 +367,7 @@ public class GameWindow extends JFrame {
         jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
+        ImageIcon icono = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource("img/simonDice.png")).getImage());
         javierGithub = new JLabel("javrr-ui",gitIcon,JLabel.LEFT);
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
         creditosSonido = new JLabel("https://www.zapsplat.com");
@@ -706,6 +710,7 @@ public class GameWindow extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simon Dice");
+        setIconImage(icono.getImage());
         setSize(WIDTH,HEIGHT);
 
         mainPanel.setPreferredSize(new Dimension(900, 500));

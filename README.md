@@ -6,5 +6,5 @@
 
 Juego Simon dice programado en java
 
- ## Requerimientos:
+ ## Requerimientos
 - Java version 1.8

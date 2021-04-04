@@ -29,6 +29,8 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -1033,11 +1035,9 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_jSlider1MouseDragged
 
     private void lblClicked(MouseEvent e) {
-//
-//        try {
-//            sonido.play();
-//        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
-//        }
+
+        
+        
 
         JLabel label = (JLabel) e.getSource();
 
@@ -1053,11 +1053,13 @@ public class GameWindow extends JFrame {
                     secuenciaColores();
                 }
             } else {
-                System.out.println("Te equivocaste!");
-                System.out.println("Tu puntuacion es: " + game.getPuntaje());
+               // System.out.println("Te equivocaste!");
+               // System.out.println("Tu puntuacion es: " + game.getPuntaje());
                 perdiste();
             }
         }
+        sonido.play();
+        
     }
 
     public void perdiste() {

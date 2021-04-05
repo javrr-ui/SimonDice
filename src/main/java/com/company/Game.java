@@ -19,6 +19,8 @@ public class Game {
     private final Scanner scanner;
     private boolean juegoEnCurso;
     private boolean gameStarted;
+
+    
     private GameWindow gw = null;
 
     Game() {
@@ -28,6 +30,10 @@ public class Game {
         scanner = new Scanner(System.in);
         gameStarted = false;
         juegoEnCurso = false;
+    }
+    
+    public void setGameStarted(boolean gameStarted) {
+        this.gameStarted = gameStarted;
     }
 
     public void setPuntaje(int puntaje) {
@@ -66,6 +72,7 @@ public class Game {
     public void startWindowMode() {
         juegoEnCurso = true;
         gameStarted = true;
+        clearStackJuego();
         clearStackJugador();
         agregarColor();
     }
@@ -117,6 +124,7 @@ public class Game {
     }
 
     public void restart() {
+        gameStarted=false;
         setPuntaje(0);
         clearStackJuego();
         clearStackJugador();

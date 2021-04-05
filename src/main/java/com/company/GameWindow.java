@@ -288,7 +288,6 @@ public class GameWindow extends JFrame {
 
         System.out.println("==User properties==");
         userProperties.forEach((key, value) -> {
-            //userProperties.setProperty((String)key, (String)value);
             System.out.println(key + "=" + value);
         });
 
@@ -315,10 +314,6 @@ public class GameWindow extends JFrame {
             }
           
         return color;
-    }
-
-    public void startGame() {
-        game.startWindowMode();
     }
 
     /**
@@ -408,6 +403,11 @@ public class GameWindow extends JFrame {
 
         jComboBox3.setModel(new DefaultComboBoxModel<>(new String[] { "GUI", "CLI" }));
         jComboBox3.setEnabled(false);
+        jComboBox3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("Idioma");
 
@@ -911,6 +911,7 @@ public class GameWindow extends JFrame {
         if (game.haEmpezadoJuego()) {
             juegoEnCurso();
         } else {
+            game.setGameStarted(true);
             game.startWindowMode();
             secuenciaColores();
         }
@@ -983,8 +984,7 @@ public class GameWindow extends JFrame {
         nextColor.setBackground(backgroundColor);
         
         //pasa un color a un string de la forma "250,250,250"
-        String colorsito = backgroundColor.getRed()+","+backgroundColor.getGreen()+","+backgroundColor.getBlue();
-        
+        String colorsito = StringUtils.ColorToStringRGB(backgroundColor);
         //modifica la propiedad
         userProperties.setProperty("backgroundColor",colorsito );
         //guarda la configuracion en el archivo
@@ -1038,6 +1038,10 @@ public class GameWindow extends JFrame {
         dificultad_aux = js.getValue();
     }//GEN-LAST:event_jSlider1MouseDragged
 
+    private void jComboBox3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
     private void lblClicked(MouseEvent e) {
 
         
@@ -1056,9 +1060,7 @@ public class GameWindow extends JFrame {
                     game.agregarColor();
                     secuenciaColores();
                 }
-            } else {
-               // System.out.println("Te equivocaste!");
-               // System.out.println("Tu puntuacion es: " + game.getPuntaje());
+            } else {  
                 perdiste();
             }
         }
@@ -1075,9 +1077,12 @@ public class GameWindow extends JFrame {
         int opc = JOptionPane.showConfirmDialog(null, "Tu puntuación fue: " + game.getPuntaje() + ", quieres comenzar de nuevo?", "Perdiste!", JOptionPane.YES_NO_OPTION);
         if (opc == JOptionPane.YES_OPTION) {
             game.restart();
+            game.setGameStarted(true);
             secuenciaColores();
         } else {
-            System.exit(0);
+            CardLayout cl = (CardLayout) mainPanel.getLayout();
+            cl.show(mainPanel, "panelInicio");
+            game.restart();
         }
     }
 

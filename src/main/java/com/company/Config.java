@@ -24,7 +24,6 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-   // private InputStream userFile;
     private String jarPath;
     private String decodedPath;
     private final File dir;
@@ -51,6 +50,7 @@ public class Config {
         dir = new File(actualPath + "\\config");
         //verifica si existe el directorio, si no existe, lo crea
         if (!dir.exists()) {
+            //crea el directorio config en la misma carpeta donde está el .jar
             dir.mkdir();
         }
         //guarda el directorio completo del archivo config.properties
@@ -105,7 +105,7 @@ public class Config {
         try{
            userProperties.store(new FileWriter(configFilePath), null); 
         }catch(IOException e){
-            System.out.println("Couln't save settins: "+e);
+            System.out.println("Couln't save settings: "+e);
             return false;
         }
         return true;
@@ -128,14 +128,16 @@ public class Config {
 
     public boolean configFileExists() {
 
-        //obtiene el archivo config.properties si es que existe
-        File config = new File(configFilePath);
-
-        //revisa si existe y retorna el resultado
-        return config.exists();
+        //revisa si config.properties existe y retorna el resultado
+        return new File(configFilePath).exists();
 
     }
 
+    public void validateUserSettings(){
+        
+    }
+    
+    
     public Properties getUserProperties() {
         return userProperties;
     }

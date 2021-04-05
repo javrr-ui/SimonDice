@@ -133,7 +133,7 @@ public class GameWindow extends JFrame {
     private int dificultad_aux;
     private Config configuracion;
     private Properties userProperties;
-
+    private Properties defaultProperties;
     /**
      * Creates new form GameWindow
      */
@@ -278,9 +278,8 @@ public class GameWindow extends JFrame {
         configuracion.loadDefaultSettings();
         configuracion.loadUserSettings();
         userProperties = configuracion.getUserProperties();
-
-        
-        Properties defaultProperties = configuracion.getDefaultProperties();
+        defaultProperties = configuracion.getDefaultProperties();
+        System.out.println("config file "+configuracion.configFileExists());
         System.out.println("==Default properties==");
         defaultProperties.forEach((key, value) -> {
             System.out.println(key + "=" + value);
@@ -316,6 +315,7 @@ public class GameWindow extends JFrame {
         return color;
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -367,7 +367,12 @@ public class GameWindow extends JFrame {
         ruslanGithub = new JLabel("javatlacati",gitIcon,JLabel.LEFT);
         creditosSonido = new JLabel("https://www.zapsplat.com");
         reportarError = new JLabel("https://github.com/javrr-ui/SimonDice/issues");
-        dificultad = 1000;
+        try{
+            dificultad = Integer.parseInt(userProperties.getProperty("difficulty"));
+        }catch(Exception e){
+            System.out.println("Error loading custom difficulty");
+            dificultad = Integer.parseInt(defaultProperties.getProperty("difficulty"));
+        }
         dificultad_aux = jSlider1.getMaximum();
         backgroundColor = getColorXD(userProperties.getProperty("backgroundColor"));
         try{
@@ -422,6 +427,7 @@ public class GameWindow extends JFrame {
         jSlider1.setMinorTickSpacing(1);
         jSlider1.setPaintTicks(true);
         jSlider1.setSnapToTicks(true);
+        jSlider1.setValue(dificultad/100);
         jSlider1.setInverted(true);
         jSlider1.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent evt) {

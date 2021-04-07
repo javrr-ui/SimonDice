@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.ui.GameWindow;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Scanner;

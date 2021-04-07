@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.ui.GameWindow;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 

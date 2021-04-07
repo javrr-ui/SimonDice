@@ -26,8 +26,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -292,28 +290,7 @@ public class GameWindow extends JFrame {
 
     }
 
-    public Color getColorXD(String propertyValue) {
-        //por si acaso XD
-        Color color = new Color(240, 240, 240);
-        
-            //regex para obtener 3 grupos de valores numericos
-            Pattern c = Pattern.compile("^([0-9]+).([0-9]+).([0-9]+)$");
-            Matcher m = c.matcher(propertyValue);
-            
-            if(m.matches()){
-                
-                try{
-                    color = new Color(Integer.valueOf(m.group(1)), Integer.valueOf(m.group(2)), Integer.valueOf(m.group(3)));
-                }catch(Exception e){
-                    System.out.println("color not valid: "+e);
-                }
-                
-            }else{
-                System.out.println("color not valid");
-            }
-          
-        return color;
-    }
+
 
     
     /**
@@ -374,7 +351,7 @@ public class GameWindow extends JFrame {
             dificultad = Integer.parseInt(defaultProperties.getProperty("difficulty"));
         }
         dificultad_aux = jSlider1.getMaximum();
-        backgroundColor = getColorXD(userProperties.getProperty("backgroundColor"));
+        backgroundColor = StringUtils.getColorXD(userProperties.getProperty("backgroundColor"));
         try{
             sonido = new Sound();
         }catch(Exception e){
@@ -790,7 +767,7 @@ public class GameWindow extends JFrame {
 
         mainPanel.add(panelInicio, "panelInicio");
 
-        panelJuego.setBackground(getColorXD(userProperties.getProperty("backgroundColor")));
+        panelJuego.setBackground(StringUtils.getColorXD(userProperties.getProperty("backgroundColor")));
 
         yellowLbl.setBackground(new Color(253, 231, 47));
         yellowLbl.setName("amarillo"); // NOI18N

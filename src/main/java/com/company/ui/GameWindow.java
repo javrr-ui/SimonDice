@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.company;
+package com.company.ui;
 
+import com.company.ColorConstants;
+import com.company.Config;
+import com.company.Game;
+import com.company.Sound;
+import com.company.StringUtils;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

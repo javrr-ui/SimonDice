@@ -29,7 +29,7 @@ public class Config {
     private final File dir;
     private String configFilePath;
 
-    Config() {
+    public Config() {
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa

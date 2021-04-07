@@ -20,7 +20,7 @@ public class StringUtils {
  * @param color el color que se quiere convertir
  * @return un string de la forma "250,250,250"
  */
-  static String ColorToStringRGB(Color color){
+  public static String ColorToStringRGB(Color color){
         return color.getRed()+","+color.getGreen()+","+color.getBlue();
     }
   

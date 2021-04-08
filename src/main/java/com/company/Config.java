@@ -119,7 +119,7 @@ public class Config {
     public void createConfigFile() {
 
         try {
-            FileWriter fileWriter = new FileWriter(configFilePath);
+            new FileWriter(configFilePath);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -99,7 +99,7 @@ public class GameWindow extends JFrame {
     private JLabel jLabel5;
     private JLabel jLabel6;
     private JLabel jLabel7;
-    private JLabel jLabel8;
+    
     private JLabel jLabel9;
     private JPanel jPanel1;
     private JPanel jPanel2;
@@ -308,7 +308,7 @@ public class GameWindow extends JFrame {
         jPanel2 = new JPanel();
         jLabel16 = new JLabel();
         jComboBox3 = new JComboBox<>();
-        jLabel18 = new JLabel();
+        JLabel jLabel18 = new JLabel();
         JComboBox<String> jComboBox4 = new JComboBox<>();
         jLabel7 = new JLabel();
         jSlider1 = new JSlider();

@@ -70,7 +70,7 @@ public class GameWindow extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenuItem aboutMenuItem;
-    private JLabel blueLbl;
+    
     private JDialog colorPicker;
     private JButton comenzarJuegoButton;
     private JButton configButton;
@@ -367,7 +367,7 @@ public class GameWindow extends JFrame {
         helpButton = new JButton();
         panelJuego = new JPanel();
         yellowLbl = new JLabel();
-        blueLbl = new JLabel();
+        JLabel blueLbl = new JLabel();
         nextColor = new JLabel();
         greenLbl = new JLabel();
         redLbl = new JLabel();

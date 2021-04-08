@@ -83,7 +83,7 @@ public class GameWindow extends JFrame {
     
     
     
-    
+    private JLabel jLabel1;
     
     
     
@@ -96,7 +96,7 @@ public class GameWindow extends JFrame {
     
     
     
-    
+    private JLabel jLabel5;
     
     
     
@@ -108,19 +108,19 @@ public class GameWindow extends JFrame {
     
     private JSlider jSlider1;
     
-    
-    
+    private JTabbedPane jTabbedPane2;
+    private JToggleButton jToggleButton2;
     private volatile JPanel mainPanel;
-    
+    private JMenuBar menuBar;
     private JLabel nextColor;
     private JDialog optionDialog;
-    
-    
+    private JButton optionDialogAceptar;
+    private JButton optionDialogCancelar;
     private JMenu optionsMenu;
-    
+    private JPanel panelInicio;
     private JPanel panelJuego;
-    
-    
+    private JLabel redLbl;
+    private JLabel yellowLbl;
     // End of variables declaration//GEN-END:variables
 
     private Game game;
@@ -320,23 +320,23 @@ public class GameWindow extends JFrame {
         JButton jButton8 = new JButton();
         JPanel jPanel3 = new JPanel();
         JLabel jLabel17 = new JLabel();
-        JToggleButton jToggleButton2 = new JToggleButton();
+        jToggleButton2 = new JToggleButton();
         JLabel jLabel11 = new JLabel();
         JLabel jLabel12 = new JLabel();
         JLabel jLabel13 = new JLabel();
         JLabel jLabel14 = new JLabel();
         JLabel jLabel15 = new JLabel();
-        JButton optionDialogAceptar = new JButton();
-		JButton optionDialogCancelar = new JButton();
+        optionDialogAceptar = new JButton();
+        optionDialogCancelar = new JButton();
         JDialog colorPicker = new JDialog();
         JColorChooser jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
-        JTabbedPane jTabbedPane2 = new JTabbedPane();
+        jTabbedPane2 = new JTabbedPane();
         JPanel jPanel4 = new JPanel();
         JLabel jLabel3 = new JLabel();
         JLabel jLabel4 = new JLabel();
         JPanel jPanel5 = new JPanel();
-        JLabel jLabel5 = new JLabel();
+        jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
@@ -359,19 +359,19 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
         mainPanel = new JPanel();
-        JPanel panelInicio = new JPanel();
-        JLabel jLabel1 = new JLabel();
+        panelInicio = new JPanel();
+        jLabel1 = new JLabel();
         JButton comenzarJuegoButton = new JButton();
         JButton instructionsButton = new JButton();
         JButton configButton = new JButton();
         JButton helpButton = new JButton();
         panelJuego = new JPanel();
-        JLabel yellowLbl = new JLabel();
+        yellowLbl = new JLabel();
         JLabel blueLbl = new JLabel();
         nextColor = new JLabel();
         JLabel greenLbl = new JLabel();
-        JLabel redLbl = new JLabel();
-        JMenuBar menuBar = new JMenuBar();
+        redLbl = new JLabel();
+        menuBar = new JMenuBar();
         optionsMenu = new JMenu();
         JMenu helpMenu = new JMenu();
         JMenuItem aboutMenuItem = new JMenuItem();
@@ -930,7 +930,6 @@ public class GameWindow extends JFrame {
         optionDialog.setVisible(true);
         optionDialog.pack();
 
-
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -942,7 +941,6 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void optionsMenuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionsMenuActionPerformed
-
 
     }//GEN-LAST:event_optionsMenuActionPerformed
 
@@ -990,7 +988,6 @@ public class GameWindow extends JFrame {
     private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
         instructionsDialog.pack();
         instructionsDialog.setVisible(true);
-
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 

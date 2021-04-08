@@ -21,7 +21,6 @@ public class Game {
     private boolean juegoEnCurso;
     private boolean gameStarted;
 
-    
     private GameWindow gw = null;
 
     Game() {
@@ -32,7 +31,7 @@ public class Game {
         gameStarted = false;
         juegoEnCurso = false;
     }
-    
+
     public void setGameStarted(boolean gameStarted) {
         this.gameStarted = gameStarted;
     }
@@ -125,7 +124,7 @@ public class Game {
     }
 
     public void restart() {
-        gameStarted=false;
+        gameStarted = false;
         setPuntaje(0);
         clearStackJuego();
         clearStackJugador();

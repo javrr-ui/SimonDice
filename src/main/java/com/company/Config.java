@@ -133,10 +133,6 @@ public class Config {
 
     }
 
-    public void validateUserSettings() {
-
-    }
-
     public Properties getUserProperties() {
         return userProperties;
     }

@@ -707,7 +707,7 @@ public class GameWindow extends JFrame {
         instructionsButton.setText("Instrucciones");
         instructionsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                instructionsButtonActionPerformed(evt);
+                instructionsButtonActionPerformed();
             }
         });
 
@@ -986,7 +986,7 @@ public class GameWindow extends JFrame {
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogCancelarActionPerformed
 
-    private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
+    private void instructionsButtonActionPerformed() {//GEN-FIRST:event_instructionsButtonActionPerformed
         instructionsDialog.pack();
         instructionsDialog.setVisible(true);
 

@@ -39,6 +39,7 @@
             <artifactId>system-rules</artifactId>
             <version>1.19.0</version>
             <scope>test</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

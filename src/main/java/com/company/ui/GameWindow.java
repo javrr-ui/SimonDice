@@ -701,7 +701,7 @@ public class GameWindow extends JFrame {
         comenzarJuegoButton.setText("Comenzar juego");
         comenzarJuegoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                comenzarJuegoButtonActionPerformed(evt);
+                comenzarJuegoButtonActionPerformed();
             }
         });
 
@@ -884,7 +884,7 @@ public class GameWindow extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comenzarJuegoButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_comenzarJuegoButtonActionPerformed
+    private void comenzarJuegoButtonActionPerformed() {//GEN-FIRST:event_comenzarJuegoButtonActionPerformed
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel, "panelJuego");
         if (game.haEmpezadoJuego()) {

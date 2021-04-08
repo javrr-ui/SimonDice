@@ -100,7 +100,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JLabel jLabel9;
+    
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
@@ -313,7 +313,7 @@ public class GameWindow extends JFrame {
         JLabel jLabel7 = new JLabel();
         jSlider1 = new JSlider();
         JLabel jLabel8 = new JLabel();
-        jLabel9 = new JLabel();
+        JLabel jLabel9 = new JLabel();
         jPanel1 = new JPanel();
         JLabel jLabel20 = new JLabel();
         jLabel2 = new JLabel();

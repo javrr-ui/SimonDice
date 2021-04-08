@@ -582,7 +582,7 @@ public class GameWindow extends JFrame {
         optionDialogCancelar.setText("Cancelar");
         optionDialogCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionDialogCancelarActionPerformed(evt);
+                optionDialogCancelarActionPerformed();
             }
         });
 
@@ -981,7 +981,7 @@ public class GameWindow extends JFrame {
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogAceptarActionPerformed
 
-    private void optionDialogCancelarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogCancelarActionPerformed
+    private void optionDialogCancelarActionPerformed() {//GEN-FIRST:event_optionDialogCancelarActionPerformed
         jLabel2.setBackground(panelJuego.getBackground());
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogCancelarActionPerformed

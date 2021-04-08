@@ -72,7 +72,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JButton comenzarJuegoButton;
+    
     
     private JLabel greenLbl;
     
@@ -361,7 +361,7 @@ public class GameWindow extends JFrame {
         mainPanel = new JPanel();
         panelInicio = new JPanel();
         jLabel1 = new JLabel();
-        comenzarJuegoButton = new JButton();
+        JButton comenzarJuegoButton = new JButton();
         instructionsButton = new JButton();
         JButton configButton = new JButton();
         JButton helpButton = new JButton();

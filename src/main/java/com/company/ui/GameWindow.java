@@ -108,7 +108,7 @@ public class GameWindow extends JFrame {
     
     private JSlider jSlider1;
     
-    private JTabbedPane jTabbedPane2;
+    
     private JToggleButton jToggleButton2;
     private volatile JPanel mainPanel;
     private JMenuBar menuBar;
@@ -331,7 +331,7 @@ public class GameWindow extends JFrame {
         JDialog colorPicker = new JDialog();
         JColorChooser jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
-        jTabbedPane2 = new JTabbedPane();
+        JTabbedPane jTabbedPane2 = new JTabbedPane();
         JPanel jPanel4 = new JPanel();
         JLabel jLabel3 = new JLabel();
         JLabel jLabel4 = new JLabel();

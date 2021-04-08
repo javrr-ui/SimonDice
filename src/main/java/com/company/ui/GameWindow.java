@@ -972,7 +972,7 @@ public class GameWindow extends JFrame {
         nextColor.setBackground(backgroundColor);
         
         //pasa un color a un string de la forma "250,250,250"
-        String colorsito = StringUtils.ColorToStringRGB(backgroundColor);
+        String colorsito = StringUtils.colorToStringRGB(backgroundColor);
         //modifica la propiedad
         userProperties.setProperty("backgroundColor",colorsito );
         //guarda la configuracion en el archivo

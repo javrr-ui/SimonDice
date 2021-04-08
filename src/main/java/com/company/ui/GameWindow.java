@@ -114,12 +114,16 @@ public class GameWindow extends JFrame {
     
     private JLabel nextColor;
     private JDialog optionDialog;
-    private JButton optionDialogAceptar;
-    private JButton optionDialogCancelar;
+    
+    
     private JMenu optionsMenu;
-    private JPanel panelInicio;
+    
     private JPanel panelJuego;
     
+<<<<<<< HEAD
+=======
+    
+>>>>>>> parent of 415a89e (Texto formteado)
     // End of variables declaration//GEN-END:variables
 
     private Game game;
@@ -325,8 +329,8 @@ public class GameWindow extends JFrame {
         JLabel jLabel13 = new JLabel();
         JLabel jLabel14 = new JLabel();
         JLabel jLabel15 = new JLabel();
-        optionDialogAceptar = new JButton();
-        optionDialogCancelar = new JButton();
+        JButton optionDialogAceptar = new JButton();
+		JButton optionDialogCancelar = new JButton();
         JDialog colorPicker = new JDialog();
         JColorChooser jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
@@ -358,7 +362,11 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
         mainPanel = new JPanel();
+<<<<<<< HEAD
         panelInicio = new JPanel();
+=======
+        JPanel panelInicio = new JPanel();
+>>>>>>> parent of 415a89e (Texto formteado)
         JLabel jLabel1 = new JLabel();
         JButton comenzarJuegoButton = new JButton();
         JButton instructionsButton = new JButton();
@@ -929,6 +937,7 @@ public class GameWindow extends JFrame {
         optionDialog.setVisible(true);
         optionDialog.pack();
 
+
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -940,6 +949,7 @@ public class GameWindow extends JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void optionsMenuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionsMenuActionPerformed
+
 
     }//GEN-LAST:event_optionsMenuActionPerformed
 
@@ -987,6 +997,7 @@ public class GameWindow extends JFrame {
     private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
         instructionsDialog.pack();
         instructionsDialog.setVisible(true);
+
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 

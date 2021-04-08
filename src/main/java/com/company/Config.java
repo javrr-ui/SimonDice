@@ -28,7 +28,7 @@ public class Config {
     private String configFilePath;
 
     public Config() {
-        String decodedPath = "";
+        String decodedPath="";
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa

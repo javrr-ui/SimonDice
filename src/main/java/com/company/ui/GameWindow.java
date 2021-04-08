@@ -111,7 +111,7 @@ public class GameWindow extends JFrame {
     
     
     private volatile JPanel mainPanel;
-    private JMenuBar menuBar;
+    
     private JLabel nextColor;
     private JDialog optionDialog;
     private JButton optionDialogAceptar;
@@ -371,7 +371,7 @@ public class GameWindow extends JFrame {
         nextColor = new JLabel();
         JLabel greenLbl = new JLabel();
         redLbl = new JLabel();
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         optionsMenu = new JMenu();
         JMenu helpMenu = new JMenu();
         JMenuItem aboutMenuItem = new JMenuItem();

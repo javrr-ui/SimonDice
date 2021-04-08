@@ -96,7 +96,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JLabel jLabel5;
+    
     
     
     
@@ -336,7 +336,7 @@ public class GameWindow extends JFrame {
         JLabel jLabel3 = new JLabel();
         JLabel jLabel4 = new JLabel();
         JPanel jPanel5 = new JPanel();
-        jLabel5 = new JLabel();
+        JLabel jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));

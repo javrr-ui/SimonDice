@@ -76,7 +76,7 @@ public class GameWindow extends JFrame {
     
     private JLabel greenLbl;
     
-    private JMenu helpMenu;
+    
     private JButton instructionsButton;
     private JDialog instructionsDialog;
     private JButton jButton8;
@@ -373,7 +373,7 @@ public class GameWindow extends JFrame {
         redLbl = new JLabel();
         menuBar = new JMenuBar();
         optionsMenu = new JMenu();
-        helpMenu = new JMenu();
+        JMenu helpMenu = new JMenu();
         aboutMenuItem = new JMenuItem();
 
         optionDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

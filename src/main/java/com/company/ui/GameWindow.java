@@ -714,7 +714,7 @@ public class GameWindow extends JFrame {
         configButton.setText("Configuracion");
         configButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                configButtonActionPerformed(evt);
+                configButtonActionPerformed();
             }
         });
 
@@ -923,7 +923,7 @@ public class GameWindow extends JFrame {
         lblClicked(evt);
     }//GEN-LAST:event_yellowLblMouseClicked
 
-    private void configButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
+    private void configButtonActionPerformed() {//GEN-FIRST:event_configButtonActionPerformed
         // TODO add your handling code here:
 
         optionDialog.setVisible(true);

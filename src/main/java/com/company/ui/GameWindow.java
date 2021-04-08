@@ -120,10 +120,6 @@ public class GameWindow extends JFrame {
     
     private JPanel panelJuego;
     
-<<<<<<< HEAD
-=======
-    
->>>>>>> parent of 415a89e (Texto formteado)
     // End of variables declaration//GEN-END:variables
 
     private Game game;

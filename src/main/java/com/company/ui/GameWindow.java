@@ -856,7 +856,7 @@ public class GameWindow extends JFrame {
         });
         optionsMenu.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                optionsMenuMouseClicked(evt);
+                optionsMenuMouseClicked();
             }
         });
         optionsMenu.addActionListener(new ActionListener() {
@@ -949,7 +949,7 @@ public class GameWindow extends JFrame {
 
     }//GEN-LAST:event_optionsMenuMenuSelected
 
-    private void optionsMenuMouseClicked(MouseEvent evt) {//GEN-FIRST:event_optionsMenuMouseClicked
+    private void optionsMenuMouseClicked() {//GEN-FIRST:event_optionsMenuMouseClicked
         optionDialog.setVisible(true);
         optionDialog.pack();
         optionsMenu.setSelected(false);

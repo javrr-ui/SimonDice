@@ -89,7 +89,7 @@ public class Config {
     public boolean loadUserSettings() {
         try {
             //cambiar a \\
-             configFilePath = configFilePath.replace("\"", "\\");
+            configFilePath = configFilePath.replace("\"", "\\");
             //carga el archivo
             userProperties.load(new FileInputStream(new File(configFilePath)));
 
@@ -100,12 +100,12 @@ public class Config {
 
         return true;
     }
-    
-    public boolean saveUserSettings(){
-        try{
-           userProperties.store(new FileWriter(configFilePath), null); 
-        }catch(IOException e){
-            System.out.println("Couln't save settings: "+e);
+
+    public boolean saveUserSettings() {
+        try {
+            userProperties.store(new FileWriter(configFilePath), null);
+        } catch (IOException e) {
+            System.out.println("Couln't save settings: " + e);
             return false;
         }
         return true;
@@ -133,11 +133,10 @@ public class Config {
 
     }
 
-    public void validateUserSettings(){
-        
+    public void validateUserSettings() {
+
     }
-    
-    
+
     public Properties getUserProperties() {
         return userProperties;
     }

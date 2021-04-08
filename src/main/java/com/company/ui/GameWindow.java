@@ -69,7 +69,7 @@ public class GameWindow extends JFrame {
     public static final int MILISEGUNDOS = 1000;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JMenuItem aboutMenuItem;
+    
     
     
     private JButton comenzarJuegoButton;
@@ -374,7 +374,7 @@ public class GameWindow extends JFrame {
         menuBar = new JMenuBar();
         optionsMenu = new JMenu();
         JMenu helpMenu = new JMenu();
-        aboutMenuItem = new JMenuItem();
+        JMenuItem aboutMenuItem = new JMenuItem();
 
         optionDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         optionDialog.setTitle("Opciones");

@@ -88,7 +88,7 @@ public class GameWindow extends JFrame {
     private JLabel jLabel12;
     
     
-    private JLabel jLabel15;
+    
     private JLabel jLabel16;
     private JLabel jLabel17;
     private JLabel jLabel18;
@@ -325,7 +325,7 @@ public class GameWindow extends JFrame {
         jLabel12 = new JLabel();
         JLabel jLabel13 = new JLabel();
         JLabel jLabel14 = new JLabel();
-        jLabel15 = new JLabel();
+        JLabel jLabel15 = new JLabel();
         optionDialogAceptar = new JButton();
         optionDialogCancelar = new JButton();
         JDialog colorPicker = new JDialog();

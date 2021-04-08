@@ -101,7 +101,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JPanel jPanel1;
+    
     private JPanel jPanel2;
     private JPanel jPanel3;
     private JPanel jPanel4;
@@ -314,7 +314,7 @@ public class GameWindow extends JFrame {
         jSlider1 = new JSlider();
         JLabel jLabel8 = new JLabel();
         JLabel jLabel9 = new JLabel();
-        jPanel1 = new JPanel();
+        JPanel jPanel1 = new JPanel();
         JLabel jLabel20 = new JLabel();
         jLabel2 = new JLabel();
         JButton jButton8 = new JButton();

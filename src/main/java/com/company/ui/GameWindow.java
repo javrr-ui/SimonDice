@@ -473,7 +473,7 @@ public class GameWindow extends JFrame {
         jButton8.setText("Seleccionar color");
         jButton8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton8ActionPerformed();
             }
         });
 
@@ -932,7 +932,7 @@ public class GameWindow extends JFrame {
 
     }//GEN-LAST:event_configButtonActionPerformed
 
-    private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButton8ActionPerformed() {//GEN-FIRST:event_jButton8ActionPerformed
         backgroundColor = JColorChooser.showDialog(GameWindow.this, "Selecciona color de fondo", backgroundColor);
         jLabel2.setBackground(backgroundColor);
 

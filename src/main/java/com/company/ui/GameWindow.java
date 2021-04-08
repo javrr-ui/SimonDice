@@ -80,7 +80,7 @@ public class GameWindow extends JFrame {
     private JButton instructionsButton;
     private JDialog instructionsDialog;
     private JButton jButton8;
-    private JColorChooser jColorChooser1;
+    
     private JComboBox<String> jComboBox3;
     private JComboBox<String> jComboBox4;
     private JLabel jLabel1;
@@ -329,7 +329,7 @@ public class GameWindow extends JFrame {
         optionDialogAceptar = new JButton();
         optionDialogCancelar = new JButton();
         JDialog colorPicker = new JDialog();
-        jColorChooser1 = new JColorChooser();
+        JColorChooser jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
         jTabbedPane2 = new JTabbedPane();
         jPanel4 = new JPanel();

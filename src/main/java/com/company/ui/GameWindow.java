@@ -121,7 +121,6 @@ public class GameWindow extends JFrame {
     private JPanel panelJuego;
     
     // End of variables declaration//GEN-END:variables
-
     private Game game;
     private Sound sonido;
     private JLabel javierGithub;
@@ -159,57 +158,38 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui"));
-                } catch (IOException | URISyntaxException ex) {
-                }
+                goToLink("https://github.com/javrr-ui");
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.BLUE);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                mouseEnteredEffect(e);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.black);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                mouseExitedEffect(e);
             }
         });
         ruslanGithub.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/javatlacati"));
-                } catch (IOException | URISyntaxException ex) {
-                }
+                goToLink("https://github.com/javatlacati");
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.BLUE);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                mouseEnteredEffect(e);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
                 super.mouseExited(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.black);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                mouseExitedEffect(e);
             }
         });
 
@@ -217,29 +197,19 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    Desktop.getDesktop().browse(new URI("https://www.zapsplat.com/"));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                goToLink("https://www.zapsplat.com/");
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.BLUE);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                mouseEnteredEffect(e);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.black);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                mouseExitedEffect(e);
             }
         });
 
@@ -247,31 +217,43 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui/SimonDice/issues"));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                goToLink("https://github.com/javrr-ui/SimonDice/issues");
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.BLUE);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                mouseEnteredEffect(e);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                JLabel lbl = (JLabel) e.getSource();
-                lbl.setForeground(Color.black);
-                lbl.paintImmediately(lbl.getVisibleRect());
-                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                mouseExitedEffect(e);
             }
         });
+    }
+
+    private void mouseEnteredEffect(MouseEvent e) {
+        JLabel lbl = (JLabel) e.getSource();
+        lbl.setForeground(Color.BLUE);
+        lbl.paintImmediately(lbl.getVisibleRect());
+        lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    private void mouseExitedEffect(MouseEvent e) {
+        JLabel lbl = (JLabel) e.getSource();
+        lbl.setForeground(Color.black);
+        lbl.paintImmediately(lbl.getVisibleRect());
+        lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    private void goToLink(String link) {
+        try {
+            Desktop.getDesktop().browse(new URI(link));
+        } catch (Exception ex) {
+            
+        }
     }
 
     private void configuracion() {

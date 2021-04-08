@@ -33,7 +33,7 @@ public class Config {
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa
-        jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        jarPath = GameRunner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //decode al path
         try {
             decodedPath = URLDecoder.decode(jarPath, "UTF-8");
@@ -60,7 +60,7 @@ public class Config {
 
     public boolean loadDefaultSettings() {
         //obtiene el archivo default.properties
-        InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
+        InputStream defaultFile = GameRunner.class.getClassLoader().getResourceAsStream("default.properties");
         //carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);

@@ -575,7 +575,7 @@ public class GameWindow extends JFrame {
         optionDialogAceptar.setText("Aceptar");
         optionDialogAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionDialogAceptarActionPerformed(evt);
+                optionDialogAceptarActionPerformed();
             }
         });
 
@@ -955,7 +955,7 @@ public class GameWindow extends JFrame {
         optionsMenu.setSelected(false);
     }//GEN-LAST:event_optionsMenuMouseClicked
 
-    private void optionDialogAceptarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogAceptarActionPerformed
+    private void optionDialogAceptarActionPerformed() {//GEN-FIRST:event_optionDialogAceptarActionPerformed
 
         //setea el color de fondo
         panelJuego.setBackground(backgroundColor);

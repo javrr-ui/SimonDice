@@ -117,7 +117,7 @@ public class GameWindow extends JFrame {
     
     
     private JMenu optionsMenu;
-    private JPanel panelInicio;
+    
     private JPanel panelJuego;
     private JLabel redLbl;
     private JLabel yellowLbl;
@@ -359,7 +359,7 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
         mainPanel = new JPanel();
-        panelInicio = new JPanel();
+        JPanel panelInicio = new JPanel();
         JLabel jLabel1 = new JLabel();
         JButton comenzarJuegoButton = new JButton();
         JButton instructionsButton = new JButton();

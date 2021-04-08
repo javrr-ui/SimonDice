@@ -24,11 +24,11 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-    private String decodedPath;
     private final File dir;
     private String configFilePath;
 
     public Config() {
+        String decodedPath="";
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa

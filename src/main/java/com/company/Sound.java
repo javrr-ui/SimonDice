@@ -23,7 +23,7 @@ public class Sound {
     private final Clip clip;
 
     private final AudioInputStream audioInputStream;
-    private final InputStream inputStream;
+    
 
     public Sound() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
@@ -32,7 +32,7 @@ public class Sound {
 //        URL url2 = Main.class.getClassLoader().getResource("default.properties");
 //        System.out.println("url: "+url);
 //        System.out.println("url2: "+url2);
-        inputStream = Config.class.getClassLoader().getResourceAsStream("soundEffects/click.au");
+        InputStream inputStream = Config.class.getClassLoader().getResourceAsStream("soundEffects/click.au");
 
         //se tiene que usar un BufferedInputStream, o el programa se apendeja y no reproduce el audio
         InputStream bufferedIn = new BufferedInputStream(inputStream);

@@ -861,7 +861,7 @@ public class GameWindow extends JFrame {
         });
         optionsMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionsMenuActionPerformed(evt);
+                optionsMenuActionPerformed();
             }
         });
         menuBar.add(optionsMenu);
@@ -940,7 +940,7 @@ public class GameWindow extends JFrame {
         revalidate();
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void optionsMenuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionsMenuActionPerformed
+    private void optionsMenuActionPerformed() {//GEN-FIRST:event_optionsMenuActionPerformed
 
 
     }//GEN-LAST:event_optionsMenuActionPerformed

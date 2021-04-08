@@ -24,7 +24,6 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-    private String jarPath;
     private String decodedPath;
     private final File dir;
     private String configFilePath;
@@ -33,7 +32,7 @@ public class Config {
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa
-        jarPath = GameRunner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String jarPath = GameRunner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //decode al path
         try {
             decodedPath = URLDecoder.decode(jarPath, "UTF-8");

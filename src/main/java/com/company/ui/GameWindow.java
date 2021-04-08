@@ -721,7 +721,7 @@ public class GameWindow extends JFrame {
         helpButton.setText("Ayuda");
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                helpButtonActionPerformed(evt);
+                helpButtonActionPerformed();
             }
         });
 
@@ -993,7 +993,7 @@ public class GameWindow extends JFrame {
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 
-    private void helpButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+    private void helpButtonActionPerformed() {//GEN-FIRST:event_helpButtonActionPerformed
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 

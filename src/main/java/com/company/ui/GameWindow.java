@@ -73,7 +73,7 @@ public class GameWindow extends JFrame {
     
     
     private JButton comenzarJuegoButton;
-    private JButton configButton;
+    
     private JLabel greenLbl;
     private JButton helpButton;
     private JMenu helpMenu;
@@ -363,7 +363,7 @@ public class GameWindow extends JFrame {
         jLabel1 = new JLabel();
         comenzarJuegoButton = new JButton();
         instructionsButton = new JButton();
-        configButton = new JButton();
+        JButton configButton = new JButton();
         helpButton = new JButton();
         panelJuego = new JPanel();
         yellowLbl = new JLabel();

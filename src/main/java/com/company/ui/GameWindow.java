@@ -386,11 +386,6 @@ public class GameWindow extends JFrame {
 
         jComboBox3.setModel(new DefaultComboBoxModel<>(new String[] { "GUI", "CLI" }));
         jComboBox3.setEnabled(false);
-        jComboBox3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
 
         jLabel18.setText("Idioma");
 
@@ -1020,10 +1015,6 @@ public class GameWindow extends JFrame {
         JSlider js = (JSlider) evt.getSource();
         dificultad_aux = js.getValue();
     }//GEN-LAST:event_jSlider1MouseDragged
-
-    private void jComboBox3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void lblClicked(MouseEvent e) {
 

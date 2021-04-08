@@ -97,7 +97,7 @@ public class GameWindow extends JFrame {
     
     
     private JLabel jLabel5;
-    private JLabel jLabel6;
+    
     
     
     private JLabel jLabel9;
@@ -337,7 +337,7 @@ public class GameWindow extends JFrame {
         JLabel jLabel4 = new JLabel();
         jPanel5 = new JPanel();
         jLabel5 = new JLabel();
-        jLabel6 = new JLabel();
+        JLabel jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         ImageIcon icono = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource("img/simonDice.png")).getImage());

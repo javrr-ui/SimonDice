@@ -851,7 +851,7 @@ public class GameWindow extends JFrame {
             public void menuDeselected(MenuEvent evt) {
             }
             public void menuSelected(MenuEvent evt) {
-                optionsMenuMenuSelected(evt);
+                optionsMenuMenuSelected();
             }
         });
         optionsMenu.addMouseListener(new MouseAdapter() {
@@ -945,7 +945,7 @@ public class GameWindow extends JFrame {
 
     }//GEN-LAST:event_optionsMenuActionPerformed
 
-    private void optionsMenuMenuSelected(MenuEvent evt) {//GEN-FIRST:event_optionsMenuMenuSelected
+    private void optionsMenuMenuSelected() {//GEN-FIRST:event_optionsMenuMenuSelected
 
     }//GEN-LAST:event_optionsMenuMenuSelected
 

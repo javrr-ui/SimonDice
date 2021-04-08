@@ -871,7 +871,7 @@ public class GameWindow extends JFrame {
         aboutMenuItem.setText("Acerca de");
         aboutMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
+                aboutMenuItemActionPerformed();
             }
         });
         helpMenu.add(aboutMenuItem);
@@ -895,7 +895,7 @@ public class GameWindow extends JFrame {
         }
     }//GEN-LAST:event_comenzarJuegoButtonActionPerformed
 
-    private void aboutMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+    private void aboutMenuItemActionPerformed() {//GEN-FIRST:event_aboutMenuItemActionPerformed
 
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));

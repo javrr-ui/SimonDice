@@ -362,11 +362,7 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
         mainPanel = new JPanel();
-<<<<<<< HEAD
-        panelInicio = new JPanel();
-=======
         JPanel panelInicio = new JPanel();
->>>>>>> parent of 415a89e (Texto formteado)
         JLabel jLabel1 = new JLabel();
         JButton comenzarJuegoButton = new JButton();
         JButton instructionsButton = new JButton();

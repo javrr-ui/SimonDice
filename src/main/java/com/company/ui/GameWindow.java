@@ -84,7 +84,7 @@ public class GameWindow extends JFrame {
     private JComboBox<String> jComboBox3;
     
     private JLabel jLabel1;
-    private JLabel jLabel11;
+    
     private JLabel jLabel12;
     
     
@@ -321,7 +321,7 @@ public class GameWindow extends JFrame {
         jPanel3 = new JPanel();
         jLabel17 = new JLabel();
         jToggleButton2 = new JToggleButton();
-        jLabel11 = new JLabel();
+        JLabel jLabel11 = new JLabel();
         jLabel12 = new JLabel();
         JLabel jLabel13 = new JLabel();
         JLabel jLabel14 = new JLabel();

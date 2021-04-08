@@ -105,7 +105,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JPanel jPanel5;
+    
     private JSlider jSlider1;
     private JTabbedPane jTabbedPane1;
     private JTabbedPane jTabbedPane2;
@@ -335,7 +335,7 @@ public class GameWindow extends JFrame {
         JPanel jPanel4 = new JPanel();
         JLabel jLabel3 = new JLabel();
         JLabel jLabel4 = new JLabel();
-        jPanel5 = new JPanel();
+        JPanel jPanel5 = new JPanel();
         jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");

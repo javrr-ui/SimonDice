@@ -109,7 +109,7 @@ public class GameWindow extends JFrame {
     private JSlider jSlider1;
     
     
-    private JToggleButton jToggleButton2;
+    
     private volatile JPanel mainPanel;
     private JMenuBar menuBar;
     private JLabel nextColor;
@@ -320,7 +320,7 @@ public class GameWindow extends JFrame {
         JButton jButton8 = new JButton();
         JPanel jPanel3 = new JPanel();
         JLabel jLabel17 = new JLabel();
-        jToggleButton2 = new JToggleButton();
+        JToggleButton jToggleButton2 = new JToggleButton();
         JLabel jLabel11 = new JLabel();
         JLabel jLabel12 = new JLabel();
         JLabel jLabel13 = new JLabel();

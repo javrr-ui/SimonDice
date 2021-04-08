@@ -119,7 +119,7 @@ public class GameWindow extends JFrame {
     private JMenu optionsMenu;
     
     private JPanel panelJuego;
-    private JLabel redLbl;
+    
     private JLabel yellowLbl;
     // End of variables declaration//GEN-END:variables
 
@@ -370,7 +370,7 @@ public class GameWindow extends JFrame {
         JLabel blueLbl = new JLabel();
         nextColor = new JLabel();
         JLabel greenLbl = new JLabel();
-        redLbl = new JLabel();
+        JLabel redLbl = new JLabel();
         JMenuBar menuBar = new JMenuBar();
         optionsMenu = new JMenu();
         JMenu helpMenu = new JMenu();

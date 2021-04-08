@@ -74,7 +74,7 @@ public class GameWindow extends JFrame {
     
     
     
-    private JLabel greenLbl;
+    
     
     
     private JButton instructionsButton;
@@ -369,7 +369,7 @@ public class GameWindow extends JFrame {
         yellowLbl = new JLabel();
         JLabel blueLbl = new JLabel();
         nextColor = new JLabel();
-        greenLbl = new JLabel();
+        JLabel greenLbl = new JLabel();
         redLbl = new JLabel();
         menuBar = new JMenuBar();
         optionsMenu = new JMenu();

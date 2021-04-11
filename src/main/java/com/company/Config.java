@@ -28,7 +28,7 @@ public class Config {
     private String configFilePath;
 
     public Config() {
-        String decodedPath = "";
+        String decodedPath="";
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa
@@ -58,8 +58,10 @@ public class Config {
     }
 
     public boolean loadDefaultSettings() {
-
-        try ( InputStream defaultFile = GameRunner.class.getClassLoader().getResourceAsStream("default.properties")) {
+        //obtiene el archivo default.properties
+        InputStream defaultFile = GameRunner.class.getClassLoader().getResourceAsStream("default.properties");
+        //carga el archivo default.properties
+        try {
             defaultProperties.load(defaultFile);
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);

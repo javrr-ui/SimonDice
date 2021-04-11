@@ -63,6 +63,7 @@ public class Config {
         //carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
+            defaultFile.close();
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);
             return false;

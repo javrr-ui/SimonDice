@@ -63,11 +63,12 @@ public class Config {
         //carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
+            defaultFile.close();
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);
             return false;
         }
-
+        
         //si el archivo config no existe, crea uno y guarda los datos por defecto
         if (!configFileExists()) {
             //carga la configuracion default al archivo config.properties

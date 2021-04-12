@@ -28,7 +28,7 @@ public class StringUtils {
         return color.getRed() + "," + color.getGreen() + "," + color.getBlue();
     }
 
-    public static Color getColorXD(String propertyValue) {
+    public static Color getColorFromRGB(String propertyValue) {
         //por si acaso XD
         Color color = new Color(240, 240, 240);
 

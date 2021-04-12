@@ -624,7 +624,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;ImageIcon icono = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource(&quot;img/simonDice.png&quot;)).getImage());&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);&#xa;creditosSonido = new JLabel(&quot;https://www.zapsplat.com&quot;);&#xa;reportarError = new JLabel(&quot;https://github.com/javrr-ui/SimonDice/issues&quot;);&#xa;try{&#xa;            dificultad = Integer.parseInt(userProperties.getProperty(&quot;difficulty&quot;));&#xa;        }catch(Exception e){&#xa;            System.out.println(&quot;Error loading custom difficulty&quot;);&#xa;            dificultad = Integer.parseInt(defaultProperties.getProperty(&quot;difficulty&quot;));&#xa;        }&#xa;dificultad_aux = jSlider1.getMaximum();&#xa;backgroundColor = StringUtils.getColorXD(userProperties.getProperty(&quot;backgroundColor&quot;));&#xa;try{&#xa;sonido = new Sound();&#xa;        }catch(Exception e){&#xa;e.printStackTrace();&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="URL githubImgUrl = ClassLoader.getSystemResource(&quot;img/github.png&quot;);&#xa;ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));&#xa;ImageIcon icono = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource(&quot;img/simonDice.png&quot;)).getImage());&#xa;javierGithub = new JLabel(&quot;javrr-ui&quot;,gitIcon,JLabel.LEFT);&#xa;ruslanGithub = new JLabel(&quot;javatlacati&quot;,gitIcon,JLabel.LEFT);&#xa;creditosSonido = new JLabel(&quot;https://www.zapsplat.com&quot;);&#xa;reportarError = new JLabel(&quot;https://github.com/javrr-ui/SimonDice/issues&quot;);&#xa;try{&#xa;            dificultad = Integer.parseInt(userProperties.getProperty(&quot;difficulty&quot;));&#xa;        }catch(Exception e){&#xa;            System.out.println(&quot;Error loading custom difficulty&quot;);&#xa;            dificultad = Integer.parseInt(defaultProperties.getProperty(&quot;difficulty&quot;));&#xa;        }&#xa;dificultad_aux = jSlider1.getMaximum();&#xa;backgroundColor = StringUtils.getColorFromRGB(userProperties.getProperty(&quot;backgroundColor&quot;));&#xa;try{&#xa;sonido = new Sound();&#xa;        }catch(Exception e){&#xa;e.printStackTrace();&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="66"/>
       </AuxValues>
       <Constraints>
@@ -729,7 +729,7 @@
         <Container class="javax.swing.JPanel" name="panelJuego">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="StringUtils.getColorXD(userProperties.getProperty(&quot;backgroundColor&quot;))" type="code"/>
+              <Connection code="StringUtils.getColorFromRGB(userProperties.getProperty(&quot;backgroundColor&quot;))" type="code"/>
             </Property>
           </Properties>
           <Constraints>

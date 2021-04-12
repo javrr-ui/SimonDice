@@ -333,7 +333,7 @@ public class GameWindow extends JFrame {
             dificultad = Integer.parseInt(defaultProperties.getProperty("difficulty"));
         }
         dificultad_aux = jSlider1.getMaximum();
-        backgroundColor = StringUtils.getColorXD(userProperties.getProperty("backgroundColor"));
+        backgroundColor = StringUtils.getColorFromRGB(userProperties.getProperty("backgroundColor"));
         try{
             sonido = new Sound();
         }catch(Exception e){
@@ -744,7 +744,7 @@ public class GameWindow extends JFrame {
 
         mainPanel.add(panelInicio, "panelInicio");
 
-        panelJuego.setBackground(StringUtils.getColorXD(userProperties.getProperty("backgroundColor")));
+        panelJuego.setBackground(StringUtils.getColorFromRGB(userProperties.getProperty("backgroundColor")));
 
         yellowLbl.setBackground(new Color(253, 231, 47));
         yellowLbl.setName("amarillo"); // NOI18N

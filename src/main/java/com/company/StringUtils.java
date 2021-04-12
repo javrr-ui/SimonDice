@@ -40,7 +40,7 @@ public class StringUtils {
 
             try {
                 color = new Color(Integer.valueOf(m.group(1)), Integer.valueOf(m.group(2)), Integer.valueOf(m.group(3)));
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("color not valid: " + e);
             }
 

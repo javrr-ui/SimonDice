@@ -991,6 +991,13 @@ public class GameWindow extends JFrame {
         //System.out.println("dificultad_aux:" + dificultad_aux);
         //System.out.println("dificultad:" + dificultad);
         optionDialog.dispose();
+        
+        if("CLI".equals(jComboBox3.getSelectedItem())){
+            this.dispose();
+            game.consoleMode();
+            
+        }
+        
     }//GEN-LAST:event_optionDialogAceptarActionPerformed
 
     private void optionDialogCancelarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogCancelarActionPerformed

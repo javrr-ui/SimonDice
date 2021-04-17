@@ -252,7 +252,7 @@ public class Game {
                         e.printStackTrace();
                     }
 
-                    gw = new GameWindow(this);
+                    gw = GameWindow.getInstance(this);
                     scanner.close();
                 }
                 break;

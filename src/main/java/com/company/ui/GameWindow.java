@@ -391,7 +391,6 @@ public class GameWindow extends JFrame {
         jLabel16.setText("Interfaz preferida");
 
         jComboBox3.setModel(new DefaultComboBoxModel<>(new String[] { "GUI", "CLI" }));
-        jComboBox3.setEnabled(false);
         jComboBox3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);

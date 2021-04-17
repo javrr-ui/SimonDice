@@ -62,6 +62,8 @@ import javax.swing.event.MenuListener;
  */
 public class GameWindow extends JFrame {
 
+    private static volatile GameWindow instance = null;
+    
     public static final int IMGSCALEDWIDTH = 180;
     public static final int IMGSCALEDHEIGHT = 180;
     public static final int WIDTH = 900;
@@ -140,7 +142,7 @@ public class GameWindow extends JFrame {
     /**
      * Creates new form GameWindow
      */
-    public GameWindow(Game g) {
+    private GameWindow(Game g) {
        
         
         configuracion();
@@ -1127,6 +1129,17 @@ public class GameWindow extends JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static GameWindow getInstance(Game g){
+        if(instance == null){
+            synchronized (GameWindow.class) {
+                if (instance == null) {
+                    instance = new GameWindow(g);
+                }
+            }
+        }
+        return instance;
     }
 
 }

@@ -24,16 +24,15 @@ public class Config {
 
     private Properties defaultProperties;
     private Properties userProperties;
-    private String jarPath;
-    private String decodedPath;
     private final File dir;
     private String configFilePath;
 
     public Config() {
+        String decodedPath="";
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
         //obtiene el directorio donde se ejecuta el programa
-        jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String jarPath = GameRunner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         //decode al path
         try {
             decodedPath = URLDecoder.decode(jarPath, "UTF-8");
@@ -60,10 +59,11 @@ public class Config {
 
     public boolean loadDefaultSettings() {
         //obtiene el archivo default.properties
-        InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
+        InputStream defaultFile = GameRunner.class.getClassLoader().getResourceAsStream("default.properties");
         //carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
+            defaultFile.close();
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);
             return false;
@@ -89,7 +89,7 @@ public class Config {
     public boolean loadUserSettings() {
         try {
             //cambiar a \\
-             configFilePath = configFilePath.replace("\"", "\\");
+            configFilePath = configFilePath.replace("\"", "\\");
             //carga el archivo
             userProperties.load(new FileInputStream(new File(configFilePath)));
 
@@ -100,12 +100,12 @@ public class Config {
 
         return true;
     }
-    
-    public boolean saveUserSettings(){
-        try{
-           userProperties.store(new FileWriter(configFilePath), null); 
-        }catch(IOException e){
-            System.out.println("Couln't save settings: "+e);
+
+    public boolean saveUserSettings() {
+        try {
+            userProperties.store(new FileWriter(configFilePath), null);
+        } catch (IOException e) {
+            System.out.println("Couln't save settings: " + e);
             return false;
         }
         return true;
@@ -119,7 +119,7 @@ public class Config {
     public void createConfigFile() {
 
         try {
-            FileWriter fileWriter = new FileWriter(configFilePath);
+            new FileWriter(configFilePath);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,11 +133,6 @@ public class Config {
 
     }
 
-    public void validateUserSettings(){
-        
-    }
-    
-    
     public Properties getUserProperties() {
         return userProperties;
     }

@@ -63,7 +63,7 @@ import javax.swing.event.MenuListener;
 public class GameWindow extends JFrame {
 
     private static volatile GameWindow instance = null;
-    
+
     public static final int IMGSCALEDWIDTH = 180;
     public static final int IMGSCALEDHEIGHT = 180;
     public static final int WIDTH = 900;
@@ -132,26 +132,25 @@ public class GameWindow extends JFrame {
     private JLabel reportarError;
     private JLabel creditosSonido;
     private Color backgroundColor;
-    
+
     //mientras menos sea el valor, es mas dificil
     private int dificultad;
     private int dificultad_aux;
     private Config configuracion;
     private Properties userProperties;
     private Properties defaultProperties;
+
     /**
      * Creates new form GameWindow
      */
     private GameWindow(Game g) {
-       
-        
+
         configuracion();
-        
+
         this.game = g;
-        
-        
+
         initComponents();
-        
+
         escuchadores();
 
         setVisible(true);
@@ -284,7 +283,7 @@ public class GameWindow extends JFrame {
         configuracion.loadUserSettings();
         userProperties = configuracion.getUserProperties();
         defaultProperties = configuracion.getDefaultProperties();
-        System.out.println("config file "+configuracion.configFileExists());
+        System.out.println("config file " + configuracion.configFileExists());
         System.out.println("==Default properties==");
         defaultProperties.forEach((key, value) -> {
             System.out.println(key + "=" + value);
@@ -297,9 +296,6 @@ public class GameWindow extends JFrame {
 
     }
 
-
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -971,14 +967,13 @@ public class GameWindow extends JFrame {
         //setea el color de fondo
         panelJuego.setBackground(backgroundColor);
         nextColor.setBackground(backgroundColor);
-        
+
         //pasa un color a un string de la forma "250,250,250"
         String colorsito = StringUtils.ColorToStringRGB(backgroundColor);
         //modifica la propiedad
-        userProperties.setProperty("backgroundColor",colorsito );
+        userProperties.setProperty("backgroundColor", colorsito);
         //guarda la configuracion en el archivo
         configuracion.saveUserSettings();
-        
 
         //cambia el valor de dificultad
         if (dificultad_aux < jSlider1.getMaximum()) {
@@ -991,13 +986,15 @@ public class GameWindow extends JFrame {
         //System.out.println("dificultad_aux:" + dificultad_aux);
         //System.out.println("dificultad:" + dificultad);
         optionDialog.dispose();
-        
-        if("CLI".equals(jComboBox3.getSelectedItem())){
+
+        if ("CLI".equals(jComboBox3.getSelectedItem())) {
+            
+
+           
             this.dispose();
             game.consoleMode();
-            
         }
-        
+
     }//GEN-LAST:event_optionDialogAceptarActionPerformed
 
     private void optionDialogCancelarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogCancelarActionPerformed
@@ -1040,9 +1037,6 @@ public class GameWindow extends JFrame {
 
     private void lblClicked(MouseEvent e) {
 
-        
-        
-
         JLabel label = (JLabel) e.getSource();
 
         if (label != null && label.getName().matches("verde|rojo|amarillo|azul") && (game.isGameStarted())) {
@@ -1056,17 +1050,16 @@ public class GameWindow extends JFrame {
                     game.agregarColor();
                     secuenciaColores();
                 }
-            } else {  
+            } else {
                 perdiste();
             }
         }
-        try{
+        try {
             sonido.play();
-        }catch(Exception ex){
-            System.out.println("Could't play sound: "+ex);
+        } catch (Exception ex) {
+            System.out.println("Could't play sound: " + ex);
         }
-        
-        
+
     }
 
     public void perdiste() {
@@ -1136,9 +1129,9 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
     }
-    
-    public static GameWindow getInstance(Game g){
-        if(instance == null){
+
+    public static GameWindow getInstance(Game g) {
+        if (instance == null) {
             synchronized (GameWindow.class) {
                 if (instance == null) {
                     instance = new GameWindow(g);

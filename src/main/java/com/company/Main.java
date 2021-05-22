@@ -9,29 +9,32 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         System.out.println("");
-        if(args!=null && args.length>0){
-            for(String argumentos: args){
-                if(argumentos.equals("no-gui")){
-                    
+        if (args != null && args.length > 0) {
+            for (String argumentos : args) {
+                if (argumentos.equals("no-gui")) {
+
                     game.consoleMode();
-                }else{
+                   
+                } else {
                     System.out.println("Argumento no reconocido, se ejecutara modo consola por defecto");
                     System.out.println("Para ejecutar el modo consola, usar no-gui");
-                    
+
                     game.consoleMode();
+                   
                 }
             }
-        }else{
+        } else {
             modoNormal(game);
         }
     }
-    public static void modoNormal(Game g){
+
+    public static void modoNormal(Game g) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (IllegalAccessException|InstantiationException|UnsupportedLookAndFeelException|ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         GameWindow window = GameWindow.getInstance(g);
-        
+
     }
 }

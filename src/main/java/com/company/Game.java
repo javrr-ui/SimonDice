@@ -1,10 +1,14 @@
 package com.company;
 
 import com.company.ui.GameWindow;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -21,7 +25,6 @@ public class Game {
     private boolean juegoEnCurso;
     private boolean gameStarted;
 
-    
     private GameWindow gw = null;
 
     Game() {
@@ -32,7 +35,7 @@ public class Game {
         gameStarted = false;
         juegoEnCurso = false;
     }
-    
+
     public void setGameStarted(boolean gameStarted) {
         this.gameStarted = gameStarted;
     }
@@ -84,48 +87,38 @@ public class Game {
 
     public void consoleMode() {
 
-        //si la ventana no existe, se correra el juego normalmente
-        if (gw == null) {
-            menu();
-            while (true) {
+        menu();
 
-                if (gw == null) {
-                    clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
-                    agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
-                    imprimirStack(secuencia, "Siguiente color: ");
-                    for (String ignored : secuencia) {
-                        leerColor(scanner.nextLine());
-                        if (compararStacks()) {
-                            if (tamanoStackIguales()) {
-                                //si los stacks son iguales y del mismo tamaño muestra un mensaje
-                                //System.out.println("Stacks iguales");
+            clearStackJugador(); //limpia el stack del jugador para que cada ronda comience de nuevo
+            agregarColor(); //agrega un color nuevo a la secuencia de colores vigente
+            imprimirStack(secuencia, "Siguiente color: ");
+            for (String ignored : secuencia) {
+                leerColor(scanner.nextLine());
+                if (compararStacks()) {
+                    if (tamanoStackIguales()) {
+                        //si los stacks son iguales y del mismo tamaño muestra un mensaje
+                        //System.out.println("Stacks iguales");
 
-                                //puntuacion
-                                // puntaje = secuenciaJugador.size()+ puntaje;
-                                puntaje = puntaje + 1;
-                            }
-                        } else {
-                            clearScreen();
-                            System.out.println("Te equivocaste!");
-                            System.out.println("Tu puntaje es: " + puntaje);
-                            setPuntaje(0);
-                            clearStackJuego();
-                            clearStackJugador();
-                            consoleMode();
-                            break;
-                        }
+                        //puntuacion
+                        // puntaje = secuenciaJugador.size()+ puntaje;
+                        puntaje = puntaje + 1;
                     }
-
+                } else {
+                    clearScreen();
+                    System.out.println("Te equivocaste!");
+                    System.out.println("Tu puntaje es: " + puntaje);
+                    setPuntaje(0);
+                    clearStackJuego();
+                    clearStackJugador();
+                    consoleMode();
+                    break;
                 }
-
             }
-        }
-        System.out.println("modo ventana activado");
 
     }
 
     public void restart() {
-        gameStarted=false;
+        gameStarted = false;
         setPuntaje(0);
         clearStackJuego();
         clearStackJugador();
@@ -197,6 +190,7 @@ public class Game {
         printMenu(MENU_PRINCIPAL); //muestra un menu con opciones
 
         do {
+
             input = scanner.nextLine();
             if (esOpcionValida(input, 4)) {
                 opc = Integer.parseInt(input);
@@ -245,17 +239,25 @@ public class Game {
         } while (!esOpcionValida(input, 2));
         switch (opc) {
             case 1:
-                if (gw == null) {
-                    try {
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+            System.out.println("aver1");
 
-                    gw = GameWindow.getInstance(this);
-                    scanner.close();
-                }
-                break;
+           SwingUtilities.invokeLater(()->{
+               
+                gw = GameWindow.getInstance(this);
+            gw.setVisible(true);
+               
+           });
+
+            System.out.println("aver2");
+            //scanner.close();
+
+            break;
+
             default:
                 break;
         }

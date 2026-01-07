@@ -29,39 +29,51 @@ public class Config {
     private final File dir;
     private String configFilePath;
 
+    /**
+     * Clase responsable de gestionar la configuración de la aplicación.
+     * <p>
+     * Maneja propiedades por defecto ({@code default.properties}) y propiedades de
+     * usuario
+     * ({@code config.properties}) ubicadas en una carpeta "config" junto al archivo
+     * JAR ejecutable.
+     * Permite cargar, guardar y validar configuraciones de manera centralizada.
+     * </p>
+     *
+     * @author Javi
+     */
     public Config() {
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);
-        //obtiene el directorio donde se ejecuta el programa
+        // obtiene el directorio donde se ejecuta el programa
         jarPath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        //decode al path
+        // decode al path
         try {
             decodedPath = URLDecoder.decode(jarPath, "UTF-8");
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //crea objeto file con el path
+        // crea objeto file con el path
         File configFolder = new File(decodedPath);
-        //se guarda el path del jar sin el nombre del jar
+        // se guarda el path del jar sin el nombre del jar
         String actualPath = configFolder.getParent();
-        //cambia los \ por diagonal doble para que sea un path valido en java
+        // cambia los \ por diagonal doble para que sea un path valido en java
         actualPath = actualPath.replace("\"", "\\");
-        //crea un objeto file con el path
+        // crea un objeto file con el path
         dir = new File(actualPath + "\\config");
-        //verifica si existe el directorio, si no existe, lo crea
+        // verifica si existe el directorio, si no existe, lo crea
         if (!dir.exists()) {
-            //crea el directorio config en la misma carpeta donde está el .jar
+            // crea el directorio config en la misma carpeta donde está el .jar
             dir.mkdir();
         }
-        //guarda el directorio completo del archivo config.properties
+        // guarda el directorio completo del archivo config.properties
         configFilePath = dir.getPath() + "\\config.properties";
 
     }
 
     public boolean loadDefaultSettings() {
-        //obtiene el archivo default.properties
+        // obtiene el archivo default.properties
         InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
-        //carga el archivo default.properties
+        // carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
         } catch (IOException e) {
@@ -69,14 +81,14 @@ public class Config {
             return false;
         }
 
-        //si el archivo config no existe, crea uno y guarda los datos por defecto
+        // si el archivo config no existe, crea uno y guarda los datos por defecto
         if (!configFileExists()) {
-            //carga la configuracion default al archivo config.properties
+            // carga la configuracion default al archivo config.properties
             try {
 
                 defaultProperties.forEach((key, value) -> {
                     userProperties.setProperty((String) key, (String) value);
-                    //System.out.println(key + "=" + value);
+                    // System.out.println(key + "=" + value);
                 });
                 userProperties.store(new FileWriter(configFilePath), null);
             } catch (IOException e) {
@@ -88,9 +100,9 @@ public class Config {
 
     public boolean loadUserSettings() {
         try {
-            //cambiar a \\
-             configFilePath = configFilePath.replace("\"", "\\");
-            //carga el archivo
+            // cambiar a \\
+            configFilePath = configFilePath.replace("\"", "\\");
+            // carga el archivo
             userProperties.load(new FileInputStream(new File(configFilePath)));
 
         } catch (IOException ex) {
@@ -100,12 +112,12 @@ public class Config {
 
         return true;
     }
-    
-    public boolean saveUserSettings(){
-        try{
-           userProperties.store(new FileWriter(configFilePath), null); 
-        }catch(IOException e){
-            System.out.println("Couln't save settings: "+e);
+
+    public boolean saveUserSettings() {
+        try {
+            userProperties.store(new FileWriter(configFilePath), null);
+        } catch (IOException e) {
+            System.out.println("Couln't save settings: " + e);
             return false;
         }
         return true;
@@ -128,16 +140,15 @@ public class Config {
 
     public boolean configFileExists() {
 
-        //revisa si config.properties existe y retorna el resultado
+        // revisa si config.properties existe y retorna el resultado
         return new File(configFilePath).exists();
 
     }
 
-    public void validateUserSettings(){
-        
+    public void validateUserSettings() {
+
     }
-    
-    
+
     public Properties getUserProperties() {
         return userProperties;
     }

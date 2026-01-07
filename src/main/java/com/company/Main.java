@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.ui.GameWindow;
+import com.company.constants.Arguments;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -10,14 +11,13 @@ public class Main {
         Game game = new Game();
         System.out.println("");
         if (args != null && args.length > 0) {
-            for (String argumentos : args) {
-                if (argumentos.equals("no-gui")) {
+            for (String argumento : args) {
+                if (Arguments.NO_GUI.equals(argumento)) {
 
                     game.consoleMode();
                 } else {
-                    System.out.println("Argumento no reconocido, se ejecutara modo consola por defecto");
-                    System.out.println("Para ejecutar el modo consola, usar no-gui");
-
+                    System.out.println(Arguments.MSG_ARG_NO_RECONOCIDO);
+                    System.out.println(Arguments.MSG_USO_CONSOLA);
                     game.consoleMode();
                 }
             }

@@ -4,7 +4,7 @@ import com.company.ui.GameWindow;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class GameRunner {
+public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
@@ -29,7 +29,8 @@ public class GameRunner {
     public static void modoNormal(Game g) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
+        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException
+                | ClassNotFoundException e) {
             e.printStackTrace();
         }
         new GameWindow(g);

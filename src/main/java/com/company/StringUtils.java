@@ -50,4 +50,27 @@ public class StringUtils {
 
         return color;
     }
+  
+      public static Color getColorXD(String propertyValue) {
+        //por si acaso XD
+        Color color = new Color(240, 240, 240);
+        
+            //regex para obtener 3 grupos de valores numericos
+            Pattern c = Pattern.compile("^([0-9]+).([0-9]+).([0-9]+)$");
+            Matcher m = c.matcher(propertyValue);
+            
+            if(m.matches()){
+                
+                try{
+                    color = new Color(Integer.valueOf(m.group(1)), Integer.valueOf(m.group(2)), Integer.valueOf(m.group(3)));
+                }catch(Exception e){
+                    System.out.println("color not valid: "+e);
+                }
+                
+            }else{
+                System.out.println("color not valid");
+            }
+          
+        return color;
+    }
 }

@@ -29,6 +29,18 @@ public class Config {
     private final File dir;
     private String configFilePath;
 
+    /**
+     * Clase responsable de gestionar la configuración de la aplicación.
+     * <p>
+     * Maneja propiedades por defecto ({@code default.properties}) y propiedades de
+     * usuario
+     * ({@code config.properties}) ubicadas en una carpeta "config" junto al archivo
+     * JAR ejecutable.
+     * Permite cargar, guardar y validar configuraciones de manera centralizada.
+     * </p>
+     *
+     * @author Javi
+     */
     public Config() {
         defaultProperties = new Properties();
         userProperties = new Properties(defaultProperties);

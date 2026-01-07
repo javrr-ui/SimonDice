@@ -76,6 +76,7 @@ public class Config {
         // carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
+            defaultFile.close();
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);
             return false;
@@ -131,7 +132,7 @@ public class Config {
     public void createConfigFile() {
 
         try {
-            FileWriter fileWriter = new FileWriter(configFilePath);
+            new FileWriter(configFilePath);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }

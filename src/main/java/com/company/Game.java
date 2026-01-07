@@ -262,7 +262,8 @@ public class Game {
         return opc;
     }
 
-    public boolean esOpcionValida(String entrada, int cantidadOpciones) {
+    public boolean esOpcionValida(String ent, int cantidadOpciones) {
+        String entrada = ent;
         String regularExpresion = "[1-" + cantidadOpciones + "]";
         //codigo de validacion aprueba de pendejos (solo acepta valores del 1 ala cantidad de opciones que se designa)
         if (entrada == null) {

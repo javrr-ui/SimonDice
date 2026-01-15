@@ -76,10 +76,17 @@ public class Config {
         // carga el archivo default.properties
         try {
             defaultProperties.load(defaultFile);
-            defaultFile.close();
         } catch (IOException e) {
             System.out.println("Couln't load default.properties " + e);
             return false;
+        } finally {
+            try {
+                if (defaultFile != null) {
+                    defaultFile.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         // si el archivo config no existe, crea uno y guarda los datos por defecto

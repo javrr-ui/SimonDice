@@ -26,9 +26,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-
+import java.io.IOException;
 import java.net.URI;
-
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
 import javax.swing.BoxLayout;
@@ -69,58 +69,60 @@ public class GameWindow extends JFrame {
     public static final int MILISEGUNDOS = 1000;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private JMenuItem aboutMenuItem;
+    private JLabel blueLbl;
+    private JDialog colorPicker;
+    private JButton comenzarJuegoButton;
+    private JButton configButton;
+    private JLabel greenLbl;
+    private JButton helpButton;
+    private JMenu helpMenu;
+    private JButton instructionsButton;
     private JDialog instructionsDialog;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private JButton jButton8;
+    private JColorChooser jColorChooser1;
+    private JComboBox<String> jComboBox3;
+    private JComboBox<String> jComboBox4;
+    private JLabel jLabel1;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel17;
+    private JLabel jLabel18;
     private JLabel jLabel2;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private JLabel jLabel20;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
     private JSlider jSlider1;
-    
-    
-    
+    private JTabbedPane jTabbedPane1;
+    private JTabbedPane jTabbedPane2;
+    private JToggleButton jToggleButton2;
     private volatile JPanel mainPanel;
-    
+    private JMenuBar menuBar;
     private JLabel nextColor;
     private JDialog optionDialog;
-    
-    
+    private JButton optionDialogAceptar;
+    private JButton optionDialogCancelar;
     private JMenu optionsMenu;
-    
+    private JPanel panelInicio;
     private JPanel panelJuego;
-    
+    private JLabel redLbl;
+    private JLabel yellowLbl;
     // End of variables declaration//GEN-END:variables
+
     private Game game;
     private Sound sonido;
     private JLabel javierGithub;
@@ -128,25 +130,26 @@ public class GameWindow extends JFrame {
     private JLabel reportarError;
     private JLabel creditosSonido;
     private Color backgroundColor;
-
+    
     //mientras menos sea el valor, es mas dificil
     private int dificultad;
     private int dificultad_aux;
     private Config configuracion;
     private Properties userProperties;
     private Properties defaultProperties;
-
     /**
      * Creates new form GameWindow
      */
     public GameWindow(Game g) {
-
+       
+        
         configuracion();
-
+        
         this.game = g;
-
+        
+        
         initComponents();
-
+        
         escuchadores();
 
         setVisible(true);
@@ -158,38 +161,57 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                goToLink("https://github.com/javrr-ui");
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui"));
+                } catch (IOException | URISyntaxException ex) {
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                mouseEnteredEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                mouseExitedEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
         ruslanGithub.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                goToLink("https://github.com/javatlacati");
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/javatlacati"));
+                } catch (IOException | URISyntaxException ex) {
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                mouseEnteredEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
+
                 super.mouseExited(e);
-                mouseExitedEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
 
@@ -197,19 +219,29 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                goToLink("https://www.zapsplat.com/");
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.zapsplat.com/"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                mouseEnteredEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                mouseExitedEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
 
@@ -217,43 +249,31 @@ public class GameWindow extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                goToLink("https://github.com/javrr-ui/SimonDice/issues");
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/javrr-ui/SimonDice/issues"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                mouseEnteredEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.BLUE);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                mouseExitedEffect(e);
+                JLabel lbl = (JLabel) e.getSource();
+                lbl.setForeground(Color.black);
+                lbl.paintImmediately(lbl.getVisibleRect());
+                lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
-    }
-
-    private void mouseEnteredEffect(MouseEvent e) {
-        JLabel lbl = (JLabel) e.getSource();
-        lbl.setForeground(Color.BLUE);
-        lbl.paintImmediately(lbl.getVisibleRect());
-        lbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
-
-    private void mouseExitedEffect(MouseEvent e) {
-        JLabel lbl = (JLabel) e.getSource();
-        lbl.setForeground(Color.black);
-        lbl.paintImmediately(lbl.getVisibleRect());
-        lbl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }
-
-    private void goToLink(String link) {
-        try {
-            Desktop.getDesktop().browse(new URI(link));
-        } catch (Exception ex) {
-            
-        }
     }
 
     private void configuracion() {
@@ -262,7 +282,7 @@ public class GameWindow extends JFrame {
         configuracion.loadUserSettings();
         userProperties = configuracion.getUserProperties();
         defaultProperties = configuracion.getDefaultProperties();
-        System.out.println("config file " + configuracion.configFileExists());
+        System.out.println("config file "+configuracion.configFileExists());
         System.out.println("==Default properties==");
         defaultProperties.forEach((key, value) -> {
             System.out.println(key + "=" + value);
@@ -275,6 +295,9 @@ public class GameWindow extends JFrame {
 
     }
 
+
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -285,40 +308,40 @@ public class GameWindow extends JFrame {
     private void initComponents() {
 
         optionDialog = new JDialog();
-        JTabbedPane jTabbedPane1 = new JTabbedPane();
-        JPanel jPanel2 = new JPanel();
-        JLabel jLabel16 = new JLabel();
-        JComboBox<String> jComboBox3 = new JComboBox<>();
-        JLabel jLabel18 = new JLabel();
-        JComboBox<String> jComboBox4 = new JComboBox<>();
-        JLabel jLabel7 = new JLabel();
+        jTabbedPane1 = new JTabbedPane();
+        jPanel2 = new JPanel();
+        jLabel16 = new JLabel();
+        jComboBox3 = new JComboBox<>();
+        jLabel18 = new JLabel();
+        jComboBox4 = new JComboBox<>();
+        jLabel7 = new JLabel();
         jSlider1 = new JSlider();
-        JLabel jLabel8 = new JLabel();
-        JLabel jLabel9 = new JLabel();
-        JPanel jPanel1 = new JPanel();
-        JLabel jLabel20 = new JLabel();
+        jLabel8 = new JLabel();
+        jLabel9 = new JLabel();
+        jPanel1 = new JPanel();
+        jLabel20 = new JLabel();
         jLabel2 = new JLabel();
-        JButton jButton8 = new JButton();
-        JPanel jPanel3 = new JPanel();
-        JLabel jLabel17 = new JLabel();
-        JToggleButton jToggleButton2 = new JToggleButton();
-        JLabel jLabel11 = new JLabel();
-        JLabel jLabel12 = new JLabel();
-        JLabel jLabel13 = new JLabel();
-        JLabel jLabel14 = new JLabel();
-        JLabel jLabel15 = new JLabel();
-        JButton optionDialogAceptar = new JButton();
-	JButton optionDialogCancelar = new JButton();
-        JDialog colorPicker = new JDialog();
-        JColorChooser jColorChooser1 = new JColorChooser();
+        jButton8 = new JButton();
+        jPanel3 = new JPanel();
+        jLabel17 = new JLabel();
+        jToggleButton2 = new JToggleButton();
+        jLabel11 = new JLabel();
+        jLabel12 = new JLabel();
+        jLabel13 = new JLabel();
+        jLabel14 = new JLabel();
+        jLabel15 = new JLabel();
+        optionDialogAceptar = new JButton();
+        optionDialogCancelar = new JButton();
+        colorPicker = new JDialog();
+        jColorChooser1 = new JColorChooser();
         instructionsDialog = new JDialog();
-        JTabbedPane jTabbedPane2 = new JTabbedPane();
-        JPanel jPanel4 = new JPanel();
-        JLabel jLabel3 = new JLabel();
-        JLabel jLabel4 = new JLabel();
-        JPanel jPanel5 = new JPanel();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
+        jTabbedPane2 = new JTabbedPane();
+        jPanel4 = new JPanel();
+        jLabel3 = new JLabel();
+        jLabel4 = new JLabel();
+        jPanel5 = new JPanel();
+        jLabel5 = new JLabel();
+        jLabel6 = new JLabel();
         URL githubImgUrl = ClassLoader.getSystemResource("img/github.png");
         ImageIcon gitIcon = new ImageIcon(new ImageIcon(githubImgUrl).getImage().getScaledInstance(25,25,Image.SCALE_SMOOTH));
         ImageIcon icono = new ImageIcon(new ImageIcon(ClassLoader.getSystemResource("img/simonDice.png")).getImage());
@@ -340,22 +363,22 @@ public class GameWindow extends JFrame {
             e.printStackTrace();
         }
         mainPanel = new JPanel();
-        JPanel panelInicio = new JPanel();
-        JLabel jLabel1 = new JLabel();
-        JButton comenzarJuegoButton = new JButton();
-        JButton instructionsButton = new JButton();
-        JButton configButton = new JButton();
-        JButton helpButton = new JButton();
+        panelInicio = new JPanel();
+        jLabel1 = new JLabel();
+        comenzarJuegoButton = new JButton();
+        instructionsButton = new JButton();
+        configButton = new JButton();
+        helpButton = new JButton();
         panelJuego = new JPanel();
-        JLabel yellowLbl = new JLabel();
-        JLabel blueLbl = new JLabel();
+        yellowLbl = new JLabel();
+        blueLbl = new JLabel();
         nextColor = new JLabel();
-        JLabel greenLbl = new JLabel();
-        JLabel redLbl = new JLabel();
-        JMenuBar menuBar = new JMenuBar();
+        greenLbl = new JLabel();
+        redLbl = new JLabel();
+        menuBar = new JMenuBar();
         optionsMenu = new JMenu();
-        JMenu helpMenu = new JMenu();
-        JMenuItem aboutMenuItem = new JMenuItem();
+        helpMenu = new JMenu();
+        aboutMenuItem = new JMenuItem();
 
         optionDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         optionDialog.setTitle("Opciones");
@@ -367,6 +390,11 @@ public class GameWindow extends JFrame {
 
         jComboBox3.setModel(new DefaultComboBoxModel<>(new String[] { "GUI", "CLI" }));
         jComboBox3.setEnabled(false);
+        jComboBox3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("Idioma");
 
@@ -455,7 +483,7 @@ public class GameWindow extends JFrame {
         jButton8.setText("Seleccionar color");
         jButton8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jButton8ActionPerformed();
+                jButton8ActionPerformed(evt);
             }
         });
 
@@ -557,14 +585,14 @@ public class GameWindow extends JFrame {
         optionDialogAceptar.setText("Aceptar");
         optionDialogAceptar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionDialogAceptarActionPerformed();
+                optionDialogAceptarActionPerformed(evt);
             }
         });
 
         optionDialogCancelar.setText("Cancelar");
         optionDialogCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionDialogCancelarActionPerformed();
+                optionDialogCancelarActionPerformed(evt);
             }
         });
 
@@ -682,28 +710,28 @@ public class GameWindow extends JFrame {
         comenzarJuegoButton.setText("Comenzar juego");
         comenzarJuegoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                comenzarJuegoButtonActionPerformed();
+                comenzarJuegoButtonActionPerformed(evt);
             }
         });
 
         instructionsButton.setText("Instrucciones");
         instructionsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                instructionsButtonActionPerformed();
+                instructionsButtonActionPerformed(evt);
             }
         });
 
         configButton.setText("Configuracion");
         configButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                configButtonActionPerformed();
+                configButtonActionPerformed(evt);
             }
         });
 
         helpButton.setText("Ayuda");
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                helpButtonActionPerformed();
+                helpButtonActionPerformed(evt);
             }
         });
 
@@ -833,17 +861,17 @@ public class GameWindow extends JFrame {
             public void menuDeselected(MenuEvent evt) {
             }
             public void menuSelected(MenuEvent evt) {
-                optionsMenuMenuSelected();
+                optionsMenuMenuSelected(evt);
             }
         });
         optionsMenu.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                optionsMenuMouseClicked();
+                optionsMenuMouseClicked(evt);
             }
         });
         optionsMenu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                optionsMenuActionPerformed();
+                optionsMenuActionPerformed(evt);
             }
         });
         menuBar.add(optionsMenu);
@@ -853,7 +881,7 @@ public class GameWindow extends JFrame {
         aboutMenuItem.setText("Acerca de");
         aboutMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                aboutMenuItemActionPerformed();
+                aboutMenuItemActionPerformed(evt);
             }
         });
         helpMenu.add(aboutMenuItem);
@@ -865,7 +893,7 @@ public class GameWindow extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comenzarJuegoButtonActionPerformed() {//GEN-FIRST:event_comenzarJuegoButtonActionPerformed
+    private void comenzarJuegoButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_comenzarJuegoButtonActionPerformed
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel, "panelJuego");
         if (game.haEmpezadoJuego()) {
@@ -877,7 +905,7 @@ public class GameWindow extends JFrame {
         }
     }//GEN-LAST:event_comenzarJuegoButtonActionPerformed
 
-    private void aboutMenuItemActionPerformed() {//GEN-FIRST:event_aboutMenuItemActionPerformed
+    private void aboutMenuItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
 
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
@@ -905,7 +933,7 @@ public class GameWindow extends JFrame {
         lblClicked(evt);
     }//GEN-LAST:event_yellowLblMouseClicked
 
-    private void configButtonActionPerformed() {//GEN-FIRST:event_configButtonActionPerformed
+    private void configButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
         // TODO add your handling code here:
 
         optionDialog.setVisible(true);
@@ -914,7 +942,7 @@ public class GameWindow extends JFrame {
 
     }//GEN-LAST:event_configButtonActionPerformed
 
-    private void jButton8ActionPerformed() {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButton8ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         backgroundColor = JColorChooser.showDialog(GameWindow.this, "Selecciona color de fondo", backgroundColor);
         jLabel2.setBackground(backgroundColor);
 
@@ -922,33 +950,34 @@ public class GameWindow extends JFrame {
         revalidate();
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void optionsMenuActionPerformed() {//GEN-FIRST:event_optionsMenuActionPerformed
+    private void optionsMenuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionsMenuActionPerformed
 
 
     }//GEN-LAST:event_optionsMenuActionPerformed
 
-    private void optionsMenuMenuSelected() {//GEN-FIRST:event_optionsMenuMenuSelected
+    private void optionsMenuMenuSelected(MenuEvent evt) {//GEN-FIRST:event_optionsMenuMenuSelected
 
     }//GEN-LAST:event_optionsMenuMenuSelected
 
-    private void optionsMenuMouseClicked() {//GEN-FIRST:event_optionsMenuMouseClicked
+    private void optionsMenuMouseClicked(MouseEvent evt) {//GEN-FIRST:event_optionsMenuMouseClicked
         optionDialog.setVisible(true);
         optionDialog.pack();
         optionsMenu.setSelected(false);
     }//GEN-LAST:event_optionsMenuMouseClicked
 
-    private void optionDialogAceptarActionPerformed() {//GEN-FIRST:event_optionDialogAceptarActionPerformed
+    private void optionDialogAceptarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogAceptarActionPerformed
 
         //setea el color de fondo
         panelJuego.setBackground(backgroundColor);
         nextColor.setBackground(backgroundColor);
-
+        
         //pasa un color a un string de la forma "250,250,250"
-        String colorsito = StringUtils.colorToStringRGB(backgroundColor);
+        String colorsito = StringUtils.ColorToStringRGB(backgroundColor);
         //modifica la propiedad
-        userProperties.setProperty("backgroundColor", colorsito);
+        userProperties.setProperty("backgroundColor",colorsito );
         //guarda la configuracion en el archivo
         configuracion.saveUserSettings();
+        
 
         //cambia el valor de dificultad
         if (dificultad_aux < jSlider1.getMaximum()) {
@@ -963,19 +992,19 @@ public class GameWindow extends JFrame {
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogAceptarActionPerformed
 
-    private void optionDialogCancelarActionPerformed() {//GEN-FIRST:event_optionDialogCancelarActionPerformed
+    private void optionDialogCancelarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_optionDialogCancelarActionPerformed
         jLabel2.setBackground(panelJuego.getBackground());
         optionDialog.dispose();
     }//GEN-LAST:event_optionDialogCancelarActionPerformed
 
-    private void instructionsButtonActionPerformed() {//GEN-FIRST:event_instructionsButtonActionPerformed
+    private void instructionsButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
         instructionsDialog.pack();
         instructionsDialog.setVisible(true);
 
 
     }//GEN-LAST:event_instructionsButtonActionPerformed
 
-    private void helpButtonActionPerformed() {//GEN-FIRST:event_helpButtonActionPerformed
+    private void helpButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 
@@ -997,7 +1026,14 @@ public class GameWindow extends JFrame {
         dificultad_aux = js.getValue();
     }//GEN-LAST:event_jSlider1MouseDragged
 
+    private void jComboBox3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
     private void lblClicked(MouseEvent e) {
+
+        
+        
 
         JLabel label = (JLabel) e.getSource();
 
@@ -1012,16 +1048,17 @@ public class GameWindow extends JFrame {
                     game.agregarColor();
                     secuenciaColores();
                 }
-            } else {
+            } else {  
                 perdiste();
             }
         }
-        try {
+        try{
             sonido.play();
-        } catch (Exception ex) {
-            System.out.println("Could't play sound: " + ex);
+        }catch(Exception ex){
+            System.out.println("Could't play sound: "+ex);
         }
-
+        
+        
     }
 
     public void perdiste() {
@@ -1047,7 +1084,7 @@ public class GameWindow extends JFrame {
 
     public void secuenciaColores() {
         try {
-            game.getSecuencia().forEach(color -> {
+            game.getSecuencia().forEach((color) -> {
                 switch (color) {
                     case "rojo":
                         pintarColorSecuencia(color, ColorConstants.ROJO);

@@ -71,7 +71,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>com.company.GameRunner</mainClass>
+                            <mainClass>com.company.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -28,6 +28,13 @@ public class StringUtils {
         return color.getRed() + "," + color.getGreen() + "," + color.getBlue();
     }
 
+    /**
+     * Este metodo recibe un string de la forma "250,250,250" y lo convierte a
+     * un objeto Color
+     *
+     * @param propertyValue el string que se quiere convertir
+     * @return un objeto Color
+     */
     public static Color getColorFromRGB(String propertyValue) {
         //por si acaso XD
         Color color = new Color(240, 240, 240);

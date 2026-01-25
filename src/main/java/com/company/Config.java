@@ -72,22 +72,15 @@ public class Config {
     }
 
     public boolean loadDefaultSettings() {
-        // obtiene el archivo default.properties
-        InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
-        // carga el archivo default.properties
-        try {
+        try(InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties")) {
+            if (defaultFile == null) {
+                LOGGER.severe("default.properties not found on classpath");
+                return false;
+            }
             defaultProperties.load(defaultFile);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Couldn't load default.properties", e);
             return false;
-        } finally {
-            try {
-                if (defaultFile != null) {
-                    defaultFile.close();
-                }
-            } catch (IOException ex) {
-                LOGGER.log(Level.SEVERE, null, ex);
-            }
         }
 
         // si el archivo config no existe, crea uno y guarda los datos por defecto

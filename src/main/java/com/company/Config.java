@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class Config {
 
+    private static final Logger LOGGER = Logger.getLogger(Config.class.getName());
     private Properties defaultProperties;
     private Properties userProperties;
     private String jarPath;
@@ -50,7 +51,7 @@ public class Config {
         try {
             decodedPath = URLDecoder.decode(jarPath, "UTF-8");
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
         }
         // crea objeto file con el path
         File configFolder = new File(decodedPath);
@@ -71,14 +72,14 @@ public class Config {
     }
 
     public boolean loadDefaultSettings() {
-        // obtiene el archivo default.properties
-        InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties");
-        // carga el archivo default.properties
-        try {
+        try(InputStream defaultFile = Main.class.getClassLoader().getResourceAsStream("default.properties")) {
+            if (defaultFile == null) {
+                LOGGER.severe("default.properties not found on classpath");
+                return false;
+            }
             defaultProperties.load(defaultFile);
-            defaultFile.close();
         } catch (IOException e) {
-            System.out.println("Couln't load default.properties " + e);
+            LOGGER.log(Level.SEVERE, "Couldn't load default.properties", e);
             return false;
         }
 
@@ -93,7 +94,7 @@ public class Config {
                 });
                 userProperties.store(new FileWriter(configFilePath), null);
             } catch (IOException e) {
-                System.out.println("Couln't make file" + e);
+                LOGGER.log(Level.SEVERE, "Couldn't create config file", e);
             }
         }
         return true;
@@ -107,7 +108,7 @@ public class Config {
             userProperties.load(new FileInputStream(new File(configFilePath)));
 
         } catch (IOException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
             return false;
         }
 
@@ -118,7 +119,7 @@ public class Config {
         try {
             userProperties.store(new FileWriter(configFilePath), null);
         } catch (IOException e) {
-            System.out.println("Couln't save settings: " + e);
+            LOGGER.log(Level.SEVERE, "Couldn't save settings", e);
             return false;
         }
         return true;
@@ -134,7 +135,7 @@ public class Config {
         try {
             new FileWriter(configFilePath);
         } catch (IOException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
         }
 
     }

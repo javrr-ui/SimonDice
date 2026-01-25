@@ -262,6 +262,18 @@ public class Game {
         return opc;
     }
 
+    /**
+     * Validates whether the user input is a valid menu option.
+     * <p>
+     * Checks if the input is a single digit between 1 and the specified number
+     * of options (inclusive). The method handles null inputs, empty strings,
+     * and whitespace trimming.
+     * </p>
+     *
+     * @param entrada the user input string to validate
+     * @param cantidadOpciones the maximum number of valid options (range: 1 to cantidadOpciones)
+     * @return {@code true} if the input is a valid option number, {@code false} otherwise
+     */
     public boolean esOpcionValida(String entrada, int cantidadOpciones) {
         String regularExpresion = "[1-" + cantidadOpciones + "]";
         //codigo de validacion aprueba de pendejos (solo acepta valores del 1 ala cantidad de opciones que se designa)
